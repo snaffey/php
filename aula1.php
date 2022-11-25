@@ -155,18 +155,82 @@
         $do++;
     } while ($do <= 10);
 
+    for ($i = 0; $i <= 20; $i++) {
+        echo "->".$i."<br>";
+    }
+
+    // Break
+    $x = 11;
+    while ($x++ > 10){
+        if ($x == 20) {
+            echo "20"."<br>";
+            break;
+        }
+        //echo $x."<br>";
+    }
+
+    $y = 0;
+    for ( ; ; ){
+        if ($y == 10) {
+            break;
+            echo $y++;
+        }
+    }
+
+    /*
+    for ($i = 0; $j = 0;
+        $i < 10;
+        $j+=$i,
+        print "i -> ".$i." j -> ".$j."<br>", $i++);
+    */
+    
+    $arr = array(1, 2, 3, 4);
+    // foreach
+    foreach ($arr as $value){
+        echo $value."<br>";
+    }
+
+    //foreach por referencia
+    foreach ($arr as &$value){
+        $value = $value * 2;
+    }
+
+    print_r($arr);
+
+    $arr2 = array(1, 2, 3, 4);
+    foreach ($variable as $chave => $value) {
+        echo "Chave -> ".$chave." Valor -> ".$value."<br>";
+    }
+
+    $av = array();
+    $av [0] [0] = "a";
+    $av [0] [1] = "b";
+    $av [1] [0] = "c";
+    $av [1] [1] = "d";
+    $av [1] [2] = "e";
+    foreach ($av as $linha)
+        foreach ($linha as $coluna)
+            echo $coluna."<br>";
+
+    // Mesma coisa em for
+    // count - conta o numero de elementos de um array
+    for ($i = 0; $i < count($av); $i++){
+        for ($j = 0; $j < count($av[$i]); $j++){
+            echo $av[$i][$j]."<br>";
+        }
+    }
 ?>
 
 <html>
 
-<head>
-    <title>Exemplo de PHP</title>
-</head>
+    <head>
+        <title>Exemplo de PHP</title>
+    </head>
 
-<body>
-    <?php
-        echo"<p>Olá Mundo!</p>";
-    ?>
-</body>
+    <body>
+        <?php
+            echo"<p>Olá Mundo!</p>";
+        ?>
+    </body>
 
 </html>
