@@ -68,13 +68,47 @@ FILE_BINARY - O arquivo é retornado na codificação binária. Não pode ser us
         fclose($handle);
      }*/
 
+     /*
      $filename = 'https://www.epcc.pt/';
      if (!$handle = file_get_contents($filename)) {
         echo "Não foi possível abrir o arquivo ($filename)";
         exit;
      }else
         echo $handle; 
-     fclose($handle);
+     fclose($handle);*/
+
+    /*
+    $srcImg = "C:\Users\Tiago\Documents\php\arquivos\arquivo.txt";
+    $conteudo = "\n\n\n Tiago via code \n";
+    if(file_exists($srcImg)) {
+        if(is_writable($srcImg)){
+            if(!$handle = fopen($srcImg, 'a')){
+                echo "Não foi possível abrir o arquivo ($srcImg)";
+                exit;
+            }
+            if(fwrite($handle, $conteudo) === FALSE){
+                echo "Não foi possível escrever no arquivo ($srcImg)";
+                exit;
+            }
+            echo "Sucesso: Escrito ($conteudo) no arquivo ($srcImg)";
+            fclose($handle);
+        }else{
+            echo "O ficheiro $srcImg não é gravável";
+        }
+    }else
+        echo "O ficheiro $srcImg não existe";
+    */
+
+    // Exemplo de contador de visitas
+    $filename = 'C:\Users\Tiago\Documents\php\arquivos\count.txt';
+    $abir = fopen($filename, 'r');
+    $total = fread($abir, filesize($filename));
+    fclose($abir);
+    $abir = fopen($filename, 'w');
+    $total++;
+    $guardar = fwrite($abir, $total);
+    fclose($abir);
+    echo "Total de visitas: $total";
 ?>
 
 <html>
