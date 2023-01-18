@@ -48,6 +48,33 @@ if (isset($_COOKIE)){
 
 $umDia = time() + 86400;
 setcookie ("NOMEUSER", "Joao", $umDia);
+setcookie ("PASS", "123456", $nextWeek);
+
+$str = "Bem vindo";
+$str .= $_COOKIE["NOMEUSER"] != "" ? $_COOKIE["NOMEUSER"] : "Visitante";
+
+session_start();
+$test = session_id();
+if(isset($test)){
+    echo 'Session ID: '.session_id().'<br>';
+    $_SESSION['nome'] = 'Joao';
+    $_SESSION['permite'] = 'sim';
+    $cookie_name = session_name();
+}
+
+if ($_SESSION['permite'] == 'sim') {
+    echo 'Bem vindo '.$_SESSION['nome'];
+    header ("Location: admin.php")
+    /*
+    if (session_destroy()) {
+        echo 'Sessão destruida';
+        session_write_close();
+        unset($_SESSION['nome']);
+    }
+    */
+}else {
+    echo 'Acesso negado';
+}
 
 ?>
 <html>
