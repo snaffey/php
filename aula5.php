@@ -1,4 +1,5 @@
 <?php
+session_start();
 //$_POST ou $_GET
 /*
 if(isset($_POST['email']) && isset($_POST['info']))
@@ -34,11 +35,11 @@ function red() {
 
 */
 //setcookie('nome', 'valor', time()+3600);
-
+/*
 setcookie ("cookie3", "cookiethree");
 setcookie ("cookie2", "cookietwo");
 setcookie ("cookie1", "cookieone");
-
+*/
 /*
 if (isset($_COOKIE)){
     print_r($_COOKIE);
@@ -46,25 +47,25 @@ if (isset($_COOKIE)){
 
 /* echo $_COOKIE["cookie2"];*/
 
-$umDia = time() + 86400;
-setcookie ("NOMEUSER", "Joao", $umDia);
-setcookie ("PASS", "123456", $nextWeek);
+//$umDia = time() + 86400;
+//setcookie ("NOMEUSER", "Joao", $umDia);
+//setcookie ("PASS", "123456", $nextWeek);
 
 $str = "Bem vindo";
-$str .= $_COOKIE["NOMEUSER"] != "" ? $_COOKIE["NOMEUSER"] : "Visitante";
+$str .= isset($_GET["NOMEUSER"]) ? $_GET["NOMEUSER"] : "Visitante";
 
-session_start();
 $test = session_id();
 if(isset($test)){
-    echo 'Session ID: '.session_id().'<br>';
+    //echo 'Session ID: '.session_id().'<br>';
     $_SESSION['nome'] = 'Joao';
     $_SESSION['permite'] = 'sim';
     $cookie_name = session_name();
 }
 
-if ($_SESSION['permite'] == 'sim') {
-    echo 'Bem vindo '.$_SESSION['nome'];
-    header ("Location: admin.php")
+if (($_SESSION) && ($_SESSION['permite'] === 'sim')) {
+    //echo 'Bem vindo '.$_SESSION['nome'];
+    header("Location: admin.php");
+    exit();
     /*
     if (session_destroy()) {
         echo 'Sessão destruida';
@@ -72,11 +73,11 @@ if ($_SESSION['permite'] == 'sim') {
         unset($_SESSION['nome']);
     }
     */
-}else {
+} else {
     echo 'Acesso negado';
 }
-
 ?>
+
 <html>
     <head>
         <title>Aula 5 -FILES</title>
