@@ -1,3 +1,3 @@
 module.exports = {
-  php: "./php/php.exe",
+  php: "/home/codespace/.php/current/bin/php",
 };
