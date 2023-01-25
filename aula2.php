@@ -70,10 +70,10 @@
     list($nome, $idade, $morada) = $info;
     imprimeTxt($nome);
     imprimeTxt($idade);
-    imprimeTxt($morada);~
+    imprimeTxt($morada);
 
     function nL() {
-        return array(12,13,15);
+         return [12,13,15];
     }
 
     list($a, $b, $c) = nL();
