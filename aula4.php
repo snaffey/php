@@ -100,7 +100,7 @@ FILE_BINARY - O arquivo é retornado na codificação binária. Não pode ser us
     */
 
     // Exemplo de contador de visitas
-    $filename = 'C:\Users\Tiago\Documents\php\arquivos\count.txt';
+    $filename = '/workspaces/php/arquivos/count.txt';
     $abir = fopen($filename, 'r');
     $total = fread($abir, filesize($filename));
     fclose($abir);
