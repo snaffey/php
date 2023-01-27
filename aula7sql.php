@@ -25,6 +25,9 @@
                     echo "ID: $linha[0] - Nome: $linha[1] - Data de Nascimento: $linha[2] - Salario: $linha[3] <br>";
                 }
             }
+
+            echo "Conexão:".mysqli_get_host_info ($conexao)."<br>";
+            echo "Versão do servidor:".mysqli_get_server_info ($conexao)."<br>";
          ?>
     </body>
 </html>
