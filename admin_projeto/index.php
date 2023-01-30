@@ -11,7 +11,6 @@
     <body>
         <header class="header">
             <img src="./img/logo.png" alt="logo" class="logo"/>
-            Menu
         </header>
         <section class="location_banner">
             <h1>Melhores casas e apartamentos em um só lugar</h1>
