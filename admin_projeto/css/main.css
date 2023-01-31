@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'San Francisco';
+    font-weight: 400;
+    src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: San Francisco;
+}
+
+.header {
+    background-color: #ffa07a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header .logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.location_banner {
+    background-color: #ffe4b5;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.location_banner h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.admin {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+}
+
+.admin a {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.admin img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+article {
+    width: 30%;
+    text-align: center;
+    margin: 50px;
+    transition: all 0.2s ease-in-out;
+}
+
+article:hover {
+    transform: scale(1.1);
+}
+
+.casa {
+    max-width: 80%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+article a {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+footer {
+    background-color: #ff8c00;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+@media only screen and (max-width: 768px) {
+    article {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
+    .location_banner {
+        padding: 20px 0;
+    }
+}
