@@ -13,7 +13,7 @@ $imovelID;
 
 function get_imoveis_list(){
     global $connection;
-    $sql = "SELECT * FROM 'imoveis' ORDER BY id DESC";
+    $sql = "SELECT * FROM 'imovel' ORDER BY id DESC";
     $query = mysqli_query($connection, $sql);
     if (mysqli_num_rows($query) > 0) {
         $res = mysqli_fetch_assoc($query);

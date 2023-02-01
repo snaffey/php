@@ -21,6 +21,14 @@
             </a>
         </div>
 
+        <?php 
+            include_once './functionDB.php';
+        ?>
+
+        <?php         
+            $lista = get_imoveis_list();         
+        ?>
+
         <main>
             <article>
                 <img src="./img/casa.jpg" alt="casa" class="casa" />
