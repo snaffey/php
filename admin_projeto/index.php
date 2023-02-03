@@ -21,14 +21,32 @@
             </a>
         </div>
 
-        <?php 
-            include_once './functionDB.php';
+        <?php
+            include_once './functiondb.php';
         ?>
 
-        <?php         
+        <?php
             $lista = get_imoveis_list();         
         ?>
-
+        <main class="imoveis">
+            <?php foreach ($lista as $data) : ?>
+                <article>
+                    <img src="<? echo $data['imgPath'] ?>" alt="<? echo $data['altImg'] ?>" />
+                    <h2><? echo $data['descricao'] ?></h2>
+                    <a href="ver.php?id=<? echo $data['id'] ?>">Ver mais</a>
+                </article>
+            <?php endforeach; ?>
+        </main>     
+        <main class="main">
+            <?php
+                foreach ($lista as $imovel) {
+                    echo '<article>';
+                    echo '<img src="./img/casa.jpg" alt="casa" class="casa" />';
+                    echo '<h2>'.$imovel['descricao'].'</h2>';
+                    echo '<a href="ver.html">Ver mais</a>';
+                    echo '</article>';
+                }
+            ?>
         <main>
             <article>
                 <img src="./img/casa.jpg" alt="casa" class="casa" />

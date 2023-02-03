@@ -26,6 +26,18 @@
             </a>
         </div>
 
+        <?php
+            include_once './functiondb.php';
+        ?>
+
+        <?php 
+            if (empty($_GET['id'])) {
+                header('Location: index.php');
+            }
+            $imovel = get_imovel($_GET['id']);
+        ?>
+
+
         <main>
             <article>
                 <img src="./img/casa.jpg" alt="casa" class="casa" />
