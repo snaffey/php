@@ -31,4 +31,14 @@ function get_imovel($id){
     exit;
 }
 
+function getimovelinfo($id){
+    global $connection;
+    $sql = "SELECT localidade, valor FROM imovelinfo WHERE id = $id";
+    $query = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($query)==1)
+        return mysqli_fetch_assoc($query);
+    exit;
+}
+
+
 ?>

@@ -37,15 +37,33 @@
 				exit;
 			}
 			$imovel = get_imovel($_GET['id']);
+            $imovel_info = getimovelinfo($_GET['id']);
 		?>
 
         <main class="imoveis">
-			<article class="ver">
-				<img class="ver_img" src="<?php echo $imovel['imgPath'] ?>" alt="<?php echo $imovel['altimg']?>" />
-				<h2><?php echo $imovel['descricao']?></h2>
-				<a href="ver.php?id=<?php echo $imovel['id']?>">Mais informação...</a>
-			</article>
-		</main>
+            <article class="ver">
+                <img class="ver_img" src="<?php echo $imovel['imgPath'] ?>" alt="<?php echo $imovel['altimg']?>" />
+                <h2><?php echo $imovel['descricao']?></h2>
+                <a href="#" id="mais-informacao">Mais informação...</a>
+                <div id="info-imovel"></div>
+            </article>
+        </main>
+
+        <script>
+        $(document).ready(function(){
+        $("#mais-informacao").click(function(){
+            $.ajax({
+            url: "getImovelInfo.php",
+            type: "POST",
+            data: { id: <?php echo $_GET['id']; ?> },
+            success: function(data){
+                $("#info-imovel").html(data);
+            }
+            });
+        });
+        });
+        </script>
+
         <footer class="footer">
             <p>Prog 23</p>
         </footer>
