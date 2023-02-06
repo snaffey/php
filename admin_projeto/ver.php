@@ -48,22 +48,6 @@
                 <div id="info-imovel"></div>
             </article>
         </main>
-
-        <script>
-        $(document).ready(function(){
-        $("#mais-informacao").click(function(){
-            $.ajax({
-            url: "getImovelInfo.php",
-            type: "POST",
-            data: { id: <?php echo $_GET['id']; ?> },
-            success: function(data){
-                $("#info-imovel").html(data);
-            }
-            });
-        });
-        });
-        </script>
-
         <footer class="footer">
             <p>Prog 23</p>
         </footer>
