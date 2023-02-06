@@ -36,7 +36,7 @@
                     <a href="ver.php?id=<?php echo $data['id'] ?>">Ver mais</a>
                 </article>
             <?php endforeach; ?>
-        </main>     
+        </main>
         <footer class="footer">
             <p>Prog 23</p>
         </footer>
