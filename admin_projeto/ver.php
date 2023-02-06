@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="back">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/back.png" alt="back" />
             </a>
         </div>
@@ -31,20 +31,21 @@
         ?>
 
         <?php 
-            if (empty($_GET['id'])) {
-                header('Location: index.php');
-            }
-            $imovel = get_imovel($_GET['id']);
-        ?>
+			if(empty($_GET['id'])){
+				//red
+				header("Location: index.php");
+				exit;
+			}
+			$imovel = get_imovel($_GET['id']);
+		?>
 
-
-        <main>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.php">Ver mais</a>
-            </article>
-        </main>
+        <main class="imoveis">
+			<article class="ver">
+				<img class="ver_img" src="<?php echo $imovel['imgPath'] ?>" alt="<?php echo $imovel['altimg']?>" />
+				<h2><?php echo $imovel['descricao']?></h2>
+				<a href="ver.php?id=<?php echo $imovel['id']?>">Mais informação...</a>
+			</article>
+		</main>
         <footer class="footer">
             <p>Prog 23</p>
         </footer>

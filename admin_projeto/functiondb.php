@@ -13,26 +13,22 @@ $imovelID;
 
 function get_imoveis_list(){
     global $connection;
-    $sql = "SELECT * FROM `imovel` ORDER BY id DESC";
+    $sql = 'SELECT * FROM `imovel` ORDER BY id ASC';
     $query = mysqli_query($connection, $sql);
-    if (mysqli_num_rows($query) > 0) {
+    if (mysqli_num_rows($query) > 0){
         $res = mysqli_fetch_assoc($query);
-        return $res;
-    }else {
-        exit('Não foi possível encontrar os imóveis');
+        return $query;
     }
+    exit;
 }
 
-function get_imovel($imovelID){
+function get_imovel($id){
     global $connection;
-    $sql = "SELECT * FROM `imovel` WHERE id = $imovelID";
+    $sql = 'SELECT * FROM `imovel` WHERE `id`='.$id;
     $query = mysqli_query($connection, $sql);
-    if (mysqli_num_rows($query) > 0) {
-        $res = mysqli_fetch_assoc($query);
-        return $res;
-    }else {
-        exit('Não foi possível encontrar o imóvel');
-    }
+    if (mysqli_num_rows($query)==1)
+        return mysqli_fetch_assoc($query);
+    exit;
 }
 
 ?>

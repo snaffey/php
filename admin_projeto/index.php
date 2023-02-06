@@ -31,49 +31,12 @@
         <main class="imoveis">
             <?php foreach ($lista as $data) : ?>
                 <article>
-                    <img src="<? echo $data['imgPath'] ?>" alt="<? echo $data['altImg'] ?>" />
+                    <img src=<?php echo $data['imgPath'] ?> alt=<?php echo $data['altimg'] ?> />
                     <h2><? echo $data['descricao'] ?></h2>
-                    <a href="ver.php?id=<? echo $data['id'] ?>">Ver mais</a>
+                    <a href="ver.php?id=<?php echo $data['id'] ?>">Ver mais</a>
                 </article>
             <?php endforeach; ?>
         </main>     
-        <main class="main">
-            <?php
-                foreach ($lista as $imovel) {
-                    echo '<article>';
-                    echo '<img src="./img/casa.jpg" alt="casa" class="casa" />';
-                    echo '<h2>'.$imovel['descricao'].'</h2>';
-                    echo '<a href="ver.html">Ver mais</a>';
-                    echo '</article>';
-                }
-            ?>
-        <main>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.html">Ver mais</a>
-            </article>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.html">Ver mais</a>
-            </article>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.html">Ver mais</a>
-            </article>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.html">Ver mais</a>
-            </article>
-            <article>
-                <img src="./img/casa.jpg" alt="casa" class="casa" />
-                <h2>Casa com jardim</h2>
-                <a href="ver.html">Ver mais</a>
-            </article>
-        </main>
         <footer class="footer">
             <p>Prog 23</p>
         </footer>
