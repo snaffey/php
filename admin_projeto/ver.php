@@ -3,10 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <title>My Page</title>
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/home.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
     </head>
+
+    
 
     <body>
         <header class="header">
@@ -26,6 +28,7 @@
             </a>
         </div>
 
+
         <?php
             include_once './functiondb.php';
         ?>
@@ -37,13 +40,12 @@
 				exit;
 			}
 			$imovel = get_imovel($_GET['id']);
-            $imovel_info = getimovelinfo($_GET['id']);
 		?>
 
         <main class="imoveis">
             <article class="ver">
                 <img class="ver_img" src="<?php echo $imovel['imgPath'] ?>" alt="<?php echo $imovel['altimg']?>" />
-                <h2><?php echo $imovel['descricao']?></h2>
+                <h2>ID: <span id="id-imovel"><?= $imovel['id']?></span><br><?php echo $imovel['descricao']?></h2>
                 <a href="#" id="mais-informacao">Mais informação...</a>
                 <div id="info-imovel"></div>
             </article>

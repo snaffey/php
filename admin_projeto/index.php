@@ -3,12 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <title>My Page</title>
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/home.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
     </head>
 
     <body>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.php" class="home-link">Home</a></li>
+                <li><a href="#" class="contact-link">Contactos</a></li>
+            </ul>
+        </nav>
         <header class="header">
             <img src="./img/logo.png" alt="logo" class="logo" />
         </header>
