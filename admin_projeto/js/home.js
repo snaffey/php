@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $.ajax({
+        type: 'GET',
+        url: './home.php',
+        success: function (data) {
+            $('.mainer').html(data);
+        },
+    });
+
     $('#mais-informacao').click(function () {
         $.ajax({
             url: 'getImovelInfo.php',
@@ -10,14 +18,25 @@ $(document).ready(function () {
         });
     });
 
-    $('.contact-link').click(function (e) {
-        e.preventDefault();
+    $('a').click(function () {
         $.ajax({
-            url: 'contactos.php',
-            success: function (result) {
-                $('.location_banner, main, footer').hide();
-                $('.header').after(result);
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.mainer').html(data);
             },
         });
+        return false;
+    });
+
+    $('article').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.mainer').html(data);
+            },
+        });
+        return false;
     });
 });

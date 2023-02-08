@@ -17,17 +17,51 @@ body {
     min-height: 100vh;
 }
 
-.header {
-    background-color: #ffa07a;
+.nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: #ffa07a;
+    color: #fff;
 }
 
-.header .logo {
-    height: 40px;
-    margin: 0 auto;
+.nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul li {
+    margin: 0 20px;
+}
+
+.nav ul a {
+    color: #000;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 70px;
+}
+
+.admin {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin img {
+    height: 30px;
 }
 
 .location_banner {
@@ -41,30 +75,11 @@ body {
     margin: 0;
 }
 
-.admin {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 10px;
-}
-
-.admin a {
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-}
-
-.admin img {
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-}
-
 .back {
     position: absolute;
-    left: 0;
-    top: 0;
-    padding: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
 }
 
 .back a {
