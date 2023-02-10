@@ -28,15 +28,4 @@ $(document).ready(function () {
         });
         return false;
     });
-
-    $('article').click(function () {
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            success: function (data) {
-                $('.mainer').html(data);
-            },
-        });
-        return false;
-    });
 });
