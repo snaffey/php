@@ -11,6 +11,31 @@ $imoveldescricao;
 $imovelImg;
 $imovelID;
 
+if (isset($_GET['del'])){
+    deleteImovel($_GET['del']);
+}
+
+if (isset($_POST['editar'])){
+    $imovel = validarImovel($_POST['editar']);
+    validateForm($imovel);
+}
+
+if (isset($_POST['save'])) && isset($_POST['form_imovel_alt']) {
+    saveImovel($_POST['save']);
+}
+
+function validarImovel($imovelID) {
+    global $connection;
+    $sql = "SELECT * FROM imovel WHERE id = $imovelID";
+    $db_check = mysqli_query($connection, $sql);
+    if (!$db_check) {
+        echo '<p class="form_error">Erro ao validar imovel</p>';
+        return false;
+    }
+    return mysqli_fetch_assoc($db_check);
+}
+
+
 function get_imoveis_list(){
     global $connection;
     $sql = 'SELECT * FROM `imovel` ORDER BY id ASC';

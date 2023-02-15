@@ -27,22 +27,54 @@ include_once("./functiondb.php");
         <form action="" method="post">
             <table class ="form-table">
                 <tr>
-                    <td>Nome:</td>
-                    <td><input type="text" name="nome"/></td>
+                    <td>Alt Img</td>
+                    <td><input type="text" name="form_imovel_alt" value="<? if(isset($altImg)) echo htmlentities($altImg) ?>" /></td>
                 </tr>
                 <tr>
                     <td>Descricao:</td>
-                    <td><input type="text" name="descricao"/></td>
+                    <td><input type="text" name="descricao" value="<? if(isset($imoveldescricao)) echo htmlentities($imoveldescricao) ?>" /></td>
                 </tr>
                 <tr>
                     <td>Img Path:</td>
-                    <td><input type="text" name="img_path"/></td>
+                    <td><input type="text" name="img_path" value="<? if(isset($imovelImg)) echo htmlentities($imovelImg) ?>" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
+                        <input type="hidden" name="save" value="<?= $imovelID ?>" />
                         <input type="submit" value="Inserir" name="inserir"/>
                     </td>
                 </tr>
         </form>
+        <?
+        $lista = get_imoveis_list();
+        ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Alt</th>
+                    <th>Descrição</th>
+                    <th>Img</th>
+                    <th>Edição</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($lista as $imovel): ?>
+                <tr>
+                    <td><?=$imovel['id'] ?></td>
+                    <td><?=$imovel['altimg'] ?></td>
+                    <td><?=$imovel['descricao'] ?></td>
+                    <td><?=$imovel['imgPath'] ?></td>
+                    <td>
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="hidden" name="id" value="<?=$imovel['id'] ?>" />
+                            <input type="submit" name="editar" value="Editar" />
+                        </form>
+                        <a href="<?= HOME_URL; ?>?del=<?=$imovel['id'] ?>">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
     </body>
 </html>
