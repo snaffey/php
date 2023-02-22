@@ -66,22 +66,32 @@ function saveImovel($imovelID) {
             return;
     }else {
             echo '<p>Imovel successfully updated.</p>';
+			header("Location: " . $_SERVER['PHP_SELF']);
             return;
      }	
 	} 
 }
 
 function insertImovel() {
-	 global $connection;
-	 $altimg = $_POST['form_imovel_alt'];
-    $descricao = $_POST['form_imovel_descricao'];
-    $imgPath = $_POST['form_imovel_img'];
-	$sql = "INSERT INTO `imovel` (altimg, descricao, imgPath) VALUES ('$altimg', '$descricao', '$imgPath')";
-	if($connection->query($sql) === TRUE)
-		echo "New record created successfully";
-	else {
-		echo "Error: " . $sql . "<br>" . $connection->error;
+	global $connection;
+	if(empty($_POST['form_imovel_alt']) || empty($_POST['form_imovel_descricao']) || empty($_POST['form_imovel_img'])) {
+		echo "One of the fields is empty";
 		return;
+	} else {
+		$altimg = $_POST['form_imovel_alt'];
+		$descricao = $_POST['form_imovel_descricao'];
+		$imgPath = $_POST['form_imovel_img'];
+		$sql = "INSERT INTO imovel (altimg, descricao, imgPath) VALUES ('$altimg', '$descricao', '$imgPath')";
+		if($connection->query($sql) === TRUE) {
+			echo "New record created successfully";
+			// Reload the page to the normal state
+			header("Location: " . $_SERVER['PHP_SELF']);
+			exit;
+		} else {
+			echo "Error: " . $sql . "
+			" . $connection->error;
+			return;
+		}
 	}
 }
 
@@ -92,6 +102,7 @@ function deleteImovel($imovelID) {
 			$sql = "DELETE FROM `imovel` WHERE `id` = $imovelID";
 			if ($connection->query($sql) === TRUE) {
 				echo "Record deleted successfully\n";
+				header("Location: " . $_SERVER['PHP_SELF']);
 			} else {
 				echo "Error deleting record: " . $connection->error;
 			}
