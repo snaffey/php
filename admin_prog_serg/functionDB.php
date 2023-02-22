@@ -53,6 +53,7 @@ function saveImovel($imovelID) {
 	 
 	 if (!$fetch_imovel) {
 		 insertImovel();
+		 return;
 	 }
 	 $imovel_id = $fetch_imovel['id'];
 	 if (!empty($imovel_id)){
@@ -119,7 +120,7 @@ function get_imovel($imovelID) {
 
 function get_imovel_details($imovelID) {
 	global $connection;
-	$sql = "SELECT * FROM `details_imovel` WHERE `id_imovel`= $imovelID";
+	$sql = "SELECT * FROM `imovelinfo` WHERE `id`= $imovelID";
 	 $query = mysqli_query($connection, $sql);
 	 if (mysqli_num_rows($query) > 0) {
 		 return mysqli_fetch_array($query);

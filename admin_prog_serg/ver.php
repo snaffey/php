@@ -33,7 +33,7 @@
 		 <main class="imoveis">
 			<article class="ver">
 				<img class="ver_img" src="<?=$imovel['imgPath']?>"alt="<?=$imovel['altimg']?>" />
-				<h2><span id="imovelId"><?=$imovel['id']?></span><?=$imovel['descricao']?></h2>
+				<h2>ID: <span id="imovelId"><?=$imovel['id']?></span><br><?=$imovel['descricao']?></h2>
 				<span id="details">mais informação...</span>
 				<div id="conteudo">
 				</div>
@@ -42,7 +42,7 @@
 		 <div class="wrapper">
 			<div>
 				<a href="./index.php">
-<img src="./img/arrow-304924_640.png"/></a>
+				<img src="./img/arrow.png"/></a>
 			</div>
 		</div>
 		 <footer>

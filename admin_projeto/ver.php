@@ -28,9 +28,11 @@
                 <img src="img/back.png" alt="back" />
             </a>
         </div>
+
         <?php
             include_once './functiondb.php';
         ?>
+
         <?php 
 			if(empty($_GET['id'])){
 				//red
@@ -39,6 +41,7 @@
 			}
 			$imovel = get_imovel($_GET['id']);
 		?>
+        
         <main class="imoveis">
             <article class="ver">
                 <img class="ver_img" src="<?php echo $imovel['imgPath'] ?>" alt="<?php echo $imovel['altimg']?>" />

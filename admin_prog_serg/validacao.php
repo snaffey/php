@@ -5,7 +5,7 @@ if (!empty($_POST) AND ( empty($_POST['user']) OR empty($_POST['password']))) {
 }
 
 //$connection = mysqli_connect('localhost', 'admin_back','1234') or trigger_error(mysql_error());
-$connection = mysqli_connect('localhost', 'root','') or trigger_error(mysql_error());
+$connection = mysqli_connect('127.0.0.1', 'Tiago','123') or trigger_error(mysql_error());
 
 mysqli_select_db($connection, 'projeto21') or trigger_error(mysql_error());
 

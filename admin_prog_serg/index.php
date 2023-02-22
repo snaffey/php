@@ -25,9 +25,9 @@
 		 <main class="imoveis">
 		 <?php foreach ($lista as $data): ?>
 			<article>
-<img src="<?=$data['imgPath'] ?>"alt="<?=$data['altimg'] ?>" />
-<h2><?=$data['descricao'] ?></h2>
-<a href="ver.php?id=<?=$data['id'] ?>">mais informação...</a>
+				<img src="<?=$data['imgPath'] ?>"alt="<?=$data['altimg'] ?>" />
+				<h2><?=$data['descricao'] ?></h2>
+				<a href="ver.php?id=<?=$data['id'] ?>">mais informação...</a>
 			</article>
 		<?php endforeach; ?> 
 		 </main>

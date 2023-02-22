@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST']; // localhost
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); // /admin_projeto
 $extra = "restritoAdmin.php";
 define('HOME_URL', "http://$host$uri/$extra");
-$connection = mysqli_connect('127.0.0.1', 'Tiago', '123', 'projeto21') or trigger_error(mysqli_error());
+$connection = mysqli_connect('127.0.0.1', 'Tiago', '123', 'projeto21') or trigger_error(mysql_error());
 
 $altImg;
 $imoveldescricao;
@@ -24,7 +24,7 @@ if (isset($_POST['save']) && isset($_POST['form_imovel_alt'])) {
     saveImovel($_POST['save']);
 }
 
-function validarImovel($imovelID) {
+function getImovel($imovelID) {
     global $connection;
     $sql = "SELECT * FROM `imovel` WHERE `id` = '$imovelID'";
     $db_check = mysqli_query($connection, $sql);
@@ -35,17 +35,26 @@ function validarImovel($imovelID) {
     return mysqli_fetch_assoc($db_check);
 }
 
+function validarImovel($imovelID) {
+	global $connection;
+	$sql = "SELECT * FROM `imovel` WHERE `id` ='$imovelID'";
+	$db_check = mysqli_query($connection, $sql);
+	if (!$db_check){
+		echo '<p class="form_error">Internal error: Imove not exist </p>';
+		return false;
+	}
+	return mysqli_fetch_assoc($db_check);
+}
+
 function validateForm($imovel) {
-    global $altImg, $imoveldescricao, $imovelImg, $imovelID;
-    if(!empty($imovel['id'])) {
-        $imovelID = $imovel['id'];
-        $altImg = $imovel['altimg'];
-        $imoveldescricao = $imovel['descricao'];
-        $imovelImg = $imovel['imgPath'];
-    }else {
-        echo '<p class="form_error">Erro ao validar imovel - Form</p>';
-    
-    }
+	global $altimg, $imovelDescricao, $imovelID, $imovelImg;
+	if (!empty($imovel['id'])){
+		$imovelID = $imovel['id'];
+		$altimg = $imovel['altimg'];
+		$imovelDescricao = $imovel['descricao'];
+		$imovelImg = $imovel['imgPath'];
+	}else
+		echo 'Imovel não encontrado';
 }
 
 function saveImovel($imovelID) {
@@ -68,52 +77,53 @@ function saveImovel($imovelID) {
 
 function insertImovel() {
     global $connection;
-    $altImg = $_POST['form_imovel_alt'];
-    $imoveldescricao = $_POST['descricao'];
-    $imovelImg = $_POST['img_path'];
-    $sql = "INSERT INTO `imovel` (`altimg`, `descricao`, `imgPath`) VALUES ('$altImg', '$imoveldescricao', '$imovelImg')";
-    if($connection->query($sql) === TRUE) {
-        echo '<p class="form_success">Imovel inserido com sucesso</p>';
-    }else {
-        echo '<p class="form_error">Erro ao inserir imovel</p>';
-    }
+    $altimg = $_POST['form_imovel_alt'];
+   $descricao = $_POST['form_imovel_descricao'];
+   $imgPath = $_POST['form_imovel_img'];
+   $sql = "INSERT INTO `imovel` (altimg, descricao, imgPath) VALUES ('$altimg', '$descricao', '$imgPath')";
+   if($connection->query($sql) === TRUE)
+       echo "New record created successfully";
+   else {
+       echo "Error: " . $sql . "<br>" . $connection->error;
+       return;
+   }
 }
 
-function deleteImovel($imovelID){
-    global $connection;
-    if (!empty($imovelID)) {
-        $user_id = (int)$imovelID;
-        $sql = "DELETE FROM `imovel` WHERE `id` = '$user_id'";
-        if ($connection->query($sql) === TRUE) {
-            echo '<p class="form_success">Imovel eliminado com sucesso</p>';
-        }else {
-            echo '<p class="form_error">Erro ao eliminar imovel</p>';
-        }
-    }
+function deleteImovel($imovelID) {
+	global $connection;
+	    if(!empty($imovelID)) {
+			$imovel_id = (int) $imovelID;
+			$sql = "DELETE FROM `imovel` WHERE `id` = $imovelID";
+			if ($connection->query($sql) === TRUE) {
+				echo "Record deleted successfully\n";
+			} else {
+				echo "Error deleting record: " . $connection->error;
+			}
+	    }
 }
 
-function get_imoveis_list(){
-    global $connection;
-    $sql = 'SELECT * FROM `imovel` ORDER BY id ASC';
-    $query = mysqli_query($connection, $sql);
-    if (mysqli_num_rows($query) > 0){
-        $res = mysqli_fetch_assoc($query);
-        return $query;
-    }
-    exit;
+function get_imoveis_list() {
+	global $connection;
+	$sql = "SELECT * FROM `imovel` ORDER BY id DESC";
+	 $query = mysqli_query($connection, $sql);
+	 if (mysqli_num_rows($query) > 0) {
+		 $res = mysqli_fetch_assoc($query);
+		 return $query;
+	 }else
+		exit;
+}
+function get_imovel($imovelID) {
+	global $connection;
+	$sql = "SELECT * FROM `imovel` WHERE `id`= $imovelID";
+	 $query = mysqli_query($connection, $sql);
+	 if (mysqli_num_rows($query) > 0) {
+		 return mysqli_fetch_assoc($query);
+	 }else
+		exit;
 }
 
-function get_imovel($id){
-    global $connection;
-    $sql = 'SELECT * FROM `imovel` WHERE `id`='.$id;
-    $query = mysqli_query($connection, $sql);
-    if (mysqli_num_rows($query)==1)
-        return mysqli_fetch_assoc($query);
-    exit;
-}
-
-function getimovelinfo($id){
-    global $connection;
+function get_imovel_details($imovelID) {
+	global $connection;
     $sql = "SELECT localidade, valor FROM imovelinfo WHERE id = $id";
     $query = mysqli_query($connection, $sql);
     if (mysqli_num_rows($query)==1)

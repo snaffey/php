@@ -2,7 +2,7 @@
 <? $imovel_details = get_imovel_details($_POST['id']); ?>
 <?php
 	echo "<ul>";
-		echo "<li>Quartos: ".$imovel_details['n_quartos']."</li>";
-		echo "<li>Salas: ".$imovel_details['n_salas']."</li>"; 
+		echo "<li>Valor: ".$imovel_details['valor']."</li>";
+		echo "<li>Local: ".$imovel_details['localidade']."</li>"; 
 	echo "</ul>";
 ?>
