@@ -9,22 +9,20 @@
   </head>
   <body>
     <header class="header">
-      <img src="./img/logo.png" alt="Logo">
+      <img src="./img/logo.webp" alt="Logo">
       <nav class="menu">
         <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
         <a href="#">Contact</a>
+        <div class="admin">
+          <a href="admin.php">
+            <img src="./img/admin.png" alt="Login">
+          </a>
+        </div>
       </nav>
     </header>
     <section class="section-banner">
       <h1>Find Your Dream Home</h1>
     </section>
-    <div class="admin">
-      <a href="admin.php">
-        <img src="./img/admin.png" alt="Login">
-      </a>
-    </div>
     <?php include_once './functionDB.php'; ?>
     <?php $lista = get_imoveis_list(); ?>
     <main class="imoveis">

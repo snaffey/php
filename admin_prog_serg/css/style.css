@@ -12,6 +12,8 @@ body {
   font-size: 16px;
   background-color: #f7f7f7;
   color: #4a4a4a;
+  display: flex;
+  flex-direction: column;
 }
 
 h1,
@@ -22,6 +24,10 @@ h2 {
 
 a {
   text-decoration: none;
+}
+
+.main {
+  flex: 1;
 }
 
 /* Header Styles */
@@ -37,11 +43,13 @@ a {
 
 .header img {
   max-width: 100%;
-  height: auto;
+  height: 50px; /* set a fixed height */
 }
 
 .menu {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menu a {
@@ -105,7 +113,6 @@ a {
 /* Admin Styles */
 
 .admin {
-  position: absolute;
   top: 20px;
   right: 20px;
 }
@@ -126,6 +133,7 @@ a {
 }
 
 article {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -138,7 +146,9 @@ article {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  margin-bottom: 20px; /* add margin-bottom instead of margin-top */
 }
+
 
 article:hover {
   transform: translateY(-10px);
@@ -152,6 +162,22 @@ article img {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Arrow Styles */
+
+.article-arrow {
+  position: relative;
+}
+
+.article-arrow img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+
+
 /* Footer Styles */
 
 footer {
@@ -159,22 +185,6 @@ footer {
   color: #fff;
   padding: 15px 20px;
   text-align: center;
-}
-
-.footer-content h3 {
-  margin-bottom: 20px;
-}
-
-.footer-social a {
-  display: inline-block;
-  margin: 0 10px;
-  color: #fff;
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
-.footer-social a:hover {
-  transform: scale(1.2);
 }
 
 .footer-bottom {
