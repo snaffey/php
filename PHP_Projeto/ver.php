@@ -22,16 +22,18 @@
 		 
 		<?php include_once './functionDB.php'; ?>
 		<?if (empty($_GET['id'])) {
-			/* header("Location: home.php");
-			exit;*/
+			header("Location: home.php");
+			exit;
 		 }
-		 $imovel = get_imovel($_GET['id']);
-		 //print_r($imovel);
+		 $Artigo = get_Artigo($_GET['id']);
+		 //print_r($Artigo);
 		?>
-		 <main class="imoveis">
+		 <main class="Artigos">
 			<article class="ver">
-				<img class="ver_img" src="<?=$imovel['imgPath']?>"alt="<?=$imovel['altimg']?>" />
-				<h2>ID: <span id="imovelId"><?=$imovel['id']?></span><br><?=$imovel['descricao']?></h2>
+				<img class="ver_img" src="<?=$Artigo['Img']?>"alt="<?=$Artigo['AltImg']?>" />
+				<h2><?=$Artigo['Nome']?></h2>
+				<h2 class="desc" ><?=$Artigo['Descrição']?></h2>
+				<h2>ID: <span id="ArtigoID"><?=$Artigo['ID']?></span></h2>
 				<span class="btn" id="details">mais informação...</span>
 				<div id="conteudo">
 				</div>

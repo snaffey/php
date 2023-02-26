@@ -24,13 +24,14 @@
       <h1>Find Your Dream Home</h1>
     </section>
     <?php include_once './functionDB.php'; ?>
-    <?php $lista = get_imoveis_list(); ?>
-    <main class="imoveis">
+    <?php $lista = get_artigos_list(); ?>
+    <main class="Artigos">
       <?php foreach ($lista as $data): ?>
       <article>
-        <img src="<?=$data['imgPath']?>" alt="<?=$data['altimg']?>">
-        <h2><?=$data['descricao']?></h2>
-        <a href="ver.php?id=<?=$data['id']?>" class="btn">More Info</a>
+        <img src="<?=$data['Img']?>" alt="<?=$data['AltImg']?>"> <!-- show image from database -->
+        <h2><?=$data['Nome']?></h2>
+        <h2 class="desc" ><?=$data['Descrição']?></h2> <!-- show description from database -->
+        <a href="ver.php?id=<?=$data['ID']?>" class="btn">More Info</a> <!-- show more info from database -->
       </article>
       <?php endforeach; ?>
     </main>

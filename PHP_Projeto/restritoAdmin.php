@@ -43,8 +43,8 @@ echo "<br /><a href=\"logout.php\">Sair</a>";
 		<td>Descrição: </td>
 		<td>
 		<input type="text" name="form_imovel_descricao" value="<?
-			if (isset($imovelDescricao))
-				echo htmlentities($imovelDescricao);
+			if (isset($ArtigoDesc))
+				echo htmlentities($ArtigoDesc);
 		?>" />
 		</td>
 	</tr>
@@ -52,14 +52,14 @@ echo "<br /><a href=\"logout.php\">Sair</a>";
 		<td>Img path: </td>
 		<td>
 		<input type="text" name="form_imovel_img" value="<?
-			if (isset($imovelImg))
-				echo htmlentities($imovelImg);
+			if (isset($ArtigoImg))
+				echo htmlentities($ArtigoImg);
 		?>" />
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="hidden" name="save" value="<?php echo $imovelID; ?>">
+			<input type="hidden" name="save" value="<?php echo $ArtigoID; ?>">
 			<input type="submit" value="save" />
 		</td>
 	</tr>
