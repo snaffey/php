@@ -14,7 +14,7 @@
         <a href="#">Home</a>
         <a href="#">Contact</a>
         <div class="admin">
-          <a href="admin.php">
+          <a href="./login/login.php">
             <img src="./img/admin.png" alt="Login">
           </a>
         </div>

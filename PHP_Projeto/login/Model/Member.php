@@ -20,7 +20,7 @@ class Member
      */
     public function isUsernameExists($username)
     {
-        $query = 'SELECT * FROM tbl_member where username = ?';
+        $query = 'SELECT * FROM `User` where username = ?';
         $paramType = 's';
         $paramValue = array(
             $username
@@ -46,7 +46,7 @@ class Member
      */
     public function isEmailExists($email)
     {
-        $query = 'SELECT * FROM tbl_member where email = ?';
+        $query = 'SELECT * FROM `User` where email = ?';
         $paramType = 's';
         $paramValue = array(
             $email
@@ -90,7 +90,7 @@ class Member
                 // do not attempt to do your own encryption, it is not safe
                 $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
             }
-            $query = 'INSERT INTO tbl_member (username, password, email) VALUES (?, ?, ?)';
+            $query = 'INSERT INTO `User` (username, password, email) VALUES (?, ?, ?)';
             $paramType = 'sss';
             $paramValue = array(
                 $_POST["username"],
@@ -110,7 +110,7 @@ class Member
 
     public function getMember($username)
     {
-        $query = 'SELECT * FROM tbl_member where username = ?';
+        $query = 'SELECT * FROM `User` where username = ?';
         $paramType = 's';
         $paramValue = array(
             $username
@@ -153,4 +153,18 @@ class Member
             return $loginStatus;
         }
     }
+
+    // Get the IdDono from the person who is logged in and store it in a session, the IdDono is in Artigo table
+    public function getIdDono()
+    {
+        $username = $_SESSION["username"];
+        $query = 'SELECT IdDono FROM `Artigo` where username = ?';
+        $paramType = 's';
+        $paramValue = array(
+            $username
+        );
+        $memberRecord = $this->ds->select($query, $paramType, $paramValue);
+        return $memberRecord;
+    }
+
 }

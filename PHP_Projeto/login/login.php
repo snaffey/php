@@ -5,6 +5,7 @@ if (! empty($_POST["login-btn"])) {
     require_once __DIR__ . '/Model/Member.php';
     $member = new Member();
     $loginResult = $member->loginMember();
+	getIdDono();
 }
 ?>
 <HTML>

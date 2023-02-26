@@ -1,45 +1,18 @@
 <?php
-/**
- * Copyright (C) Phppot
- *
- * Distributed under 'The MIT License (MIT)'
- * In essense, you can do commercial use, modify, distribute and private use.
- * Though not mandatory, you are requested to attribute Phppot URL in your code or website.
- */
 namespace Phppot;
 
-/**
- * Generic datasource class for handling DB operations.
- * Uses MySqli and PreparedStatements.
- *
- * @version 2.7 - PDO connection option added
- */
 class DataSource
 {
+    const HOST = '127.0.0.1';
 
-    // PHP 7.1.0 visibility modifiers are allowed for class constants.
-    // when using above 7.1.0, declare the below constants as private
-    // for better encapsulation
-    const HOST = 'localhost';
+    const USERNAME = 'Tiago';
 
-    const USERNAME = 'root';
+    const PASSWORD = '123';
 
-    const PASSWORD = 'admin123';
-
-    const DATABASENAME = 'user-registration';
+    const DATABASENAME = 'desafio_al2021023';
 
     private $conn;
 
-    /**
-     * PHP implicitly takes care of cleanup for default connection types.
-     * So no need to worry about closing the connection.
-     *
-     * Singletons not required in PHP as there is no
-     * concept of shared memory.
-     * Every object lives only for a request.
-     *
-     * Keeping things simple and that works!
-     */
     function __construct()
     {
         $this->conn = $this->getConnection();
