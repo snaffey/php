@@ -108,17 +108,20 @@ function insertArtigo() {
 
 function delArtigo($ArtigoID) {
 	global $connection;
-	    if(!empty($ArtigoID)) {
-			$Artigo_ID = (int) $ArtigoID;
-			$sql = "DELETE FROM `Artigo` WHERE `ID` = $Artigo_ID";
-			if ($connection->query($sql) === TRUE) {
-				echo "Record deleted successfully\n";
-				header("Location: " . $_SERVER['PHP_SELF']);
-			} else {
-				echo "Error deleting record: " . $connection->error;
-			}
-	    }
+	if(!empty($ArtigoID)) {
+		$Artigo_ID = (int) $ArtigoID;
+		$sql = "DELETE FROM `Artigo` WHERE `ID` = $Artigo_ID";
+		if ($connection->query($sql) === TRUE) {
+			// Move header() here, so it is called before any other output
+			header("Location: " . $_SERVER['PHP_SELF']);
+
+			echo "Record deleted successfully\n";
+		} else {
+			echo "Error deleting record: " . $connection->error;
+		}
+	}
 }
+
 
 function get_artigos_list() {
 	global $connection;
