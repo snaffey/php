@@ -141,8 +141,6 @@ class Member
             $loginPassword = 0;
         }
         if ($loginPassword == 1) {
-            // login sucess so store the member's username in
-            // the session
             session_start();
             $_SESSION["username"] = $memberRecord[0]["username"];
             session_write_close();
@@ -154,17 +152,28 @@ class Member
         }
     }
 
-    // Get the IdDono from the person who is logged in and store it in a session, the IdDono is in Artigo table
     public function getIdDono()
     {
-        $username = $_SESSION["username"];
-        $query = 'SELECT IdDono FROM `Artigo` where username = ?';
+        $paramValue = [isset($_SESSION['username']) ? $_SESSION['username'] : 'default value'];
+    
+        $query = 'SELECT IdDono FROM `Artigo` WHERE IdDono = (SELECT id FROM `User` WHERE username = ?)';
         $paramType = 's';
-        $paramValue = array(
-            $username
-        );
-        $memberRecord = $this->ds->select($query, $paramType, $paramValue);
-        return $memberRecord;
+        
+        $IdDono = $this->ds->select($query, $paramType, $paramValue);
+        return $IdDono;
+    }
+    
+    
+    public function getIdDonoSession()
+    {
+       $IdDono = $this->getIdDono();
+    
+       if(!empty($IdDono)) 
+       { 
+           session_start();
+           $_SESSION["IdDono"] = $IdDono[0]["IdDono"];
+           session_write_close();
+      } 
     }
 
 }

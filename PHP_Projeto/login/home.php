@@ -9,17 +9,19 @@ if (!isset($_SESSION["username"])) {
 }
 
 $username = $_SESSION["username"];
+
 $IdDono = $_SESSION["IdDono"];
+
 session_write_close();
 
 include_once '../functionDB.php';
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Welcome</title>
-    <link href="assets/css/phppot-style.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/user-registration.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="phppot-container">

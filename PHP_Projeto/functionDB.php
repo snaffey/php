@@ -110,7 +110,7 @@ function delArtigo($ArtigoID) {
 	global $connection;
 	    if(!empty($ArtigoID)) {
 			$Artigo_ID = (int) $ArtigoID;
-			$sql = "DELETE FROM `Artigo` WHERE `ID` = $ArtigoID";
+			$sql = "DELETE FROM `Artigo` WHERE `ID` = $Artigo_ID";
 			if ($connection->query($sql) === TRUE) {
 				echo "Record deleted successfully\n";
 				header("Location: " . $_SERVER['PHP_SELF']);
