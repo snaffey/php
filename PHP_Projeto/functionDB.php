@@ -13,9 +13,7 @@ $ArtigoDesc;
 $ArtigoImg;
 $ArtigoID;
 
-if (isset($_GET['del'])) {
-	delArtigo($_GET['del']);
-}
+
 
 if (isset($_POST['edit'])) {
   $Artigo = checkArtigo($_POST['edit']);
@@ -119,10 +117,9 @@ function delArtigo($ArtigoID) {
 	}
 }
 
-
 function get_artigos_list() {
 	global $connection;
-	$sql = "SELECT * FROM `Artigo` ORDER BY ID DESC";
+	$sql = "SELECT * FROM `Artigo` ORDER BY ID ASC";
 	 $query = mysqli_query($connection, $sql);
 	 if (mysqli_num_rows($query) > 0) {
 		 $res = mysqli_fetch_assoc($query);
@@ -130,6 +127,7 @@ function get_artigos_list() {
 	 }else
 		exit;
 }
+
 function get_artigo($ArtigoID) {
 	global $connection;
 	$sql = "SELECT * FROM `Artigo` WHERE `ID`= $ArtigoID";

@@ -1,10 +1,12 @@
 <?php
+use Phppot\Member;
+
 session_start();
 
 if (!isset($_SESSION["username"])) {
     session_unset();
     session_write_close();
-    header("Location: ./index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -15,6 +17,11 @@ $IdDono = $_SESSION["IdDono"];
 session_write_close();
 
 include_once '../functionDB.php';
+//include_once './Model/Member.php';
+//include_once '../functions.php';
+require_once __DIR__ . '/Model/Member.php';
+$member = new Member();
+$artigo_list = $member->listArtigos();
 
 ?>
 <!DOCTYPE html>
@@ -81,7 +88,7 @@ include_once '../functionDB.php';
 </form>
 
 <?php
-$lista = get_artigos_list();
+$lista = $artigo_list;
 ?>
 
 <table>
@@ -108,7 +115,8 @@ $lista = get_artigos_list();
                     <input type="hidden" name="edit" value="<?php echo htmlspecialchars($Artigo['ID']); ?>">
                     <input type="submit" name="submit" value="Edit">
                 </form>
-                <a href="<?php echo htmlspecialchars(HOME_URI); ?>?del=<?php echo htmlspecialchars($Artigo['ID']); ?>">Del</a>
+                <a href="<?php echo htmlspecialchars(HOME_URI); ?>?del=<?php echo htmlspecialchars($Artigo['ID']); ?>" onclick="return confirm('Are you sure you want to delete this article?')">Del</a>
+
             </td>
         </tr>
         <?php endforeach; ?>

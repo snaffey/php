@@ -66,6 +66,14 @@ class Member
 
     public function registerMember()
     {
+
+        $query = "SELECT MAX(ID) as max_id FROM `User`";
+        $result = $this->ds->select($query);
+        if (! empty($result)) {
+            $maxID = intval($result[0]["max_id"]);
+            $_POST["ID"] = $maxID + 1;
+        }
+
         $isUsernameExists = $this->isUsernameExists($_POST["username"]);
         $isEmailExists = $this->isEmailExists($_POST["email"]);
         if ($isUsernameExists) {
@@ -82,9 +90,10 @@ class Member
             if (! empty($_POST["signup-password"])) {
                 $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
             }
-            $query = 'INSERT INTO `User` (username, password, email) VALUES (?, ?, ?)';
-            $paramType = 'sss';
+            $query = 'INSERT INTO `User` (ID, username, password, email) VALUES (?, ?, ?, ?)';
+            $paramType = 'isss';
             $paramValue = array(
+                $_POST["ID"],
                 $_POST["username"],
                 $hashedPassword,
                 $_POST["email"]
@@ -174,4 +183,15 @@ class Member
       } 
     }
 
+    // function to list all the artigos
+
+    public function listArtigos()
+    {
+        $query = 'SELECT * FROM `Artigo` ORDER BY ID ASC';
+        $paramType = '';
+        $paramValue = array();
+        $artigos = $this->ds->select($query, $paramType, $paramValue);
+        return $artigos;
+    }
+   
 }
