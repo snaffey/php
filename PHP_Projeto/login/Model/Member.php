@@ -64,11 +64,6 @@ class Member
         return $result;
     }
 
-    /**
-     * to signup / register a user
-     *
-     * @return string[] registration status message
-     */
     public function registerMember()
     {
         $isUsernameExists = $this->isUsernameExists($_POST["username"]);
@@ -85,9 +80,6 @@ class Member
             );
         } else {
             if (! empty($_POST["signup-password"])) {
-
-                // PHP's password_hash is the best choice to use to store passwords
-                // do not attempt to do your own encryption, it is not safe
                 $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
             }
             $query = 'INSERT INTO `User` (username, password, email) VALUES (?, ?, ?)';
@@ -102,6 +94,12 @@ class Member
                 $response = array(
                     "status" => "success",
                     "message" => "You have registered successfully."
+                );
+                header("Refresh: 3; url=./login.php");
+            } else {
+                $response = array(
+                    "status" => "error",
+                    "message" => "Problem in registration. Try Again!"
                 );
             }
         }

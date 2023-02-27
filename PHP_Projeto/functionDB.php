@@ -3,7 +3,7 @@
 $host = $_SERVER['HTTP_HOST']; //localhost
 // rftrim limpa o conteudo á dt do controlo
 $uri = rtrim(dirname($_SERVER['PHP_SELF']),"/\\");
-$extra = "restritoAdmin.php";
+$extra = "home.php";
 define('HOME_URI', "http://$host$uri/$extra");
 $connection = mysqli_connect('127.0.0.1', 'Tiago', '123', 'desafio_al2021023') or trigger_error(mysql_error());
 
@@ -91,8 +91,8 @@ function insertArtigo() {
 		$AltImg = $_POST['form_Artigo_alt'];
 		$Descrição = $_POST['form_Artigo_Descrição'];
 		$Img = $_POST['form_Artigo_img'];
-		$IdDono = 
-		$sql = "INSERT INTO Artigo (Nome, AltImg, Descrição, Img) VALUES ('$ArtigoNome', '$Descrição', '$AltImg',  '$Img')";
+		$IdDono = $_SESSION['IdDono'];
+		$sql = "INSERT INTO Artigo (IdDono, Nome, AltImg, Descrição, Img) VALUES ( '$IdDono', '$ArtigoNome', '$Descrição', '$AltImg',  '$Img')";
 		if($connection->query($sql) === TRUE) {
 			echo "New record created successfully";
 			// Reload the page to the normal state
@@ -109,13 +109,10 @@ function insertArtigo() {
 function delArtigo($ArtigoID) {
 	global $connection;
 	if(!empty($ArtigoID)) {
-		$Artigo_ID = (int) $ArtigoID;
-		$sql = "DELETE FROM `Artigo` WHERE `ID` = $Artigo_ID";
+		$sql = "DELETE FROM `Artigo` WHERE `ID` = $ArtigoID";
 		if ($connection->query($sql) === TRUE) {
-			// Move header() here, so it is called before any other output
-			header("Location: " . $_SERVER['PHP_SELF']);
-
 			echo "Record deleted successfully\n";
+			header("Refresh:1; url= " . $_SERVER['PHP_SELF'] . "");
 		} else {
 			echo "Error deleting record: " . $connection->error;
 		}
