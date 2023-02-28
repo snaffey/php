@@ -104,19 +104,6 @@ function insertArtigo() {
 	}
 }
 
-function delArtigo($ArtigoID) {
-	global $connection;
-	if(!empty($ArtigoID)) {
-		$sql = "DELETE FROM `Artigo` WHERE `ID` = $ArtigoID";
-		if ($connection->query($sql) === TRUE) {
-			echo "Record deleted successfully\n";
-			header("Refresh:1; url= " . $_SERVER['PHP_SELF'] . "");
-		} else {
-			echo "Error deleting record: " . $connection->error;
-		}
-	}
-}
-
 function get_artigo($ArtigoID) {
 	global $connection;
 	$sql = "SELECT * FROM `Artigo` WHERE `ID`= $ArtigoID";

@@ -1,7 +1,4 @@
 <?php
-use Phppot\Member;
-use Phppot\func;
-
 session_start();
 
 if (!isset($_SESSION["username"])) {
@@ -17,10 +14,7 @@ $IdDono = $_SESSION["IdDono"];
 session_write_close();
 
 include_once '../functionDB.php';
-require_once __DIR__ . '/Model/Member.php';
-include_once '../functions.php';
-$func = new func();
-$artigo_list = $func->listArtigos();
+include_once '../calls.php';
 
 ?>
 <!DOCTYPE html>
