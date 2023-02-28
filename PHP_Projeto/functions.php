@@ -1,16 +1,32 @@
 <?php
+namespace Phppot;
 
-include_once './lib/DataSource.php';
-include_once './Model/Member.php';
+if (isset($_POST['edit'])) {
+    $Artigo = checkArtigo($_POST['edit']);
+    valIDateForm($Artigo);
+  }
 
-function listArtigos() {
-    $sql = "SELECT * FROM `Artigo` ORDER BY ID ASC";
-    $query = mysqli_query($connection, $sql);
-    if (mysqli_num_rows($query) > 0) {
-        $res = mysqli_fetch_assoc($query);
-        return $query;
-    } else {
-        exit;
+class Func 
+{
+    
+    private $ds;
+
+    function __construct()
+    {
+        require_once __DIR__ . '/login/lib/DataSource.php';
+        $this->ds = new DataSource();
     }
+
+    public function listArtigos()
+    {
+        $query = 'SELECT * FROM `Artigo` ORDER BY ID ASC';
+        $paramType = '';
+        $paramValue = array();
+        $artigos = $this->ds->select($query, $paramType, $paramValue);
+        return $artigos;
+    }
+
 }
+
+
 

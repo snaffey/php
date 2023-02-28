@@ -182,16 +182,5 @@ class Member
            session_write_close();
       } 
     }
-
-    // function to list all the artigos
-
-    public function listArtigos()
-    {
-        $query = 'SELECT * FROM `Artigo` ORDER BY ID ASC';
-        $paramType = '';
-        $paramValue = array();
-        $artigos = $this->ds->select($query, $paramType, $paramValue);
-        return $artigos;
-    }
    
 }
