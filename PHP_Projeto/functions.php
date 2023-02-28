@@ -4,7 +4,11 @@ namespace Phppot;
 if (isset($_POST['edit'])) {
     $Artigo = checkArtigo($_POST['edit']);
     valIDateForm($Artigo);
-  }
+}
+
+if (isset($_GET['del'])){
+    delArtigo($_GET['del']);
+}
 
 class Func 
 {
@@ -25,6 +29,18 @@ class Func
         $artigos = $this->ds->select($query, $paramType, $paramValue);
         return $artigos;
     }
+
+    public function delArtigo($ArtigoID)
+    {
+        $query = 'DELETE FROM `Artigo` WHERE `ID` = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $ArtigoID
+        );
+        $this->ds->delete($query, $paramType, $paramValue);
+    }
+
+
 
 }
 
