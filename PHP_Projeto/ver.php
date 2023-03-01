@@ -13,7 +13,7 @@
       <img src="./img/logo.webp" alt="Logo">
       <nav class="menu">
         <div class="admin">
-          <a href="admin.php">
+          <a href="./login/home.php">
             <img src="./img/admin.png" alt="Login">
           </a>
         </div>
@@ -27,15 +27,18 @@
 		 }
 		 
 		$Artigo = array_values($getArtigo);
-		print_r($Artigo);
+		$Artigo = $Artigo[0];
+
+		$ArtigoInfo = $artigoInfo;
+		$ArtigoInfo = $ArtigoInfo[0];
 		?>
 		 <main class="Artigos">
 			<article class="ver">
-				<img class="ver_img" src="<?$Artigo['Img']?>"alt="<?=$Artigo['AltImg']?>" />
+				<img class="ver_img" src="<?=$Artigo['Img']?>" alt="<?=$Artigo['AltImg']?>" />
 				<h2><?=$Artigo['Nome']?></h2>
 				<h2 class="desc" ><?=$Artigo['Descrição']?></h2>
 				<h2>ID: <span id="ArtigoID"><?=$Artigo['ID']?></span></h2>
-				<span class="btn" id="details">mais informação...</span>
+				<h2>Preço: <span id="ArtigoPreco"><?=$ArtigoInfo['Valor']?></span></h2>
 				<div id="conteudo">
 				</div>
 			</article>

@@ -94,6 +94,22 @@ class DataSource
         $stmt->execute();
     }
 
+    public function update($query, $paramType = "", $paramArray = array())
+    {
+        try {
+            $stmt = $this->conn->prepare($query);
+            if (! empty($paramType) && ! empty($paramArray)) {
+                $this->bindQueryParams($stmt, $paramType, $paramArray);
+            }
+            $stmt->execute();
+            $rowCount = $stmt->affected_rows;
+            return $rowCount;
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+            exit();
+        }
+    }
+
     public function bindQueryParams($stmt, $paramType, $paramArray = array())
     {
         $paramValueReference[] = & $paramType;

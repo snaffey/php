@@ -34,97 +34,118 @@ class Func
 
     }
 
-    public function getArtigoDetails($ArtigoID)
+    public function checkArtigo($ArtigoID)
     {
-        $query = 'SELECT * FROM `ArtigoInfo` WHERE `ID` = ?';
-        $paramType = 'i';
-        $paramValue = array(
-            $ArtigoID
-        );
-        $artigoInfo = $this->ds->select($query, $paramType, $paramValue);
-        return $artigoInfo;
-    }
-
-    /* Do the same as the others
-    function get_Artigo($ArtigoID) {
-	global $connection;
-	$sql = "SELECT * FROM `Artigo` WHERE `ID`= $ArtigoID";
-	 $query = mysqli_query($connection, $sql);
-	 if (mysqli_num_rows($query) > 0) {
-		 return mysqli_fetch_assoc($query);
-	 }else
-		exit;
-    }
-    */
-    public function getArtigo($ArtigoID) {
         $query = 'SELECT * FROM `Artigo` WHERE `ID` = ?';
         $paramType = 'i';
         $paramValue = array(
             $ArtigoID
         );
-    
         $artigo = $this->ds->select($query, $paramType, $paramValue);
-        
-    }
-    
-
-    public function validateForm($Artigo)
-    {
-        if (empty($Artigo)) {
-            echo 'Artigo não encontrado';
-            return false;
-        }
-        return true;
-    }
-
-
-
-    public function insertArtigo()
-    {
-        $query = "INSERT INTO Artigo (IdDono, Nome, AltImg, Descrição, Img) VALUES ( ?, ?, ?, ?, ?)";
-        $paramType = 'issss';
-        $paramValue = array(
-            $_SESSION['IdDono'],
-            $_POST['form_Artigo_nome'],
-            $_POST['form_Artigo_alt'],
-            $_POST['form_Artigo_Descrição'],
-            $_POST['form_Artigo_img']
-        );
-        $this->ds->execute($query, $paramType, $paramValue);
-    }
-
-    public function checkArtigo($ArtigoID)
-    {
-        $query = "SELECT * FROM `Artigo` WHERE `ID` ='$ArtigoID'";
-        $paramType = '';
-        $paramValue = array();
-        $artigo = $this->ds->select($query, $paramType, $paramValue);
-        if (!$artigo) {
+        if (empty($artigo)) {
             echo '<p class="form_error">Internal error: Artigo not exist </p>';
             return false;
         }
         return $artigo;
     }
 
+    function get_artigo($ArtigoID) {
+        $query = 'SELECT * FROM `Artigo` WHERE `ID` = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $ArtigoID
+        );
+        $artigo = $this->ds->select($query, $paramType, $paramValue);
+        if (empty($artigo)) {
+            echo '<p class="form_error">Internal error: Artigo not exist </p>';
+            return false;
+        }
+        return $artigo;
+    }
+
+    function get_artigo_details($ArtigoID) {
+        $query = 'SELECT * FROM `ArtigoInfo` WHERE `ID`= ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $ArtigoID
+        );
+        $artigo = $this->ds->select($query, $paramType, $paramValue);
+        if (empty($artigo)) {
+            echo '<p class="form_error">Internal error: Artigo not exist - func </p>';
+            return false;
+        }
+        return $artigo;
+    }
+
+    function validateForm($Artigo) {
+        global $AltImg, $ArtigoNome, $ArtigoDesc, $ArtigoID, $ArtigoImg;
+        if (empty($Artigo)) {
+            echo 'Artigo não encontrado';
+            return false;
+        }
+        $ArtigoID = $Artigo['ID'];
+        $ArtigoNome = $Artigo['Nome'];
+        $AltImg = $Artigo['AltImg'];
+        $ArtigoDesc = $Artigo['Descrição'];
+        $ArtigoImg = $Artigo['Img'];
+        return true;
+    }
+
     public function saveArtigo($ArtigoID)
     {
         $fetch_Artigo = $this->checkArtigo($ArtigoID);
-        
         if (!$fetch_Artigo) {
-            insertArtigo();
+            $this->insertArtigo();
             return;
         }
-        $Artigo_ID = $fetch_Artigo['ID'];
+        $Artigo_ID = $fetch_Artigo[0]['ID'];
         if (!empty($Artigo_ID)) {
-            $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', AltImg = '" . 
-            $_POST['form_Artigo_alt']."', Descrição = '" .$_POST['form_Artigo_Descrição'].
-            "', Img = '". $_POST['form_Artigo_img']."' WHERE ID =" . $Artigo_ID;
+            $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', AltImg = '" . $_POST['form_Artigo_alt'] . "', Descrição = '" . $_POST['form_Artigo_Descrição'] . "', Img = '" . $_POST['form_Artigo_img'] . "' WHERE ID =" . $Artigo_ID;
             $paramType = '';
             $paramValue = array();
-            $this->ds->execute($query, $paramType, $paramValue);
+            $this->ds->update($query, $paramType, $paramValue);
+            echo '<p>Artigo successfully updated.</p>';
+            header("Location: " . $_SERVER['PHP_SELF']);
+            return;
         }
     }
 
+    public function insertArtigo()
+    {
+        if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_img']) || empty($_POST['form_Artigo_nome'])) {
+            echo "One of the fields is empty";
+            return;
+        } else {
+            $query = "SELECT MAX(ID) as max_id FROM Artigo";
+            $paramType = '';
+            $paramValue = array();
+            $result = $this->ds->select($query, $paramType, $paramValue);
+            if (!empty($result)) {
+                $maxID = intval($result[0]['max_id']);
+                $_POST["idArtigo"] = $maxID + 1;
+            }
+            $ID = $_POST['idArtigo'];
+            $ArtigoNome = $_POST['form_Artigo_nome'];
+            $AltImg = $_POST['form_Artigo_alt'];
+            $Descrição = $_POST['form_Artigo_Descrição'];
+            $Img = $_POST['form_Artigo_img'];
+            $IdDono = $_SESSION['IdDono'];
+            $query = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
+            $paramType = 'issssi';
+            $paramValue = array(
+                $ID,
+                $ArtigoNome,
+                $AltImg,
+                $Descrição,
+                $Img,
+                $IdDono
+            );
+            $this->ds->insert($query, $paramType, $paramValue);
+            echo "New record created successfully";
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
+        }
+    }
 }
 
 

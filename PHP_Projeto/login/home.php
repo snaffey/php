@@ -13,7 +13,6 @@ $IdDono = $_SESSION["IdDono"];
 
 session_write_close();
 
-include_once '../functionDB.php';
 include_once '../calls.php';
 
 ?>

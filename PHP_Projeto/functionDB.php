@@ -1,10 +1,5 @@
 <?
-// Variaveis globais da aplicação
-$host = $_SERVER['HTTP_HOST']; //localhost
-// rftrim limpa o conteudo á dt do controlo
-$uri = rtrim(dirname($_SERVER['PHP_SELF']),"/\\");
-$extra = "home.php";
-define('HOME_URI', "http://$host$uri/$extra");
+
 $connection = mysqli_connect('127.0.0.1', 'Tiago', '123', 'desafio_al2021023') or trigger_error(mysql_error());
 
 $AltImg;
@@ -13,8 +8,6 @@ $ArtigoDesc;
 $ArtigoImg;
 $ArtigoID;
 
-
-
 if (isset($_POST['edit'])) {
   $Artigo = checkArtigo($_POST['edit']);
   valIDateForm($Artigo);
@@ -22,36 +15,8 @@ if (isset($_POST['edit'])) {
 
 if (isset($_POST['save']) && isset($_POST['form_Artigo_alt']))
 	saveArtigo($_POST['save']);
-	
-function checkArtigo($ArtigoID) {
-	global $connection;
-	$sql = "SELECT * FROM `Artigo` WHERE `ID` ='$ArtigoID'";
-	$db_check = mysqli_query($connection, $sql);
-	if (!$db_check){
-		echo '<p class="form_error">Internal error: Artigo not exist </p>';
-		return false;
-	}
-	$artigo = mysqli_fetch_assoc($db_check);
-	if (!$artigo){
-		echo '<p class="form_error">Internal error: Artigo not exist </p>';
-		return false;
-	}
-	return $artigo;
-}
 
-function valIDateForm($Artigo) {
-    global $AltImg, $ArtigoNome, $ArtigoDesc, $ArtigoID, $ArtigoImg;
-    if (empty($Artigo)) {
-        echo 'Artigo não encontrado';
-        return false;
-    }
-    $ArtigoID = $Artigo['ID'];
-	$ArtigoNome = $Artigo['Nome'];
-    $AltImg = $Artigo['AltImg'];
-    $ArtigoDesc = $Artigo['Descrição'];
-    $ArtigoImg = $Artigo['Img'];
-    return true;
-}
+
 	
 	
 function saveArtigo($ArtigoID) {
@@ -80,17 +45,26 @@ function saveArtigo($ArtigoID) {
 }
 
 function insertArtigo() {
-	global $connection;
 	if(empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_img']) || empty($_POST['form_Artigo_nome'])) {
 		echo "One of the fields is empty";
 		return;
 	} else {
+
+		global $connection;
+		$query = "SELECT MAX(ID) as max_id FROM Artigo";
+		$result = mysqli_query($connection, $query);
+		if (!empty($result)){
+			$maxID = intval($result->fetch_assoc()["max_id"]);
+			$_POST["idArtigo"] = $maxID + 1;
+		}
+
+		$ID = $_POST['idArtigo'];
 		$ArtigoNome = $_POST['form_Artigo_nome'];
 		$AltImg = $_POST['form_Artigo_alt'];
 		$Descrição = $_POST['form_Artigo_Descrição'];
 		$Img = $_POST['form_Artigo_img'];
 		$IdDono = $_SESSION['IdDono'];
-		$sql = "INSERT INTO Artigo (IdDono, Nome, AltImg, Descrição, Img) VALUES ( '$IdDono', '$ArtigoNome', '$Descrição', '$AltImg',  '$Img')";
+		$sql = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES ('$ID', '$ArtigoNome', '$AltImg', '$Descrição', '$Img', '$IdDono')";
 		if($connection->query($sql) === TRUE) {
 			echo "New record created successfully";
 			// Reload the page to the normal state
