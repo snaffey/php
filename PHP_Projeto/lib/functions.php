@@ -8,7 +8,7 @@ class Func
 
     function __construct()
     {
-        require_once __DIR__ . '/login/lib/DataSource.php';
+        require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
     }
 

@@ -13,7 +13,8 @@ $IdDono = $_SESSION["IdDono"];
 
 session_write_close();
 
-include_once '../calls.php';
+$upOne = dirname(__DIR__, 1);
+require_once $upOne . '/lib/calls.php';
 
 ?>
 <!DOCTYPE html>

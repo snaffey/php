@@ -7,8 +7,9 @@ class Member
     private $ds;
 
     function __construct()
-    {
-        require_once __DIR__ . '/../lib/DataSource.php';
+    {   
+        $upTwo = dirname(__DIR__, 2);
+        require_once $upTwo . '/lib/DataSource.php';
         $this->ds = new DataSource();
     }
 

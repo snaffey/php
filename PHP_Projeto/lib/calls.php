@@ -2,7 +2,9 @@
 use Phppot\Member;
 use Phppot\func;
 
-require_once __DIR__ . '/login/Model/Member.php';
+$upOne = dirname(__DIR__, 1);
+
+require_once $upOne . '/login/Model/Member.php';
 require_once __DIR__ . '/functions.php';
 
 $host = $_SERVER['HTTP_HOST'];

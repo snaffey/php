@@ -23,7 +23,7 @@
     <section class="section-banner">
       <h1>Find Your Dream Home</h1>
     </section>
-    <?php include_once './calls.php'; ?>
+    <?php include_once './lib/calls.php'; ?>
     <?php $lista = $artigo_list; ?>
     <main class="Artigos">
       <?php foreach ($lista as $data): ?>
