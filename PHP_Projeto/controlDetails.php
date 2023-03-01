@@ -1,5 +1,5 @@
-﻿<?php include_once './functionDB.php'; ?>
-<? $artigo_details = get_artigo_details($_POST['id']); ?>
+﻿<?php include_once './calls.php'; ?>
+<? $artigo_details = $artigoInfo; ?>
 <?php
 	echo "<ul>";
 		echo "<li>Valor: ".$artigo_details['Valor']."</li>";

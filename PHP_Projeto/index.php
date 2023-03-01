@@ -23,8 +23,8 @@
     <section class="section-banner">
       <h1>Find Your Dream Home</h1>
     </section>
-    <?php include_once './functionDB.php'; ?>
-    <?php $lista = get_artigos_list(); ?>
+    <?php include_once './calls.php'; ?>
+    <?php $lista = $artigo_list; ?>
     <main class="Artigos">
       <?php foreach ($lista as $data): ?>
       <article>

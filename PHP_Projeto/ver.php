@@ -20,17 +20,18 @@
       </nav>
     </header>
 		 
-		<?php include_once './functionDB.php'; ?>
+		<?php include_once './calls.php'; ?>
 		<?if (empty($_GET['id'])) {
-			header("Location: home.php");
+			header("Location: index.php");
 			exit;
 		 }
-		 $Artigo = get_Artigo($_GET['id']);
-		 //print_r($Artigo);
+		 
+		$Artigo = array_values($getArtigo);
+		print_r($Artigo);
 		?>
 		 <main class="Artigos">
 			<article class="ver">
-				<img class="ver_img" src="<?=$Artigo['Img']?>"alt="<?=$Artigo['AltImg']?>" />
+				<img class="ver_img" src="<?$Artigo['Img']?>"alt="<?=$Artigo['AltImg']?>" />
 				<h2><?=$Artigo['Nome']?></h2>
 				<h2 class="desc" ><?=$Artigo['Descrição']?></h2>
 				<h2>ID: <span id="ArtigoID"><?=$Artigo['ID']?></span></h2>
