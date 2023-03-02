@@ -13,12 +13,6 @@ class Member
         $this->ds = new DataSource();
     }
 
-    /**
-     * to check if the username already exists
-     *
-     * @param string $username
-     * @return boolean
-     */
     public function isUsernameExists($username)
     {
         $query = 'SELECT * FROM `User` where username = ?';
@@ -39,12 +33,6 @@ class Member
         return $result;
     }
 
-    /**
-     * to check if the email already exists
-     *
-     * @param string $email
-     * @return boolean
-     */
     public function isEmailExists($email)
     {
         $query = 'SELECT * FROM `User` where email = ?';
@@ -91,13 +79,14 @@ class Member
             if (! empty($_POST["signup-password"])) {
                 $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
             }
-            $query = 'INSERT INTO `User` (ID, username, password, email) VALUES (?, ?, ?, ?)';
-            $paramType = 'isss';
+            $query = 'INSERT INTO `User` (ID, username, password, email, Nivel) VALUES (?, ?, ?, ?, ?)';
+            $paramType = 'isssi';
             $paramValue = array(
                 $_POST["ID"],
                 $_POST["username"],
                 $hashedPassword,
-                $_POST["email"]
+                $_POST["email"],
+                1
             );
             $memberId = $this->ds->insert($query, $paramType, $paramValue);
             if (! empty($memberId)) {
@@ -127,11 +116,6 @@ class Member
         return $memberRecord;
     }
 
-    /**
-     * to login a user
-     *
-     * @return string
-     */
     public function loginMember()
     {
         $memberRecord = $this->getMember($_POST["username"]);
@@ -152,7 +136,13 @@ class Member
             session_start();
             $_SESSION["username"] = $memberRecord[0]["username"];
             session_write_close();
-            $url = "./home.php";
+            if ($memberRecord[0]["Nivel"] == 1) {
+                $url = "../index.php";
+            } else if ($memberRecord[0]["Nivel"] == 2) {
+                $url = "./admin.php";
+            } else if ($memberRecord[0]["Nivel"] == 3) {
+                $url = "./dono.php";
+            }
             header("Location: $url");
         } else if ($loginPassword == 0) {
             $loginStatus = "Invalid username or password.";
@@ -164,24 +154,22 @@ class Member
     {
         $paramValue = [isset($_SESSION['username']) ? $_SESSION['username'] : 'default value'];
     
-        $query = 'SELECT IdDono FROM `Artigo` WHERE IdDono = (SELECT id FROM `User` WHERE username = ?)';
+        $query = 'SELECT Id FROM `User` where username = ?';
         $paramType = 's';
         
-        $IdDono = $this->ds->select($query, $paramType, $paramValue);
-        return $IdDono;
+        $Id = $this->ds->select($query, $paramType, $paramValue);
+        return $Id;
     }
-    
     
     public function getIdDonoSession()
     {
-       $IdDono = $this->getIdDono();
+       $Id = $this->getIdDono();
     
-       if(!empty($IdDono)) 
-       { 
-           session_start();
-           $_SESSION["IdDono"] = $IdDono[0]["IdDono"];
-           session_write_close();
-      } 
+        if(!empty($Id)) 
+        { 
+            session_start();
+            $_SESSION["Id"] = $Id[0]["Id"];
+            session_write_close();
+        } 
     }
-   
 }

@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 }
 
 $username = $_SESSION["username"];
-$IdDono = $_SESSION["IdDono"];
+$Id = $_SESSION["Id"];
 
 session_write_close();
 
@@ -29,7 +29,7 @@ require_once $upOne . '/lib/calls.php';
             <span class="login-signup"><a href="logout.php">Logout</a></span>
         </div>
         <div class="page-content">Welcome <?php echo htmlspecialchars($username)?></div>
-        <div class="page-content">Id: <?php echo htmlspecialchars($IdDono)?></div>
+        <div class="page-content">Id: <?php echo htmlspecialchars($Id)?></div>
     </div>
 <form action="" method="post">
     <table class="form-table">
@@ -81,7 +81,7 @@ require_once $upOne . '/lib/calls.php';
 </form>
 
 <?php
-$lista = $artigo_list;
+$lista = $artigo_list_dono;
 ?>
 
 <table>
@@ -96,7 +96,9 @@ $lista = $artigo_list;
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($lista as $Artigo): ?>
+        <?php
+        if (is_array($lista) || is_object($lista)) { 
+        foreach ($lista as $Artigo): ?>
         <tr>
             <td><?php echo htmlspecialchars($Artigo['ID']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['Nome']); ?></td>
@@ -112,7 +114,11 @@ $lista = $artigo_list;
 
             </td>
         </tr>
-        <?php endforeach; ?>
+        <?php endforeach; 
+        } else {
+            echo "No items were found, try adding some!";
+        }
+        ?>
     </tbody>
 </table>
 </body>

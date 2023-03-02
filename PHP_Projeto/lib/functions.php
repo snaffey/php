@@ -21,6 +21,16 @@ class Func
         return $artigos;
     }
 
+    public function listArtigosDono($Id)
+    {
+        $query = 'SELECT * FROM `Artigo` WHERE `IdDono` = ? ORDER BY ID ASC';
+        $paramType = 'i';
+        $paramValue = array($Id);
+        $artigos = $this->ds->select($query, $paramType, $paramValue);
+        return $artigos;
+    }
+
+
     public function delArtigo($ArtigoID)
     {
         $query = 'DELETE FROM `Artigo` WHERE `ID` = ?';
@@ -30,6 +40,7 @@ class Func
         );
         $this->ds->execute($query, $paramType, $paramValue);
 
+        // refresh a página toda para atualizar a lista de artigos
         header("Location: " . $_SERVER['PHP_SELF']);
 
     }
@@ -58,20 +69,6 @@ class Func
         $artigo = $this->ds->select($query, $paramType, $paramValue);
         if (empty($artigo)) {
             echo '<p class="form_error">Internal error: Artigo not exist </p>';
-            return false;
-        }
-        return $artigo;
-    }
-
-    function get_artigo_details($ArtigoID) {
-        $query = 'SELECT * FROM `ArtigoInfo` WHERE `ID`= ?';
-        $paramType = 'i';
-        $paramValue = array(
-            $ArtigoID
-        );
-        $artigo = $this->ds->select($query, $paramType, $paramValue);
-        if (empty($artigo)) {
-            echo '<p class="form_error">Internal error: Artigo not exist - func </p>';
             return false;
         }
         return $artigo;
@@ -129,7 +126,7 @@ class Func
             $AltImg = $_POST['form_Artigo_alt'];
             $Descrição = $_POST['form_Artigo_Descrição'];
             $Img = $_POST['form_Artigo_img'];
-            $IdDono = $_SESSION['IdDono'];
+            $IdDono = $_SESSION['Id'];
             $query = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
             $paramType = 'issssi';
             $paramValue = array(

@@ -9,15 +9,18 @@ require_once __DIR__ . '/functions.php';
 
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']),"/\\");
-$extra = "home.php";
+$extra = basename($_SERVER['PHP_SELF']);
 define('HOME_URI', "http://$host$uri/$extra");
 
 $func = new func();
 
 $artigo_list = $func->listArtigos();
 
+if (basename($_SERVER['PHP_SELF']) == 'admin.php') {
+    $artigo_list_dono = $func->listArtigosDono($_SESSION['Id']);
+}
+
 if(isset($_GET["id"])){   
-    $artigoInfo = $func->get_artigo_details($_GET['id']); 
     $getArtigo = $func->get_artigo($_GET['id']);
     $artigo = $getArtigo[0];
     $artigoID = $artigo['ID'];

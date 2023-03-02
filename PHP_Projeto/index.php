@@ -21,7 +21,7 @@
       </nav>
     </header>
     <section class="section-banner">
-      <h1>Find Your Dream Home</h1>
+      <h1>Fast cars only for you</h1>
     </section>
     <?php include_once './lib/calls.php'; ?>
     <?php $lista = $artigo_list; ?>
