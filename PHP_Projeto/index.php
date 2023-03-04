@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="<https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js>"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./vendor/jquery/jquery-3.3.1.js"></script>
     <script src="./js/home.js"></script>
   </head>
   <body>

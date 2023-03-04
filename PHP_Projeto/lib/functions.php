@@ -30,6 +30,28 @@ class Func
         return $artigos;
     }
 
+    public function listUtilizadoresDono()
+    {
+        $query = 'SELECT * FROM `User` ORDER BY ID ASC';
+        $paramType = '';
+        $paramValue = array();
+        $users = $this->ds->select($query, $paramType, $paramValue);
+        return $users;
+    }
+
+    // delete user
+    public function delUser($UserID)
+    {
+        $query = 'DELETE FROM `User` WHERE `ID` = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $UserID
+        );
+        $this->ds->execute($query, $paramType, $paramValue);
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+
+    }
 
     public function delArtigo($ArtigoID)
     {

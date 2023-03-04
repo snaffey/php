@@ -1,24 +1,18 @@
 <?php
-use Phppot\Member;
-use Phppot\func;
+use Phppot\funcDono;
 
 $upOne = dirname(__DIR__, 1);
 
-require_once $upOne . '/login/Model/Member.php';
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/functionsDono.php';
 
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']),"/\\");
 $extra = basename($_SERVER['PHP_SELF']);
 define('HOME_URI', "http://$host$uri/$extra");
 
-$func = new func();
+$func = new funcDono();
 
 $artigo_list = $func->listArtigos();
-
-if (basename($_SERVER['PHP_SELF']) == 'admin.php') {
-    $artigo_list_dono = $func->listArtigosDono($_SESSION['Id']);
-}
 
 if (basename($_SERVER['PHP_SELF']) == 'dono.php') {
     $utilizador_list_dono = $func->listUtilizadoresDono();
@@ -37,22 +31,21 @@ if(isset($_GET["id"])){
 
 if (isset($_GET['del'])){
     $del = $_GET['del'];
-    $func->delArtigo($del);
+    $func->delUser($del);
 }
 
 if (isset($_POST['edit'])) {
-    $ArtigoID = $_POST['edit'];
-    $artigo = $func->checkArtigo($ArtigoID);
-    if ($artigo) {
-        $ArtigoNome = $artigo[0]['Nome'];
-        $ArtigoDesc = $artigo[0]['Descrição'];
-        $ArtigoImg = $artigo[0]['Img'];
-        $AltImg = $artigo[0]['AltImg'];
+    $UserID = $_POST['edit'];
+    $user = $func->checkUser($UserID);
+    if ($user) {
+
+        $UserNivel = $user[0]['Nivel'];
+        $UserUsername= $user[0]['username'];
     }
 }
 
 if (isset($_POST['save'])) {
-    $func->saveArtigo($_POST['save']);
+    $func->saveUser($_POST['save']);
 }
 
 ?>	
