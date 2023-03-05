@@ -24,6 +24,10 @@ require_once $upOne . '/lib/calls.php';
     <link href="assets/css/home.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div class="menu">
+        <a href="dono.php">Users</a>
+        <a href="donoDestaque.php">Destaques</a>
+    </div>
     <div class="phppot-container">
         <div class="page-header">
             <span class="login-signup"><a href="logout.php">Logout</a></span>
@@ -31,8 +35,7 @@ require_once $upOne . '/lib/calls.php';
         <div class="page-content">Welcome <?php echo htmlspecialchars($username)?></div>
         <div class="page-content">Id: <?php echo htmlspecialchars($Id)?></div>
     </div>
-    <a href="dono.php">Users</a>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <table class="form-table">
         <tr>
             <td>Nome:</td>
@@ -54,11 +57,13 @@ require_once $upOne . '/lib/calls.php';
         </tr>
         <tr>
             <td>Img:</td>
-            <td>
-                <input type="text" name="form_Artigo_img" value="<?php
-                if (isset($ArtigoImg)) {
-                    echo htmlspecialchars($ArtigoImg);
-                } ?>">
+            <td> 
+                <input type="file" name="form_Artigo_img">
+                <?php
+                    if (!empty($ArtigoImg)) {
+                        echo '<img src="' . htmlspecialchars($ArtigoImg) . '">';
+                    }
+                ?>
             </td>
         </tr>
         <tr>

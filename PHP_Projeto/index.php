@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./vendor/jquery/jquery-3.3.1.js"></script>
-    <script src="./js/home.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="./js/home.js"></script>
   </head>
   <body>
+    <?php include_once './lib/calls.php'; ?>
     <header class="header">
       <img src="./img/logo.webp" alt="Logo">
       <nav class="menu">
@@ -24,7 +28,17 @@
     <section class="section-banner">
       <h1>Fast cars only for you</h1>
     </section>
-    <?php include_once './lib/calls.php'; ?>
+    <section class="section-destaque">
+    <div class="slick-slider" id="carousel1">
+    <?php foreach ($destaque as $row): ?>
+      <div>
+        <a href="ver.php?id=<?= $row['ID'] ?>">
+          <img src="<?= $row['Img'] ?>" alt="<?= $row['AltImg'] ?>">
+        </a>
+      </div>
+    <?php endforeach ?>
+    </div>
+    </section>
     <?php $lista = $artigo_list; ?>
     <main class="Artigos">
       <?php foreach ($lista as $data): ?>

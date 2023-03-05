@@ -55,16 +55,32 @@ class Func
 
     public function delArtigo($ArtigoID)
     {
-        $query = 'DELETE FROM `Artigo` WHERE `ID` = ?';
+        // Get the path to the image
+        $query = 'SELECT `Img` FROM `Artigo` WHERE `ID` = ?';
         $paramType = 'i';
         $paramValue = array(
             $ArtigoID
         );
-        $this->ds->execute($query, $paramType, $paramValue);
-
-        // refresh a página toda para atualizar a lista de artigos
+        $result = $this->ds->select($query, $paramType, $paramValue);
+        if (!empty($result)) {
+            $imgPath = $result[0]['Img'];
+            
+            // Delete the record from the database
+            $query = 'DELETE FROM `Artigo` WHERE `ID` = ?';
+            $paramType = 'i';
+            $paramValue = array(
+                $ArtigoID
+            );
+            $this->ds->execute($query, $paramType, $paramValue);
+    
+            // Delete the file from the server
+            if (file_exists($imgPath)) {
+                unlink($imgPath);
+            }
+        }
+    
+        // Refresh the page to update the article list
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
 
     public function checkArtigo($ArtigoID)
@@ -94,6 +110,20 @@ class Func
             return false;
         }
         return $artigo;
+    }
+
+    public function getArtigosDestaque()
+    {
+        $query = 'SELECT ID, Img, AltImg FROM `Artigo` WHERE `ID` IN (SELECT `Destaque` FROM `Destaque`)';
+        $paramType = '';
+        $paramValue = array();
+        $destaques = $this->ds->select($query, $paramType, $paramValue);
+
+        if (empty($destaques)) {
+            throw new Exception('Ocorreu um erro ao obter os destaques');
+        }
+
+        return $destaques;
     }
 
     function validateForm($Artigo) {
@@ -130,41 +160,64 @@ class Func
     }
 
     public function insertArtigo()
-    {
-        if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_img']) || empty($_POST['form_Artigo_nome'])) {
-            echo "One of the fields is empty";
-            return;
+{
+    $ArtigoImg = '';
+    if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_nome'])) {
+        echo "One of the fields is empty";
+        return;
+    } elseif (isset($_FILES['form_Artigo_img']) && $_FILES['form_Artigo_img']['error'] == UPLOAD_ERR_OK) {
+        $upOne = dirname(__DIR__, 1);
+        $uploadDir = $upOne . '/img/';
+        $allowedTypes = ['image/jpeg', 'image/png'];
+        $maxSize = 1024 * 1024; // 1 MB
+        $imgName = basename($_FILES['form_Artigo_img']['name']);
+        $imgPath = $uploadDir . uniqid() . '-' . $imgName;
+        $imgType = $_FILES['form_Artigo_img']['type'];
+        $imgSize = $_FILES['form_Artigo_img']['size'];
+
+        // Validate file type and size
+        if (in_array($imgType, $allowedTypes) && $imgSize <= $maxSize) {
+            // Move uploaded file to safe location
+            move_uploaded_file($_FILES['form_Artigo_img']['tmp_name'], $imgPath);
+            $ArtigoImg = $imgPath;
         } else {
-            $query = "SELECT MAX(ID) as max_id FROM Artigo";
-            $paramType = '';
-            $paramValue = array();
-            $result = $this->ds->select($query, $paramType, $paramValue);
-            if (!empty($result)) {
-                $maxID = intval($result[0]['max_id']);
-                $_POST["idArtigo"] = $maxID + 1;
-            }
-            $ID = $_POST['idArtigo'];
-            $ArtigoNome = $_POST['form_Artigo_nome'];
-            $AltImg = $_POST['form_Artigo_alt'];
-            $Descrição = $_POST['form_Artigo_Descrição'];
-            $Img = $_POST['form_Artigo_img'];
-            $IdDono = $_SESSION['Id'];
-            $query = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
-            $paramType = 'issssi';
-            $paramValue = array(
-                $ID,
-                $ArtigoNome,
-                $AltImg,
-                $Descrição,
-                $Img,
-                $IdDono
-            );
-            $this->ds->insert($query, $paramType, $paramValue);
-            echo "New record created successfully";
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit;
+            echo "Error: invalid file type or size";
+            return;
         }
     }
+
+    $query = "SELECT MAX(ID) as max_id FROM Artigo";
+    $paramType = '';
+    $paramValue = array();
+    $result = $this->ds->select($query, $paramType, $paramValue);
+    if (!empty($result)) {
+        $maxID = intval($result[0]['max_id']);
+        $_POST["idArtigo"] = $maxID + 1;
+    }
+
+    $ID = $_POST['idArtigo'];
+    $ArtigoNome = $_POST['form_Artigo_nome'];
+    $AltImg = $_POST['form_Artigo_alt'];
+    $Descrição = $_POST['form_Artigo_Descrição'];
+    $Img = $ArtigoImg;
+    $IdDono = $_SESSION['Id'];
+    $query = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
+    $paramType = 'issssi';
+    $paramValue = array(
+        $ID,
+        $ArtigoNome,
+        $AltImg,
+        $Descrição,
+        $Img,
+        $IdDono
+    );
+    $this->ds->insert($query, $paramType, $paramValue);
+    echo "New record created successfully";
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+    
 }
 
 

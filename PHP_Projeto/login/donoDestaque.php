@@ -14,7 +14,7 @@ $Id = $_SESSION["Id"];
 session_write_close();
 
 $upOne = dirname(__DIR__, 1);
-require_once $upOne . '/lib/callsDono.php';
+require_once $upOne . '/lib/callsDestaque.php';
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ require_once $upOne . '/lib/callsDono.php';
 <body>
     <div class="menu">
         <a href="donoArtigos.php">Artigos</a>
-        <a href="donoDestaque.php">Destaque</a>
+        <a href="dono.php">Users</a>
     </div>
     <div class="phppot-container">
         <div class="page-header">
@@ -39,60 +39,42 @@ require_once $upOne . '/lib/callsDono.php';
     <form action="" method="post">
         <table class="form-table">
             <tr>
-                <td>Nivel:</td>
+                <td>Destaque:</td>
                 <td>
-                    <input type="text" name="form_user_nivel" value="<?php
-                    if (isset($UserNivel)) {
-                        echo htmlspecialchars($UserNivel);
+                    <input type="text" name="form_user_destaque" value="<?php
+                    if (isset($Destaque)) {
+                        echo htmlspecialchars($Destaque);
                     } ?>">
                 </td>
             </tr>
             <tr>
-                <td>Username:</td>
-                <td>
-                    <input type="text" name="form_user_username" value="<?php
-                    if (isset($UserUsername)) {
-                        echo htmlspecialchars($UserUsername);
-                    } ?>">
-            </tr>
-
-            <tr>
             <td colspan="2">
-                <input type="hidden" name="save" value="<?php echo htmlspecialchars($UserID); ?>">
+                <input type="hidden" name="save" value="<?php echo htmlspecialchars($Destaque); ?>">
                 <input type="submit" value="Save">
             </td>
         </tr>   
         </table>
     </form>
 
-    <?php $user = $utilizador_list_dono ?>
+    <?php $Destaque = $destaque_list ?>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nivel</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Criação</th>
+                <th>Destaque</th>
                 <th>Edição</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            foreach ($user as $user): ?>
+            <?php foreach ($Destaque as $id): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($user['id']) ?></td>
-                    <td><?php echo htmlspecialchars($user['Nivel']) ?></td>
-                    <td><?php echo htmlspecialchars($user['username']) ?></td>
-                    <td><?php echo htmlspecialchars($user['email']) ?></td>
-                    <td><?php echo htmlspecialchars($user['create_at']) ?></td>
+                    <td><?php echo htmlspecialchars($id['Destaque']) ?></td>
                     <td>
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-                            <input type="hidden" name="edit" value="<?php echo htmlspecialchars($user['id']); ?>">
+                            <input type="hidden" name="edit" value="<?php echo htmlspecialchars($id['Destaque']); ?>">
                             <input type="submit" name="submit" value="Edit">
                         </form>
-                        <a href="<?php echo htmlspecialchars(HOME_URI); ?>?del=<?php echo htmlspecialchars($user['id']); ?>" onclick="return confirm('Are you sure you want to delete this user?')">Del</a>
+                        <a href="<?php echo htmlspecialchars(HOME_URI); ?>?del=<?php echo htmlspecialchars($id['Destaque']); ?>" onclick="return confirm('Are you sure you want to delete this user?')">Del</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

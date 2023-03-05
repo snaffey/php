@@ -31,7 +31,7 @@ require_once $upOne . '/lib/calls.php';
         <div class="page-content">Welcome <?php echo htmlspecialchars($username)?></div>
         <div class="page-content">Id: <?php echo htmlspecialchars($Id)?></div>
     </div>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <table class="form-table">
         <tr>
             <td>Nome:</td>
@@ -54,10 +54,12 @@ require_once $upOne . '/lib/calls.php';
         <tr>
             <td>Img:</td>
             <td> 
-                <input type="text" name="form_Artigo_img" value="<?php
-                if (isset($ArtigoImg)) {
-                    echo htmlspecialchars($ArtigoImg);
-                } ?>">
+                <input type="file" name="form_Artigo_img">
+                <?php
+                    if (!empty($ArtigoImg)) {
+                        echo '<img src="' . htmlspecialchars($ArtigoImg) . '">';
+                    }
+                ?>
             </td>
         </tr>
         <tr>

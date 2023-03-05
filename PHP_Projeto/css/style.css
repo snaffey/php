@@ -197,3 +197,18 @@ footer {
 .footer-bottom {
     margin-top: 20px;
 }
+
+/* Slick Slider Styles */
+
+.slick-slider div {
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-slider img {
+    height: 300px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+}

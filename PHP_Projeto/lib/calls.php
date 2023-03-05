@@ -1,10 +1,8 @@
 <?php
-use Phppot\Member;
 use Phppot\func;
 
 $upOne = dirname(__DIR__, 1);
 
-require_once $upOne . '/login/Model/Member.php';
 require_once __DIR__ . '/functions.php';
 
 $host = $_SERVER['HTTP_HOST'];
@@ -16,12 +14,10 @@ $func = new func();
 
 $artigo_list = $func->listArtigos();
 
+$destaque = $func->getArtigosDestaque();
+
 if (basename($_SERVER['PHP_SELF']) == 'admin.php') {
     $artigo_list_dono = $func->listArtigosDono($_SESSION['Id']);
-}
-
-if (basename($_SERVER['PHP_SELF']) == 'dono.php') {
-    $utilizador_list_dono = $func->listUtilizadoresDono();
 }
 
 if(isset($_GET["id"])){   
