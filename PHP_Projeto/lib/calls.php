@@ -44,6 +44,7 @@ if (isset($_POST['edit'])) {
     $artigo = $func->checkArtigo($ArtigoID);
     if ($artigo) {
         $ArtigoNome = $artigo[0]['Nome'];
+        $ArtigoValor = $artigo[0]['Valor'];
         $ArtigoDesc = $artigo[0]['Descrição'];
         $ArtigoImg = $artigo[0]['Img'];
         $AltImg = $artigo[0]['AltImg'];

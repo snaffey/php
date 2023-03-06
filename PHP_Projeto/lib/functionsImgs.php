@@ -78,7 +78,7 @@ class FuncImg
                $query = "INSERT INTO Galeria (IdArtigo, Img) VALUES (?, ?)";
                $paramType = 'is';
                $paramValue = array(
-                   $IdArtigo + $key, // unique ID for each image
+                   $IdArtigo,
                    $imgPath,
                );
                $this->ds->insert($query, $paramType, $paramValue);

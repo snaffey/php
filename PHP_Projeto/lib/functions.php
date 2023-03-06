@@ -141,28 +141,66 @@ class Func
     }
 
     public function saveArtigo($ArtigoID)
-    {
-        $fetch_Artigo = $this->checkArtigo($ArtigoID);
-        if (!$fetch_Artigo) {
-            $this->insertArtigo();
-            return;
-        }
-        $Artigo_ID = $fetch_Artigo[0]['ID'];
-        if (!empty($Artigo_ID)) {
-            $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', AltImg = '" . $_POST['form_Artigo_alt'] . "', Descrição = '" . $_POST['form_Artigo_Descrição'] . "', Img = '" . $_POST['form_Artigo_img'] . "' WHERE ID =" . $Artigo_ID;
-            $paramType = '';
-            $paramValue = array();
-            $this->ds->update($query, $paramType, $paramValue);
-            echo '<p>Artigo successfully updated.</p>';
-            header("Location: " . $_SERVER['PHP_SELF']);
-            return;
-        }
+{
+    $fetch_Artigo = $this->checkArtigo($ArtigoID);
+    if (!$fetch_Artigo) {
+        $this->insertArtigo();
+        return;
     }
+    $Artigo_ID = $fetch_Artigo[0]['ID'];
+    if (!empty($Artigo_ID)) {
+        $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', Valor = '" . $_POST['form_Artigo_valor'] . "', Descrição = '" . $_POST['form_Artigo_Descrição'] . "', AltImg = '" . $_POST['form_Artigo_alt'] . "'";
+        
+        if (!empty($_FILES['form_Artigo_img']['name'])) {
+            $old_img_path = $fetch_Artigo[0]['Img'];
+            if (file_exists($old_img_path)) {
+                unlink($old_img_path);
+            }
+            $img_path = $this->uploadImage($_FILES['form_Artigo_img']);
+            $query .= ", Img='" . $img_path . "'";
+        } else {
+            $img_path = $fetch_Artigo[0]['Img'];
+            $query .= ", Img='" . $img_path . "'";
+        }
+        $query .= " WHERE ID = " . $Artigo_ID;
+        $paramType = '';
+        $paramValue = array();
+        $this->ds->execute($query, $paramType, $paramValue);
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+}
+
+public function uploadImage($file)
+{
+    $upOne = dirname(__DIR__, 1);
+    $uploadDir = $upOne . '/img/';
+    $allowedTypes = ['image/jpeg', 'image/png'];
+    $maxSize = 1024 * 1024; // 1 MB
+    $imgName = basename($file['name']);
+    $imgPath = $uploadDir . uniqid() . '-' . $imgName;
+    $imgType = $file['type'];
+    $imgSize = $file['size'];
+    $imgTmpName = $file['tmp_name'];
+    if (!in_array($imgType, $allowedTypes)) {
+        echo 'The file type is not allowed';
+        return;
+    }
+    if ($imgSize > $maxSize) {
+        echo 'The file size is too big';
+        return;
+    }
+    if (!move_uploaded_file($imgTmpName, $imgPath)) {
+        echo 'There was an error uploading the file';
+        return;
+    }
+    return $imgPath;
+}
 
     public function insertArtigo()
 {
     $ArtigoImg = '';
-    if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_nome'])) {
+    if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_valor']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_nome'])) {
         echo "One of the fields is empty";
         return;
     } elseif (isset($_FILES['form_Artigo_img']) && $_FILES['form_Artigo_img']['error'] == UPLOAD_ERR_OK) {
@@ -197,15 +235,17 @@ class Func
 
     $ID = $_POST['idArtigo'];
     $ArtigoNome = $_POST['form_Artigo_nome'];
+    $ArtigoValor = $_POST['form_Artigo_valor'];
     $AltImg = $_POST['form_Artigo_alt'];
     $Descrição = $_POST['form_Artigo_Descrição'];
     $Img = $ArtigoImg;
     $IdDono = $_SESSION['Id'];
-    $query = "INSERT INTO Artigo (ID, Nome, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO Artigo (ID, Nome, Valor, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
     $paramType = 'issssi';
     $paramValue = array(
         $ID,
         $ArtigoNome,
+        $ArtigoValor,
         $AltImg,
         $Descrição,
         $Img,

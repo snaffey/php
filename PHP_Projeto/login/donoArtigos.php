@@ -27,6 +27,7 @@ require_once $upOne . '/lib/calls.php';
     <div class="menu">
         <a href="dono.php">Users</a>
         <a href="donoDestaque.php">Destaques</a>
+        <a href="mensagens.php">Mensagens</a>
     </div>
     <div class="phppot-container">
         <div class="page-header">
