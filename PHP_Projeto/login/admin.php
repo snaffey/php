@@ -113,7 +113,7 @@ $lista = $artigo_list_dono;
                     <input type="submit" name="submit" value="Edit">
                 </form>
                 <a href="<?php echo htmlspecialchars(HOME_URI); ?>?del=<?php echo htmlspecialchars($Artigo['ID']); ?>" onclick="return confirm('Are you sure you want to delete this article?')">Del</a>
-
+                <a href="<?php echo htmlspecialchars(GALERIA); ?>?ID=<?php echo htmlspecialchars($Artigo['ID']); ?>">Imgs</a>
             </td>
         </tr>
         <?php endforeach; 

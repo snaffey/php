@@ -10,6 +10,9 @@ $uri = rtrim(dirname($_SERVER['PHP_SELF']),"/\\");
 $extra = basename($_SERVER['PHP_SELF']);
 define('HOME_URI', "http://$host$uri/$extra");
 
+$extra = 'galeria.php';
+define('GALERIA', "http://$host$uri/$extra");
+
 $func = new func();
 
 $artigo_list = $func->listArtigos();
@@ -49,6 +52,10 @@ if (isset($_POST['edit'])) {
 
 if (isset($_POST['save'])) {
     $func->saveArtigo($_POST['save']);
+}
+
+if (isset($_POST['submit'])) {
+    $func->insertMensagem();
 }
 
 ?>	

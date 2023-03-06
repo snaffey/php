@@ -217,6 +217,38 @@ class Func
     exit;
 }
 
+public function insertMensagem()
+{
+    // Check if the required form fields are not empty
+    if (empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['assunto']) || empty($_POST['mensagem'])) {
+        echo "One of the fields is empty";
+        return;
+    }
+
+    $query = "SELECT MAX(ID) as max_id FROM Mensagens";
+    $paramType = '';
+    $paramValue = array();
+    $result = $this->ds->select($query, $paramType, $paramValue);
+    if (!empty($result)) {
+        $maxID = intval($result[0]['max_id']);
+        $_POST["idMensagem"] = $maxID + 1;
+    }
+
+    $query = "INSERT INTO Mensagens (Id, Nome, Email, Assunto, Mensagem) VALUES (?, ?, ?, ?, ?)";
+    $paramType = 'issss';
+    $paramValue = array(
+        $_POST['idMensagem'],
+        $_POST['nome'],
+        $_POST['email'],
+        $_POST['assunto'],
+        $_POST['mensagem']
+    );
+    $this->ds->insert($query, $paramType, $paramValue);
+    echo "New message created successfully";
+    header("Refresh:1 ; url= index.php");
+    exit;
+}
+
     
 }
 

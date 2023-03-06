@@ -1,37 +1,24 @@
 $(document).ready(function () {
-    $('#carousel1').slick({
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        adaptiveHeight: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true,
-                },
+    $.ajax({
+        type: 'GET',
+        url: './home.php',
+        success: function (data) {
+            $('.mainer').html(data);
+        },
+    });
+
+    $('.ajax').click(function (e) {
+        e.preventDefault();
+        console.log('Ajax link clicked');
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function (data) {
+                $('.mainer').html(data);
             },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                },
+            error: function (xhr, status, error) {
+                console.error(error);
             },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
+        });
     });
 });

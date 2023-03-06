@@ -12,12 +12,11 @@
     <script type="text/javascript" src="./js/home.js"></script>
   </head>
   <body>
-    <?php include_once './lib/calls.php'; ?>
     <header class="header">
       <img src="./img/logo.webp" alt="Logo">
       <nav class="menu">
-        <a href="#">Home</a>
-        <a href="#">Contact</a>
+        <a href="home.php" class="ajax">Home</a>
+        <a href="contactos.php" class="ajax">Contact</a>
         <div class="admin">
           <a href="./login/login.php">
             <img src="./img/admin.png" alt="Login">
@@ -25,31 +24,7 @@
         </div>
       </nav>
     </header>
-    <section class="section-banner">
-      <h1>Fast cars only for you</h1>
-    </section>
-    <section class="section-destaque">
-    <div class="slick-slider" id="carousel1">
-    <?php foreach ($destaque as $row): ?>
-      <div>
-        <a href="ver.php?id=<?= $row['ID'] ?>">
-          <img src="<?= $row['Img'] ?>" alt="<?= $row['AltImg'] ?>">
-        </a>
-      </div>
-    <?php endforeach ?>
-    </div>
-    </section>
-    <?php $lista = $artigo_list; ?>
-    <main class="Artigos">
-      <?php foreach ($lista as $data): ?>
-      <article>
-        <img src="<?=$data['Img']?>" alt="<?=$data['AltImg']?>"> <!-- show image from database -->
-        <h2><?=$data['Nome']?></h2>
-        <h2 class="desc" ><?=$data['Descrição']?></h2> <!-- show description from database -->
-        <a href="ver.php?id=<?=$data['ID']?>" class="btn">More Info</a> <!-- show more info from database -->
-      </article>
-      <?php endforeach; ?>
-    </main>
+    <div class = "mainer"></div>
     <footer>
       <div class="footer-bottom">
         <p>&copy; 2021 Tiago</p>

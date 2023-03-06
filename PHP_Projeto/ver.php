@@ -4,9 +4,7 @@
 		<meta charset = "UTF-8">
 		<title>Details</title>
 		<link rel="stylesheet" href="./css/style.css" >
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-		<script src="./js/home.js">
-		</script>
+		
 	</head>
 	<body>
 	<header class="header">
