@@ -32,6 +32,7 @@
 				<img class="ver_img" src="<?=$Artigo['Img']?>" alt="<?=$Artigo['AltImg']?>" />
 				<h2><?=$Artigo['Nome']?></h2>
 				<h2 class="desc" ><?=$Artigo['Descrição']?></h2>
+				<h2>Preço: <?=$Artigo['Valor']?>€</h2>
 				<h2>ID: <span id="ArtigoID"><?=$Artigo['ID']?></span></h2>
 				<div id="conteudo">
 				</div>

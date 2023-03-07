@@ -56,53 +56,69 @@ class Member
     public function registerMember()
     {
 
-        $query = "SELECT MAX(ID) as max_id FROM `User`";
-        $result = $this->ds->select($query);
-        if (! empty($result)) {
-            $maxID = intval($result[0]["max_id"]);
-            $_POST["ID"] = $maxID + 1;
-        }
+        $response = array();
 
-        $isUsernameExists = $this->isUsernameExists($_POST["username"]);
-        $isEmailExists = $this->isEmailExists($_POST["email"]);
-        if ($isUsernameExists) {
-            $response = array(
-                "status" => "error",
-                "message" => "Username already exists."
-            );
-        } else if ($isEmailExists) {
-            $response = array(
-                "status" => "error",
-                "message" => "Email already exists."
-            );
-        } else {
-            if (! empty($_POST["signup-password"])) {
-                $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
+    if (!empty($_POST["signup-btn"])) {
+        $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+        $password = filter_var($_POST["signup-password"], FILTER_SANITIZE_STRING);
+        $confirmPassword = filter_var($_POST["confirm-password"], FILTER_SANITIZE_STRING);
+
+            // Check if password and confirm password match
+            if ($password !== $confirmPassword) {
+                $response["status"] = "error";
+                $response["message"] = "Password and confirm password do not match.";
+                return $response;
             }
-            $query = 'INSERT INTO `User` (ID, username, password, email, Nivel) VALUES (?, ?, ?, ?, ?)';
-            $paramType = 'isssi';
-            $paramValue = array(
-                $_POST["ID"],
-                $_POST["username"],
-                $hashedPassword,
-                $_POST["email"],
-                1
-            );
-            $memberId = $this->ds->insert($query, $paramType, $paramValue);
-            if (! empty($memberId)) {
-                $response = array(
-                    "status" => "success",
-                    "message" => "You have registered successfully."
-                );
-                header("Refresh: 3; url=./login.php");
-            } else {
+
+            $query = "SELECT MAX(ID) as max_id FROM `User`";
+            $result = $this->ds->select($query);
+            if (! empty($result)) {
+                $maxID = intval($result[0]["max_id"]);
+                $_POST["ID"] = $maxID + 1;
+            }
+
+            $isUsernameExists = $this->isUsernameExists($_POST["username"]);
+            $isEmailExists = $this->isEmailExists($_POST["email"]);
+            if ($isUsernameExists) {
                 $response = array(
                     "status" => "error",
-                    "message" => "Problem in registration. Try Again!"
+                    "message" => "Username already exists."
                 );
+            } else if ($isEmailExists) {
+                $response = array(
+                    "status" => "error",
+                    "message" => "Email already exists."
+                );
+            } else {
+                if (! empty($_POST["signup-password"])) {
+                    $hashedPassword = password_hash($_POST["signup-password"], PASSWORD_DEFAULT);
+                }
+                $query = 'INSERT INTO `User` (ID, username, password, email, Nivel) VALUES (?, ?, ?, ?, ?)';
+                $paramType = 'isssi';
+                $paramValue = array(
+                    $_POST["ID"],
+                    $_POST["username"],
+                    $hashedPassword,
+                    $_POST["email"],
+                    1
+                );
+                $memberId = $this->ds->insert($query, $paramType, $paramValue);
+                if (! empty($memberId)) {
+                    $response = array(
+                        "status" => "success",
+                        "message" => "You have registered successfully."
+                    );
+                    header("Refresh: 3; url=./login.php");
+                } else {
+                    $response = array(
+                        "status" => "error",
+                        "message" => "Problem in registration. Try Again!"
+                    );
+                }
             }
+            return $response;
         }
-        return $response;
     }
 
     public function getMember($username)
