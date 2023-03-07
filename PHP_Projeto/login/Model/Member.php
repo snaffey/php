@@ -56,7 +56,7 @@ class Member
     public function registerMember()
     {
 
-        $response = array();
+    $response = array();
 
     if (!empty($_POST["signup-btn"])) {
         $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
