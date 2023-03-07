@@ -57,6 +57,15 @@ require_once $upOne . '/lib/calls.php';
             </td>
         </tr>
         <tr>
+            <td>Valor:</td>
+            <td>
+                <input type="text" name="form_Artigo_valor" value="<?php
+                if (isset($ArtigoValor)) {
+                    echo htmlspecialchars($ArtigoValor);
+                } ?>">
+            </td>
+        </tr>
+        <tr>
             <td>Img:</td>
             <td> 
                 <input type="file" name="form_Artigo_img">
@@ -97,6 +106,7 @@ $lista = $artigo_list;
             <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
+            <th>Valor</th>
             <th>Img</th>
             <th>Alt Img</th>
             <th>Edição</th>
@@ -110,6 +120,7 @@ $lista = $artigo_list;
             <td><?php echo htmlspecialchars($Artigo['ID']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['Nome']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['Descrição']); ?></td>
+            <td><?php echo htmlspecialchars($Artigo['Valor']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['Img']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['AltImg']); ?></td>
             <td>
