@@ -17,6 +17,14 @@ class IteratorListaUtentesCalheta implements IteratorInterface {
     public function next() {
         $this->contador++;
     }
+
+    public function isDone() {
+        return $this->contador >= count($this->lista);
+    }
+
+    public function currentItem() {
+        return $this->lista[$this->contador];
+    }
 }
 
 ?>
