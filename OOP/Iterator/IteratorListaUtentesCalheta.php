@@ -28,7 +28,7 @@ class IteratorListaUtentesCalheta implements IteratorInterface {
         } elseif ($this->contador < 0) {
             $this->contador = 0;
         }
-        
+        return $this->lista[$this->contador];
     }
 }
 
