@@ -9,6 +9,14 @@ class IteratorListaUtentesCalheta implements IteratorInterface {
         $this->lista = $lista;
         $this->contador = 0;
     }
+
+    public function first() {
+        $this->contador = 0;
+    }
+
+    public function next() {
+        $this->contador++;
+    }
 }
 
 ?>
