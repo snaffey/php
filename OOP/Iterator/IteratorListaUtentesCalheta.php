@@ -23,7 +23,12 @@ class IteratorListaUtentesCalheta implements IteratorInterface {
     }
 
     public function currentItem() {
-        return $this->lista[$this->contador];
+        if ($this->isDone()) {
+            $this->contador = count($this->lista) - 1;
+        } elseif ($this->contador < 0) {
+            $this->contador = 0;
+        }
+        
     }
 }
 
