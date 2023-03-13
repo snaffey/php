@@ -1,6 +1,7 @@
 <?php
 
 include_once './AgregadoUtentes.php';
+include_once './IteratorListaUtentesCalheta.php';
 
 class UtentesCalheta implements AgregadoUtentes{
     protected $utentes;
@@ -11,6 +12,10 @@ class UtentesCalheta implements AgregadoUtentes{
         $this->utentes[] = new Utente("Maria", "Calheta");
         $this->utentes[] = new Utente("José", "Calheta");
         $this->utentes[] = new Utente("Ana", "Calheta");
+    }
+
+    public function criaIterador() {
+        return new IteratorListaUtentesCalheta($this->utentes);
     }
 }
 
