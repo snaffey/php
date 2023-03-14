@@ -1,7 +1,9 @@
 <?php
 include_once './IteratorInteface.php';
 
-abs
+abstract class IteratorInterno {
+    abstract protected function operation($utente);
+}
 
 
 ?>
