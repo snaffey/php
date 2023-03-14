@@ -5,6 +5,7 @@ name = "php"
 
 [[analyzers]]
 name = "javascript"
+enabled = true
 
 [[transformers]]
 name = "php-cs-fixer"
