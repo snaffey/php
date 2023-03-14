@@ -1,5 +1,5 @@
 <?
-class ImovelItem {
+class Carro {
 	protected $nome;
     public function __construct($nome) {
         $this->nome = $nome;
