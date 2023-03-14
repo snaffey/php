@@ -16,6 +16,18 @@ interface Iterator{
 }
 
 class ImovelIterator implements Iterator {
+    protected $itens = array();
+    protected $posicao = 0;
+    public function __construct($itens) {
+        $this->itens = $itens;
+    }
+    public function hasNext() {
+        if ($this->posicao >= count($this->itens) || $this->itens[$this->posicao] == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 }
 
