@@ -9,7 +9,6 @@ $(document).ready(function () {
 
     $('.ajax').click(function (e) {
         e.preventDefault();
-        console.log('Ajax link clicked');
         $.ajax({
             type: 'GET',
             url: $(this).attr('href'),

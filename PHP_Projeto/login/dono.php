@@ -89,7 +89,7 @@ require_once $upOne . '/lib/callsDono.php';
                     <td><?php echo htmlspecialchars($user['email']) ?></td>
                     <td><?php echo htmlspecialchars($user['create_at']) ?></td>
                     <td>
-                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">
                             <input type="hidden" name="edit" value="<?php echo htmlspecialchars($user['id']); ?>">
                             <input type="submit" name="submit" value="Edit">
                         </form>

@@ -59,7 +59,6 @@ class FuncDestaque
         }
 
         $Destaque = $fetch_dest[0]['Destaque'];
-        print_r($Destaque);
         if (!empty($Destaque)) {
             $query = "UPDATE Destaque SET Destaque='" . $_POST['form_user_destaque'] . "' WHERE Destaque='" . $Destaque . "'";
             $paramType = '';

@@ -124,7 +124,7 @@ $lista = $artigo_list;
             <td><?php echo htmlspecialchars($Artigo['Img']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['AltImg']); ?></td>
             <td>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">
                     <input type="hidden" name="edit" value="<?php echo htmlspecialchars($Artigo['ID']); ?>">
                     <input type="submit" name="submit" value="Edit">
                 </form>

@@ -54,7 +54,6 @@ class FuncDono
         $user = $this->ds->select($query, $paramType, $paramValue);
         if (empty($user)) {
             echo '<p class="form_error">Internal error: User not exist </p>';
-            print_r($user);
             return false;
         }
         return $user;
@@ -64,7 +63,6 @@ class FuncDono
     {
         $fetch_user = $this->checkUser($UserID);
         $UserID = $fetch_user[0]['id'];
-        print_r($UserID);
         if (!empty($UserID)) {
             $query = "UPDATE User SET username='" . $_POST['form_user_username'] . "', Nivel='" . $_POST['form_user_nivel'] . "' WHERE ID='" . $UserID . "'";
             $paramType = '';

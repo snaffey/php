@@ -41,7 +41,6 @@ class FuncImg
         $imgs = $this->ds->select($query, $paramType, $paramValue);
         if (empty($imgs)) {
             echo '<p class="form_error">Internal error: Imgs not exist </p>';
-            print_r($imgs);
             return false;
         }
         return $imgs;
