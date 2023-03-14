@@ -7,6 +7,10 @@ name = "php"
 name = "javascript"
 enabled = true
 
+  [analyzers.meta]
+  environment = ["jquery"]
+  module_system = "es-modules"
+
 [[transformers]]
 name = "php-cs-fixer"
 
