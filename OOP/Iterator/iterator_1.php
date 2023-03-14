@@ -31,7 +31,17 @@ class ImovelIterator implements Iterator {
     public function next() {
         return $this->itens[$this->posicao++];
     }
+}
 
+//Main
+$imoveisItens = array();
+$imoveisItens[] = new ImovelItem('Casa');
+$imoveisItens[] = new ImovelItem('Apartamento');
+
+$it = new ImovelIterator($imoveisItens);
+while ($it->hasNext()) {
+    $imovel = $it->next();
+    echo $imovel->_toString() . '<br>';
 }
 
 ?>
