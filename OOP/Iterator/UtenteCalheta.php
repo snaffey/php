@@ -8,10 +8,10 @@ class UtentesCalheta implements AgregadoUtentes{
 
     public function __construct() {
         $this->utentes = array();
-        $this->utentes[] = new Utente("João", "Calheta");
-        $this->utentes[] = new Utente("Maria", "Calheta");
-        $this->utentes[] = new Utente("José", "Calheta");
-        $this->utentes[] = new Utente("Ana", "Calheta");
+        $this->utentes[] = new Utente("João");
+        $this->utentes[] = new Utente("Maria");
+        $this->utentes[] = new Utente("José");
+        $this->utentes[] = new Utente("Ana");
     }
 
     public function criaIterador() {
