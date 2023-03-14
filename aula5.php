@@ -3,7 +3,7 @@ session_start();
 //$_POST ou $_GET
 /*
 if(isset($_POST['email']) && isset($_POST['info']))
-    if (!empty($_POST['email'])) 
+    if (!empty($_POST['email']))
         echo "Email: ".$_POST['email']. " Info: ".$_POST['info'];
 */
 /*
@@ -55,7 +55,7 @@ $str = "Bem vindo";
 $str .= isset($_GET["NOMEUSER"]) ? $_GET["NOMEUSER"] : "Visitante";
 
 $test = session_id();
-if(isset($test)){
+if (isset($test)) {
     //echo 'Session ID: '.session_id().'<br>';
     $_SESSION['nome'] = 'Joao';
     $_SESSION['permite'] = 'sim';
