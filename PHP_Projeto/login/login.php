@@ -5,7 +5,7 @@ if (! empty($_POST["login-btn"])) {
     require_once __DIR__ . '/Model/Member.php';
     $member = new Member();
     $loginResult = $member->loginMember();
-	$IdDono = $member->getIdDonoSession();
+    $IdDono = $member->getIdDonoSession();
 }
 ?>
 <HTML>
@@ -27,7 +27,7 @@ if (! empty($_POST["login-btn"])) {
 				<form name="login" action="" method="post"
 					onsubmit="return loginValidation()">
 					<div class="signup-heading">Login</div>
-				<?php if(!empty($loginResult)){?>
+				<?php if (!empty($loginResult)) {?>
 				<div class="error-msg"><?php echo $loginResult;?></div>
 				<?php }?>
 				<div class="row">

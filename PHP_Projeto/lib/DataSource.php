@@ -1,4 +1,5 @@
 <?php
+
 namespace Phppot;
 
 class DataSource
@@ -39,7 +40,7 @@ class DataSource
 
     public function getPdoConnection()
     {
-        $conn = FALSE;
+        $conn = false;
         try {
             $dsn = 'mysql:host=' . self::HOST . ';dbname=' . self::DATABASENAME;
             $conn = new \PDO($dsn, self::USERNAME, self::PASSWORD);
@@ -57,7 +58,6 @@ class DataSource
         $stmt = $this->conn->prepare($query);
 
         if (! empty($paramType) && ! empty($paramArray)) {
-
             $this->bindQueryParams($stmt, $paramType, $paramArray);
         }
         $stmt->execute();
@@ -126,7 +126,6 @@ class DataSource
     {
         $stmt = $this->conn->prepare($query);
         if (! empty($paramType) && ! empty($paramArray)) {
-
             $this->bindQueryParams($stmt, $paramType, $paramArray);
         }
         $stmt->execute();
@@ -135,5 +134,4 @@ class DataSource
 
         return $recordCount;
     }
-
 }

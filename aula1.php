@@ -64,7 +64,7 @@
     // transf. explicita de tipo
     $a = 12;
     echo "Tipo -> ".gettype($a)."<br>";
-    $a = (double)$a;
+    $a = (float)$a;
     echo "Tipo -> ".gettype($a)."<br>";
     $a = 3.9;
     $a = (int)$a;
@@ -90,7 +90,7 @@
         ^ -> xor
         ! -> not
     */
-    
+
     $res = (12 > 11) && (1 == 3);
     echo "res -> ".$res."<br>";
     var_dump($res); // mostra o tipo e o valor
@@ -119,7 +119,7 @@
     if ($valor == 12) {
         echo "Valor igual a 12<br>";
         $valor = $b;
-    } else if ($b < 20) {
+    } elseif ($b < 20) {
         echo "Meno que 20<br>";
         $valor = $b;
     } else {
@@ -161,7 +161,7 @@
 
     // Break
     $x = 11;
-    while ($x++ > 10){
+    while ($x++ > 10) {
         if ($x == 20) {
             echo "20"."<br>";
             break;
@@ -170,7 +170,7 @@
     }
 
     $y = 0;
-    for ( ; ; ){
+    for (; ;) {
         if ($y == 10) {
             break;
             echo $y++;
@@ -183,15 +183,15 @@
         $j+=$i,
         print "i -> ".$i." j -> ".$j."<br>", $i++);
     */
-    
+
     $arr = array(1, 2, 3, 4);
     // foreach
-    foreach ($arr as $value){
+    foreach ($arr as $value) {
         echo $value."<br>";
     }
 
     //foreach por referencia
-    foreach ($arr as &$value){
+    foreach ($arr as &$value) {
         $value = $value * 2;
     }
 
@@ -208,18 +208,20 @@
     $av [1] [0] = "c";
     $av [1] [1] = "d";
     $av [1] [2] = "e";
-    foreach ($av as $linha)
-        foreach ($linha as $coluna)
+    foreach ($av as $linha) {
+        foreach ($linha as $coluna) {
             echo $coluna."<br>";
+        }
+    }
 
     // Mesma coisa em for
     // count - conta o numero de elementos de um array
-    for ($i = 0; $i < count($av); $i++){
-        for ($j = 0; $j < count($av[$i]); $j++){
+    for ($i = 0; $i < count($av); $i++) {
+        for ($j = 0; $j < count($av[$i]); $j++) {
             echo $av[$i][$j]."<br>";
         }
     }
-?>
+    ?>
 
 <html>
 
@@ -229,8 +231,8 @@
 
     <body>
         <?php
-            echo"<p>Olá Mundo!</p>";
-        ?>
+                echo"<p>Olá Mundo!</p>";
+    ?>
     </body>
 
 </html>

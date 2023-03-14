@@ -10,27 +10,34 @@ Nota: self::metodo() -> chama um método estático
 Descobrir o nome da classe atual: get_class($this)
 */
 
-class Animal {
-    public function teste(){
+class Animal
+{
+    public function teste()
+    {
         echo "\$this é instancia de" . get_class($this) . "<br />";
         self::fala();
         echo "this->fala<br />";
         $this->fala();
     }
 
-    public function fala(){
+    public function fala()
+    {
         echo "Ola <br />";
     }
 }
 
-class Gato extends Animal {
-    public function fala(){
+class Gato extends Animal
+{
+    public function fala()
+    {
         echo "Miau <br />";
     }
 }
 
-class Cachorro extends Animal {
-    public function fala(){
+class Cachorro extends Animal
+{
+    public function fala()
+    {
         echo "Au Au <br />";
     }
 }

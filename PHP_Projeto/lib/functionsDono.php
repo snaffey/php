@@ -1,9 +1,9 @@
 <?php
+
 namespace Phppot;
 
 class FuncDono
 {
-    
     private $ds;
 
     public function __construct()
@@ -41,7 +41,6 @@ class FuncDono
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
 
     // check user
@@ -60,7 +59,7 @@ class FuncDono
         }
         return $user;
     }
-    
+
     public function saveUser($UserID)
     {
         $fetch_user = $this->checkUser($UserID);
@@ -76,5 +75,4 @@ class FuncDono
             return;
         }
     }
-
 }

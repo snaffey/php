@@ -33,14 +33,14 @@
             include_once './functiondb.php';
         ?>
 
-        <?php 
-			if(empty($_GET['id'])){
-				//red
-				header("Location: index.php");
-				exit;
-			}
-			$imovel = get_imovel($_GET['id']);
-		?>
+        <?php
+            if (empty($_GET['id'])) {
+                //red
+                header("Location: index.php");
+                exit;
+            }
+            $imovel = get_imovel($_GET['id']);
+        ?>
         
         <main class="imoveis">
             <article class="ver">

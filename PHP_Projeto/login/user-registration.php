@@ -1,5 +1,6 @@
 <?php
 use Phppot\Member;
+
 if (! empty($_POST["signup-btn"])) {
     require_once './Model/Member.php';
     $member = new Member();
@@ -33,7 +34,7 @@ if (! empty($_POST["signup-btn"])) {
             ?>
 				    <div class="server-response error-msg"><?php echo $registrationResponse["message"]; ?></div>
                     <?php
-        } else if ($registrationResponse["status"] == "success") {
+        } elseif ($registrationResponse["status"] == "success") {
             ?>
                     <div class="server-response success-msg"><?php echo $registrationResponse["message"]; ?></div>
                     <?php
@@ -41,7 +42,7 @@ if (! empty($_POST["signup-btn"])) {
         ?>
 				<?php
     }
-    ?>
+?>
 				<div class="error-msg" id="error-msg"></div>
 					<div class="row">
 						<div class="inline-block">

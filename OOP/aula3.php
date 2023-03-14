@@ -2,52 +2,55 @@
 
 /* Acontece quando um objeto precisa de outro objeto para completar uma tarefa */
 
-class Produtos{
+class Produtos
+{
     public $nome;
     public $valor;
 
     //Construtor pelo nome da classe(método)
-    public function Produtos(){
+    public function Produtos()
+    {
         $this->nome = "Produto";
         $this->valor = 0;
     }
 
-    public function __construct($nome = null, $valor = null){
+    public function __construct($nome = null, $valor = null)
+    {
         $this->nome = $nome;
         $this->valor = $valor;
     }
 
-    public function __destruct(){
+    public function __destruct()
+    {
         echo "Objeto destruido";
     }
 }
 
-    // Cria carrinho de compras
-    class CarrinhoCompras{
-        public $produtos;
+// Cria carrinho de compras
+class CarrinhoCompras
+{
+    public $produtos;
 
-        public function adiciona(Produtos $produto){
-            $this->produtos[] = $produto;   
-        }
-
-        public function exibe(){
-            foreach($this->produtos as $produto){
-                echo $produto->nome . " - " . $produto->valor . "<br>";
-            }
-        }
+    public function adiciona(Produtos $produto)
+    {
+        $this->produtos[] = $produto;
     }
 
-    $produto1 = new Produtos("Produto 1", 10);
-    $produto2 = new Produtos("Produto 2", 20);
-    $produto3 = new Produtos("Produto 3", 30);
+    public function exibe()
+    {
+        foreach ($this->produtos as $produto) {
+            echo $produto->nome . " - " . $produto->valor . "<br>";
+        }
+    }
+}
 
-    $carrinho = new CarrinhoCompras();
-    $carrinho->adiciona($produto1);
-    $carrinho->adiciona($produto2);
-    $carrinho->adiciona($produto3);
+$produto1 = new Produtos("Produto 1", 10);
+$produto2 = new Produtos("Produto 2", 20);
+$produto3 = new Produtos("Produto 3", 30);
 
-    $carrinho->exibe();
+$carrinho = new CarrinhoCompras();
+$carrinho->adiciona($produto1);
+$carrinho->adiciona($produto2);
+$carrinho->adiciona($produto3);
 
-
-
-?>
+$carrinho->exibe();

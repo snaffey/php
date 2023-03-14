@@ -1,8 +1,11 @@
 <?php
+
 class Conexao
 {
     private static $instance;
-    private function __construct() {}
+    private function __construct()
+    {
+    }
     public static function getInstance()
     {
         if (!isset(self::$instance)) {
@@ -19,5 +22,3 @@ $f1 = Conexao::getInstance();
 for ($i = 0; $i < 1000; $i++) {
     $f = Conexao::getInstance();
 }
-
-?>

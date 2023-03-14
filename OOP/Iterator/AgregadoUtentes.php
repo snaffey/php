@@ -1,6 +1,7 @@
-<?
-interface AgregadoUtentes {
-	public function criarIterator();
+<?php
+interface AgregadoUtentes
+{
+    public function criarIterator();
 }
 ?>
 	
