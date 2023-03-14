@@ -1,10 +1,12 @@
 <?php include_once './lib/calls.php'; ?>
+<?php include_once './lib/Iterator/List.php'; ?>
 <section class="section-banner">
       <h1>Fast cars only for you</h1>
     </section>
     <section class="section-destaque">
     <div class="slick-slider" id="carousel1">
-    <?php foreach ($destaque as $row): ?>
+    <?php $iterator = new ArticleIterator($destaque); ?> 
+    <?php foreach ($iterator as $row): ?>
       <div>
         <a href="ver.php?id=<?= $row['ID'] ?>">
           <img src="<?= $row['Img'] ?>" alt="<?= $row['AltImg'] ?>">
@@ -13,9 +15,9 @@
     <?php endforeach ?>
     </div>
     </section>
-    <?php $lista = $artigo_list; ?>
+    <?php $iterator = new ArticleIterator($artigo_list); ?>
     <main class="Artigos">
-      <?php foreach ($lista as $data): ?>
+      <?php foreach ($iterator as $data): ?>
       <article>
         <img src="<?=$data['Img']?>" alt="<?=$data['AltImg']?>"> <!-- show image from database -->
         <h2><?=$data['Nome']?></h2>
