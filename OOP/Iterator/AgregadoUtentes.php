@@ -1,0 +1,6 @@
+<?
+interface AgregadoUtentes {
+	function criarIterator();
+}
+?>
+	
