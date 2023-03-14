@@ -10,12 +10,12 @@ class ImovelItem {
     }
 }
 
-interface Iterator{
+interface IIterator{
     function hasNext();
     function next();
 }
 
-class ImovelIterator implements Iterator {
+class ImovelIterator implements IIterator {
     protected $itens = array();
     protected $posicao = 0;
     public function __construct($itens) {
