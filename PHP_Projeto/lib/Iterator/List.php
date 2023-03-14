@@ -1,4 +1,5 @@
 <?php
+
 class ArticleIterator implements Iterator
 {
     private $position = 0;
@@ -42,5 +43,3 @@ class ArticleIterator implements Iterator
         return isset($this->articles[$this->position]);
     }
 }
-
-?>
