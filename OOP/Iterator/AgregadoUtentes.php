@@ -1,6 +1,6 @@
 <?
 interface AgregadoUtentes {
-	function criarIterator();
+	public function criarIterator();
 }
 ?>
 	

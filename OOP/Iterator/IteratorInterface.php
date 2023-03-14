@@ -2,11 +2,11 @@
 
 interface IteratorInterface {
 
-    function first();
+    public function first();
 
-    function next();
+    public function next();
 
-    function isDone();
+    public function isDone();
 
-    function currentItem();
+    public function currentItem();
 }
