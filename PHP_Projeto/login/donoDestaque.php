@@ -71,9 +71,9 @@ require_once $upOne . '/lib/callsDestaque.php';
                 <tr>
                     <td><?php echo htmlspecialchars($id['Destaque']) ?></td>
                     <td>
-                    <?php
+                        <?php
                         $url = htmlspecialchars($_SERVER['PHP_SELF']);
-                ?>
+                        ?>
                         <form method="post" action="<?php echo $url; ?>">
                             <input type="hidden" name="edit" value="<?php echo htmlspecialchars($id['Destaque']); ?>">
                             <input type="submit" name="submit" value="Edit">
