@@ -1,23 +1,23 @@
 $(document).ready(function () {
-    $.ajax({
-        type: 'GET',
-        url: './home.php',
-        success: function (data) {
-            $('.mainer').html(data);
-        },
-    });
+  $.ajax({
+    type: 'GET',
+    url: './home.php',
+    success: function (data) {
+      $('.mainer').html(data)
+    }
+  })
 
-    $('.ajax').click(function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            success: function (data) {
-                $('.mainer').html(data);
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            },
-        });
-    });
-});
+  $('.ajax').click(function (e) {
+    e.preventDefault()
+    $.ajax({
+      type: 'GET',
+      url: $(this).attr('href'),
+      success: function (data) {
+        $('.mainer').html(data)
+      },
+      error: function (xhr, status, error) {
+        console.error(error)
+      }
+    })
+  })
+})
