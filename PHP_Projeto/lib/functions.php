@@ -1,9 +1,9 @@
 <?php
+
 namespace Phppot;
 
-class Func 
+class Func
 {
-    
     private $ds;
 
     public function __construct()
@@ -50,7 +50,6 @@ class Func
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
 
     public function delArtigo($ArtigoID)
@@ -64,7 +63,7 @@ class Func
         $result = $this->ds->select($query, $paramType, $paramValue);
         if (!empty($result)) {
             $imgPath = $result[0]['Img'];
-            
+
             // Delete the record from the database
             $query = 'DELETE FROM `Artigo` WHERE `ID` = ?';
             $paramType = 'i';
@@ -72,13 +71,13 @@ class Func
                 $ArtigoID
             );
             $this->ds->execute($query, $paramType, $paramValue);
-    
+
             // Delete the file from the server
             if (file_exists($imgPath)) {
                 unlink($imgPath);
             }
         }
-    
+
         // Refresh the page to update the article list
         header("Location: " . $_SERVER['PHP_SELF']);
     }
@@ -98,7 +97,8 @@ class Func
         return $artigo;
     }
 
-    public function get_artigo($ArtigoID) {
+    public function get_artigo($ArtigoID)
+    {
         $query = 'SELECT * FROM `Artigo` WHERE `ID` = ?';
         $paramType = 'i';
         $paramValue = array(
@@ -126,7 +126,8 @@ class Func
         return $destaques;
     }
 
-    public function validateForm($Artigo) {
+    public function validateForm($Artigo)
+    {
         global $AltImg, $ArtigoNome, $ArtigoDesc, $ArtigoID, $ArtigoImg;
         if (empty($Artigo)) {
             echo 'Artigo não encontrado';
@@ -141,35 +142,35 @@ class Func
     }
 
     public function saveArtigo($ArtigoID)
-{
-    $fetch_Artigo = $this->checkArtigo($ArtigoID);
-    if (!$fetch_Artigo) {
-        $this->insertArtigo();
-        return;
-    }
-    $Artigo_ID = $fetch_Artigo[0]['ID'];
-    if (!empty($Artigo_ID)) {
-        $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', Valor = '" . $_POST['form_Artigo_valor'] . "', Descrição = '" . $_POST['form_Artigo_Descrição'] . "', AltImg = '" . $_POST['form_Artigo_alt'] . "'";
-        
-        if (!empty($_FILES['form_Artigo_img']['name'])) {
-            $old_img_path = $fetch_Artigo[0]['Img'];
-            if (file_exists($old_img_path)) {
-                unlink($old_img_path);
-            }
-            $img_path = $this->uploadImage($_FILES['form_Artigo_img']);
-            $query .= ", Img='" . $img_path . "'";
-        } else {
-            $img_path = $fetch_Artigo[0]['Img'];
-            $query .= ", Img='" . $img_path . "'";
+    {
+        $fetch_Artigo = $this->checkArtigo($ArtigoID);
+        if (!$fetch_Artigo) {
+            $this->insertArtigo();
+            return;
         }
-        $query .= " WHERE ID = " . $Artigo_ID;
-        $paramType = '';
-        $paramValue = array();
-        $this->ds->execute($query, $paramType, $paramValue);
-    }
+        $Artigo_ID = $fetch_Artigo[0]['ID'];
+        if (!empty($Artigo_ID)) {
+            $query = "UPDATE Artigo SET Nome='" . $_POST['form_Artigo_nome'] . "', Valor = '" . $_POST['form_Artigo_valor'] . "', Descrição = '" . $_POST['form_Artigo_Descrição'] . "', AltImg = '" . $_POST['form_Artigo_alt'] . "'";
 
-    header("Location: " . $_SERVER['PHP_SELF']);
-}
+            if (!empty($_FILES['form_Artigo_img']['name'])) {
+                $old_img_path = $fetch_Artigo[0]['Img'];
+                if (file_exists($old_img_path)) {
+                    unlink($old_img_path);
+                }
+                $img_path = $this->uploadImage($_FILES['form_Artigo_img']);
+                $query .= ", Img='" . $img_path . "'";
+            } else {
+                $img_path = $fetch_Artigo[0]['Img'];
+                $query .= ", Img='" . $img_path . "'";
+            }
+            $query .= " WHERE ID = " . $Artigo_ID;
+            $paramType = '';
+            $paramValue = array();
+            $this->ds->execute($query, $paramType, $paramValue);
+        }
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
 
 public function uploadImage($file)
 {
@@ -198,64 +199,64 @@ public function uploadImage($file)
 }
 
     public function insertArtigo()
-{
-    $ArtigoImg = '';
-    if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_valor']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_nome'])) {
-        echo "One of the fields is empty";
-        return;
-    } elseif (isset($_FILES['form_Artigo_img']) && $_FILES['form_Artigo_img']['error'] == UPLOAD_ERR_OK) {
-        $upOne = dirname(__DIR__, 1);
-        $uploadDir = $upOne . '/img/';
-        $allowedTypes = ['image/jpeg', 'image/png'];
-        $maxSize = 1024 * 1024; // 1 MB
-        $imgName = basename($_FILES['form_Artigo_img']['name']);
-        $imgPath = $uploadDir . uniqid() . '-' . $imgName;
-        $imgType = $_FILES['form_Artigo_img']['type'];
-        $imgSize = $_FILES['form_Artigo_img']['size'];
-
-        // Validate file type and size
-        if (in_array($imgType, $allowedTypes) && $imgSize <= $maxSize) {
-            // Move uploaded file to safe location
-            move_uploaded_file($_FILES['form_Artigo_img']['tmp_name'], $imgPath);
-            $ArtigoImg = $imgPath;
-        } else {
-            echo "Error: invalid file type or size";
+    {
+        $ArtigoImg = '';
+        if (empty($_POST['form_Artigo_alt']) || empty($_POST['form_Artigo_valor']) || empty($_POST['form_Artigo_Descrição']) || empty($_POST['form_Artigo_nome'])) {
+            echo "One of the fields is empty";
             return;
+        } elseif (isset($_FILES['form_Artigo_img']) && $_FILES['form_Artigo_img']['error'] == UPLOAD_ERR_OK) {
+            $upOne = dirname(__DIR__, 1);
+            $uploadDir = $upOne . '/img/';
+            $allowedTypes = ['image/jpeg', 'image/png'];
+            $maxSize = 1024 * 1024; // 1 MB
+            $imgName = basename($_FILES['form_Artigo_img']['name']);
+            $imgPath = $uploadDir . uniqid() . '-' . $imgName;
+            $imgType = $_FILES['form_Artigo_img']['type'];
+            $imgSize = $_FILES['form_Artigo_img']['size'];
+
+            // Validate file type and size
+            if (in_array($imgType, $allowedTypes) && $imgSize <= $maxSize) {
+                // Move uploaded file to safe location
+                move_uploaded_file($_FILES['form_Artigo_img']['tmp_name'], $imgPath);
+                $ArtigoImg = $imgPath;
+            } else {
+                echo "Error: invalid file type or size";
+                return;
+            }
         }
-    }
 
-    $query = "SELECT MAX(ID) as max_id FROM Artigo";
-    $paramType = '';
-    $paramValue = array();
-    $result = $this->ds->select($query, $paramType, $paramValue);
-    if (!empty($result)) {
-        $maxID = intval($result[0]['max_id']);
-        $_POST["idArtigo"] = $maxID + 1;
-    }
+        $query = "SELECT MAX(ID) as max_id FROM Artigo";
+        $paramType = '';
+        $paramValue = array();
+        $result = $this->ds->select($query, $paramType, $paramValue);
+        if (!empty($result)) {
+            $maxID = intval($result[0]['max_id']);
+            $_POST["idArtigo"] = $maxID + 1;
+        }
 
-    $ID = $_POST['idArtigo'];
-    $ArtigoNome = $_POST['form_Artigo_nome'];
-    $ArtigoValor = $_POST['form_Artigo_valor'];
-    $AltImg = $_POST['form_Artigo_alt'];
-    $Descrição = $_POST['form_Artigo_Descrição'];
-    $Img = $ArtigoImg;
-    $IdDono = $_SESSION['Id'];
-    $query = "INSERT INTO Artigo (ID, Nome, Valor, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
-    $paramType = 'issssi';
-    $paramValue = array(
-        $ID,
-        $ArtigoNome,
-        $ArtigoValor,
-        $AltImg,
-        $Descrição,
-        $Img,
-        $IdDono
-    );
-    $this->ds->insert($query, $paramType, $paramValue);
-    echo "New record created successfully";
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
-}
+        $ID = $_POST['idArtigo'];
+        $ArtigoNome = $_POST['form_Artigo_nome'];
+        $ArtigoValor = $_POST['form_Artigo_valor'];
+        $AltImg = $_POST['form_Artigo_alt'];
+        $Descrição = $_POST['form_Artigo_Descrição'];
+        $Img = $ArtigoImg;
+        $IdDono = $_SESSION['Id'];
+        $query = "INSERT INTO Artigo (ID, Nome, Valor, AltImg, Descrição, Img, IdDono) VALUES (?, ?, ?, ?, ?, ?)";
+        $paramType = 'issssi';
+        $paramValue = array(
+            $ID,
+            $ArtigoNome,
+            $ArtigoValor,
+            $AltImg,
+            $Descrição,
+            $Img,
+            $IdDono
+        );
+        $this->ds->insert($query, $paramType, $paramValue);
+        echo "New record created successfully";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
 
 public function insertMensagem()
 {
@@ -288,9 +289,4 @@ public function insertMensagem()
     header("Refresh:1 ; url= index.php");
     exit;
 }
-
-    
 }
-
-
-

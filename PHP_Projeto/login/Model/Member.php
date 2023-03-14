@@ -1,13 +1,13 @@
 <?php
+
 namespace Phppot;
 
 class Member
 {
-
     private $ds;
 
     public function __construct()
-    {   
+    {
         $upTwo = dirname(__DIR__, 2);
         require_once $upTwo . '/lib/DataSource.php';
         $this->ds = new DataSource();
@@ -55,14 +55,13 @@ class Member
 
     public function registerMember()
     {
+        $response = array();
 
-    $response = array();
-
-    if (!empty($_POST["signup-btn"])) {
-        $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-        $password = filter_var($_POST["signup-password"], FILTER_SANITIZE_STRING);
-        $confirmPassword = filter_var($_POST["confirm-password"], FILTER_SANITIZE_STRING);
+        if (!empty($_POST["signup-btn"])) {
+            $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+            $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+            $password = filter_var($_POST["signup-password"], FILTER_SANITIZE_STRING);
+            $confirmPassword = filter_var($_POST["confirm-password"], FILTER_SANITIZE_STRING);
 
             // Check if password and confirm password match
             if ($password !== $confirmPassword) {
@@ -85,7 +84,7 @@ class Member
                     "status" => "error",
                     "message" => "Username already exists."
                 );
-            } else if ($isEmailExists) {
+            } elseif ($isEmailExists) {
                 $response = array(
                     "status" => "error",
                     "message" => "Email already exists."
@@ -154,13 +153,13 @@ class Member
             session_write_close();
             if ($memberRecord[0]["Nivel"] == 1) {
                 $url = "../index.php";
-            } else if ($memberRecord[0]["Nivel"] == 2) {
+            } elseif ($memberRecord[0]["Nivel"] == 2) {
                 $url = "./admin.php";
-            } else if ($memberRecord[0]["Nivel"] == 3) {
+            } elseif ($memberRecord[0]["Nivel"] == 3) {
                 $url = "./dono.php";
             }
             header("Location: $url");
-        } else if ($loginPassword == 0) {
+        } elseif ($loginPassword == 0) {
             $loginStatus = "Invalid username or password.";
             return $loginStatus;
         }
@@ -169,23 +168,22 @@ class Member
     public function getIdDono()
     {
         $paramValue = [isset($_SESSION['username']) ? $_SESSION['username'] : 'default value'];
-    
+
         $query = 'SELECT Id FROM `User` where username = ?';
         $paramType = 's';
-        
+
         $Id = $this->ds->select($query, $paramType, $paramValue);
         return $Id;
     }
-    
+
     public function getIdDonoSession()
     {
-       $Id = $this->getIdDono();
-    
-        if(!empty($Id)) 
-        { 
+        $Id = $this->getIdDono();
+
+        if (!empty($Id)) {
             session_start();
             $_SESSION["Id"] = $Id[0]["Id"];
             session_write_close();
-        } 
+        }
     }
 }

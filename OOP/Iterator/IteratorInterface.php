@@ -1,7 +1,7 @@
 <?php
 
-interface IteratorInterface {
-
+interface IteratorInterface
+{
     public function first();
 
     public function next();

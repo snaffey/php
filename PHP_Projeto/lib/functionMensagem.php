@@ -1,9 +1,9 @@
 <?php
+
 namespace Phppot;
 
 class FuncMsg
 {
-    
     private $ds;
 
     public function __construct()
@@ -31,7 +31,5 @@ class FuncMsg
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
-
 }

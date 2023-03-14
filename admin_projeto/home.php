@@ -10,13 +10,13 @@
         ?>
 
         <?php
-            $lista = get_imoveis_list();         
+            $lista = get_imoveis_list();
         ?>
         <main class="imoveis">
             <?php foreach ($lista as $data) : ?>
                 <article>
                     <img src=<?php echo $data['imgPath'] ?> alt=<?php echo $data['altimg'] ?> />
-                    <h2><? echo $data['descricao'] ?></h2>
+                    <h2><?php echo $data['descricao'] ?></h2>
                     <a href="ver.php?id=<?php echo $data['id'] ?>">Ver mais</a>
                 </article>
             <?php endforeach; ?>
