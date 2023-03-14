@@ -91,7 +91,7 @@ require_once $upOne . '/lib/callsDono.php';
                     <td>
                         <?php
                         $url = htmlspecialchars($_SERVER['PHP_SELF']);
-                        ?>
+                ?>
                         <form method="post" action="<?php echo $url; ?>">
                             <input type="hidden" name="edit" value="<?php echo htmlspecialchars($user['id']); ?>">
                             <input type="submit" name="submit" value="Edit">
