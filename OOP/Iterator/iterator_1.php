@@ -28,6 +28,9 @@ class ImovelIterator implements Iterator {
             return true;
         }
     }
+    public function next() {
+        return $this->itens[$this->posicao++];
+    }
 
 }
 
