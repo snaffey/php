@@ -3,17 +3,17 @@ namespace Phppot;
 
 class DataSource
 {
-    const HOST = '127.0.0.1';
+    public const HOST = '127.0.0.1';
 
-    const USERNAME = 'Tiago';
+    public const USERNAME = 'Tiago';
 
-    const PASSWORD = '123';
+    public const PASSWORD = '123';
 
-    const DATABASENAME = 'desafio_al2021023';
+    public const DATABASENAME = 'desafio_al2021023';
 
     private $conn;
 
-    function __construct()
+    public function __construct()
     {
         $this->conn = $this->getConnection();
     }

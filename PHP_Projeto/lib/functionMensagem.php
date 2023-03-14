@@ -6,7 +6,7 @@ class FuncMsg
     
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();

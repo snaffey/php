@@ -6,7 +6,7 @@ class Member
 
     private $ds;
 
-    function __construct()
+    public function __construct()
     {   
         $upTwo = dirname(__DIR__, 2);
         require_once $upTwo . '/lib/DataSource.php';

@@ -6,7 +6,7 @@ class Func
     
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
@@ -98,7 +98,7 @@ class Func
         return $artigo;
     }
 
-    function get_artigo($ArtigoID) {
+    public function get_artigo($ArtigoID) {
         $query = 'SELECT * FROM `Artigo` WHERE `ID` = ?';
         $paramType = 'i';
         $paramValue = array(
@@ -126,7 +126,7 @@ class Func
         return $destaques;
     }
 
-    function validateForm($Artigo) {
+    public function validateForm($Artigo) {
         global $AltImg, $ArtigoNome, $ArtigoDesc, $ArtigoID, $ArtigoImg;
         if (empty($Artigo)) {
             echo 'Artigo não encontrado';

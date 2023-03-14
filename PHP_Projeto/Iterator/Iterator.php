@@ -9,8 +9,8 @@ class Carro {
 	}
 }
 interface IIterator {
-    function hasNext(); // retorna boolean
-    function next(); // retorna um objeto
+    public function hasNext(); // retorna boolean
+    public function next(); // retorna um objeto
 }
 class ImovelIterator implements IIterator {
 	protected $itens = array();
