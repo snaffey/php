@@ -1,28 +1,35 @@
 <?php
+
 /* Relação simples entre objetos, um objeto usa outro objeto sem existir dependencia entre eles */
 
-class Pai{
+class Pai
+{
     public $nome;
     public $filho;
 
-    function __construct( $nome = null, $filho = null){
+    public function __construct($nome = null, $filho = null)
+    {
         $this->nome = $nome;
         $this->filho = $filho;
     }
 }
 
-class Mae{
+class Mae
+{
     public $nome;
 
-    function __construct( $nome = null){
+    public function __construct($nome = null)
+    {
         $this->nome = $nome;
     }
 }
 
-class Filho {
+class Filho
+{
     public $nome;
 
-    function __construct($nome = null){
+    public function __construct($nome = null)
+    {
         $this->nome = $nome;
     }
 }

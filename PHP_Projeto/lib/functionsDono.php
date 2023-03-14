@@ -1,12 +1,12 @@
 <?php
+
 namespace Phppot;
 
 class FuncDono
 {
-    
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
@@ -41,7 +41,6 @@ class FuncDono
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
 
     // check user
@@ -60,7 +59,7 @@ class FuncDono
         }
         return $user;
     }
-    
+
     public function saveUser($UserID)
     {
         $fetch_user = $this->checkUser($UserID);
@@ -76,5 +75,4 @@ class FuncDono
             return;
         }
     }
-
 }
