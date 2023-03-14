@@ -1,12 +1,12 @@
 <?php
+
 namespace Phppot;
 
 class FuncMsg
 {
-    
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
@@ -31,7 +31,5 @@ class FuncMsg
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
-
 }

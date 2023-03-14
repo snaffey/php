@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html>
-<title>Alinhamento ao centro - Block</title>
-<meta charset="utf-8" />
+    <title>Alinhamento ao centro - Block</title>
+    <meta charset="utf-8" />
 
-<head>
-    <style>
-        @font-face {
-            font-family: "San Francisco";
-            font-weight: 400;
-            src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-        }
+    <head>
+        <style>
+            @font-face {
+                font-family: 'San Francisco';
+                font-weight: 400;
+                src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
+            }
 
-        body {
-            background: #8b8bd3;
-            margin: 0;
-            padding: 0;
-            font-family: "San Francisco";
-        }
+            body {
+                background: #8b8bd3;
+                margin: 0;
+                padding: 0;
+                font-family: 'San Francisco';
+            }
 
-        main {
-            background: white;
-            margin: 20px 0;
-            padding: 10px;
-        }
+            main {
+                background: white;
+                margin: 20px 0;
+                padding: 10px;
+            }
 
-        main div {
-            background: black;
-            color: white;
-            margin: 5px auto;
-            padding: 15px;
-        }
+            main div {
+                background: black;
+                color: white;
+                margin: 5px auto;
+                padding: 15px;
+            }
 
-        /*
+            /*
     pseudo-class 2n(par) - 2n+1(impar) ou (even e odd)
     nth-child(i) -> filho especifico
     */
-        main div:nth-child(1) {
-            width: 200px;
-        }
+            main div:nth-child(1) {
+                width: 200px;
+            }
 
-        main div:nth-child(4) {
-            width: 400px;
-        }
+            main div:nth-child(4) {
+                width: 400px;
+            }
 
-        main div:nth-child(2n) {
-            width: 500px;
-        }
-    </style>
-</head>
+            main div:nth-child(2n) {
+                width: 500px;
+            }
+        </style>
+    </head>
 
-<body>
-    <main class="flex-centrar">
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-    </main>
-</body>
-
+    <body>
+        <main class="flex-centrar">
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+        </main>
+    </body>
 </html>

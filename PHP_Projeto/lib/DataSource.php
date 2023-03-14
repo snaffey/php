@@ -1,19 +1,20 @@
 <?php
+
 namespace Phppot;
 
 class DataSource
 {
-    const HOST = '127.0.0.1';
+    public const HOST = '127.0.0.1';
 
-    const USERNAME = 'Tiago';
+    public const USERNAME = 'Tiago';
 
-    const PASSWORD = '123';
+    public const PASSWORD = '123';
 
-    const DATABASENAME = 'desafio_al2021023';
+    public const DATABASENAME = 'desafio_al2021023';
 
     private $conn;
 
-    function __construct()
+    public function __construct()
     {
         $this->conn = $this->getConnection();
     }
@@ -39,7 +40,7 @@ class DataSource
 
     public function getPdoConnection()
     {
-        $conn = FALSE;
+        $conn = false;
         try {
             $dsn = 'mysql:host=' . self::HOST . ';dbname=' . self::DATABASENAME;
             $conn = new \PDO($dsn, self::USERNAME, self::PASSWORD);
@@ -57,7 +58,6 @@ class DataSource
         $stmt = $this->conn->prepare($query);
 
         if (! empty($paramType) && ! empty($paramArray)) {
-
             $this->bindQueryParams($stmt, $paramType, $paramArray);
         }
         $stmt->execute();
@@ -126,7 +126,6 @@ class DataSource
     {
         $stmt = $this->conn->prepare($query);
         if (! empty($paramType) && ! empty($paramArray)) {
-
             $this->bindQueryParams($stmt, $paramType, $paramArray);
         }
         $stmt->execute();
@@ -135,5 +134,4 @@ class DataSource
 
         return $recordCount;
     }
-
 }

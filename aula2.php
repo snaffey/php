@@ -1,12 +1,14 @@
 <?php
-    function imprimeTxt($txt){
+    function imprimeTxt($txt)
+    {
         echo 'Txt ->'.$txt.'<br>';
     }
 
     imprimeTxt("Ola via function");
     imprimeTxt(12);
 
-    function soma($n) {
+    function soma($n)
+    {
         $n += 20; // n = n + 20
     }
 
@@ -15,7 +17,8 @@
     imprimeTxt($a);
     //imprimeTxt($n);
 
-    function somaR($n1, $n2){
+    function somaR($n1, $n2)
+    {
         $n1 += 10;
         $n2 += 10;
     }
@@ -27,29 +30,33 @@
 
     // função com valores pre-def.
 
-    function teste($i, $n = 'Sergio'){
+    function teste($i, $n = 'Sergio')
+    {
         echo 'Nome '.$n.' Idade '.$i.'<br>';
     }
     teste(12, 'Ana');
     teste(33);
 
     // função primitiva
-    $func = function($n) {
+    $func = function ($n) {
         echo 'Ola via function primitiva '.$n.'<br>';
     };
     $func("Tiago");
 
     // escopo, isto é dimen. da var
     $escopo = "TESTEESCOPO"; // var global
-    function escopo(){
+    function escopo()
+    {
         global $escopo;
         echo $escopo;
     }
     escopo();
 
     // escopo em funções
-    function pai(){
-        function filho(){
+    function pai()
+    {
+        function filho()
+        {
             echo 'Filho';
         }
         echo 'Pai';
@@ -57,11 +64,12 @@
     pai();
     filho();
 
-    function mult($a,$b){
+    function mult($a, $b)
+    {
         return $a * $b;
     }
 
-    $res = mult(2,3);
+    $res = mult(2, 3);
     imprimeTxt($res);
 
     // Criar listas de var via array
@@ -72,8 +80,9 @@
     imprimeTxt($idade);
     imprimeTxt($morada);
 
-    function nL() {
-         return [12,13,15];
+    function nL()
+    {
+        return [12,13,15];
     }
 
     list($a, $b, $c) = nL();
@@ -81,7 +90,7 @@
     imprimeTxt($b);
     imprimeTxt($c);
 
-?>
+    ?>
 
 <html>
     <head>
