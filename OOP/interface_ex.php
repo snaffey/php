@@ -1,25 +1,32 @@
 <?php
-interface ContaBancaria {
+
+interface ContaBancaria
+{
     public function retirar($valor);
     public function depositar($valor);
 }
 
-class ContaPoupanca implements ContaBancaria {
+class ContaPoupanca implements ContaBancaria
+{
     private $valor;
 
-    public function setValor($valor) {
+    public function setValor($valor)
+    {
         $this->valor = $valor;
     }
 
-    public function getValor() {
+    public function getValor()
+    {
         return $this->valor;
     }
 
-    public function retirar($valor) {
+    public function retirar($valor)
+    {
         $this->valor -= $valor;
     }
 
-    public function depositar($valor) {
+    public function depositar($valor)
+    {
         $this->valor += $valor;
     }
 }
@@ -38,7 +45,3 @@ $contaProg->retirar(10000000000);
 
 echo "Valor da conta do Sergio: " . $contaSergio->getValor() . " euros <BR>";
 echo "Valor da conta do Programador: " . $contaProg->getValor() . " euros <BR>";
-
-
-
-?>

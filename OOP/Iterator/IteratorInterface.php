@@ -1,12 +1,12 @@
 <?php
 
-interface IteratorInterface {
+interface IteratorInterface
+{
+    public function first();
 
-    function first();
+    public function next();
 
-    function next();
+    public function isDone();
 
-    function isDone();
-
-    function currentItem();
+    public function currentItem();
 }
