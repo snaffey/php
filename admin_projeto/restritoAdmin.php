@@ -1,5 +1,7 @@
-<?
-if (!isset($_SESSION)) session_start();
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 if (!isset($_SESSION['UserID'])) {
     session_destroy();
     //header("Location: index.php"); exit;
@@ -21,22 +23,28 @@ include_once("./functiondb.php");
 
     <body>
 
-        <h3>Pagina restrita: <?php echo $_SESSION['UserNome']; 
-        echo "<br/><a href='logout.php'>Sair</a>"
-        ?></h3>
+        <h3>Pagina restrita: <?php echo $_SESSION['UserNome'];
+echo "<br/><a href='logout.php'>Sair</a>"
+?></h3>
         <form action="" method="post">
             <table class ="form-table">
                 <tr>
                     <td>Alt Img</td>
-                    <td><input type="text" name="form_imovel_alt" value="<? if(isset($altImg)) echo htmlentities($altImg) ?>" /></td>
+                    <td><input type="text" name="form_imovel_alt" value="<?php if(isset($altImg)) {
+                        echo htmlentities($altImg);
+                    } ?>" /></td>
                 </tr>
                 <tr>
                     <td>Descricao:</td>
-                    <td><input type="text" name="descricao" value="<? if(isset($imoveldescricao)) echo htmlentities($imoveldescricao) ?>" /></td>
+                    <td><input type="text" name="descricao" value="<?php if(isset($imoveldescricao)) {
+                        echo htmlentities($imoveldescricao);
+                    } ?>" /></td>
                 </tr>
                 <tr>
                     <td>Img Path:</td>
-                    <td><input type="text" name="img_path" value="<? if(isset($imovelImg)) echo htmlentities($imovelImg) ?>" /></td>
+                    <td><input type="text" name="img_path" value="<?php if(isset($imovelImg)) {
+                        echo htmlentities($imovelImg);
+                    } ?>" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -45,9 +53,9 @@ include_once("./functiondb.php");
                     </td>
                 </tr>
         </form>
-        <?
+        <?php
         $lista = get_imoveis_list();
-        ?>
+?>
         <table>
             <thead>
                 <tr>

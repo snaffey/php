@@ -73,16 +73,16 @@ require_once $upOne . '/lib/calls.php';
                     if (!empty($ArtigoImg)) {
                         echo '<img src="' . htmlspecialchars($ArtigoImg) . '">';
                     }
-                ?>
+?>
             </td>
         </tr>
         <tr>
             <td>Alt Img:</td>
             <td>
                 <input type="text" name="form_Artigo_alt" value="<?php
-                if (isset($AltImg)) {
-                    echo htmlspecialchars($AltImg);
-                } ?>">
+if (isset($AltImg)) {
+    echo htmlspecialchars($AltImg);
+} ?>">
             </td>
         </tr>
         
@@ -114,8 +114,8 @@ $lista = $artigo_list;
     </thead>
     <tbody>
         <?php
-        if (is_array($lista) || is_object($lista)) { 
-        foreach ($lista as $Artigo): ?>
+        if (is_array($lista) || is_object($lista)) {
+            foreach ($lista as $Artigo): ?>
         <tr>
             <td><?php echo htmlspecialchars($Artigo['ID']); ?></td>
             <td><?php echo htmlspecialchars($Artigo['Nome']); ?></td>
@@ -132,11 +132,11 @@ $lista = $artigo_list;
 
             </td>
         </tr>
-        <?php endforeach; 
+        <?php endforeach;
         } else {
             echo "No items were found, try adding some!";
         }
-        ?>
+?>
     </tbody>
 </table>
 </body>

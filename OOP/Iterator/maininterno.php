@@ -1,4 +1,4 @@
-<?
+<?php
 include './UtentesCalheta.php';
 include './Utente.php';
 include_once './IteratorListaUtentesCalheta.php';
@@ -10,13 +10,13 @@ Usamos uma classe abstrata que implementa o método de percorrer o conjunto e re
  Usamos uma subclasse do IteratorInterno para sobescrever a operação desejada.
  O IteratorInterno chama o método loopList() que se responsabiliza por executar as operações com esse conjunto de dados.
  */
- $utenteCalheta = new UtentesCalheta();
- /*$itC = $utenteCalheta->criarIterator();
- for ($itC; !$itC->isDone();$itC->next()){
-	 $utente = $itC->currentItem()->nome;
-	 echo '<br />'.$utente;
- }*/
- $it = new IteradorLoopPrint($utenteCalheta->criarIterator());
+$utenteCalheta = new UtentesCalheta();
+/*$itC = $utenteCalheta->criarIterator();
+for ($itC; !$itC->isDone();$itC->next()){
+    $utente = $itC->currentItem()->nome;
+    echo '<br />'.$utente;
+}*/
+$it = new IteradorLoopPrint($utenteCalheta->criarIterator());
 $it->loopList();
 ?>
 	
