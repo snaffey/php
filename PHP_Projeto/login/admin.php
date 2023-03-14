@@ -121,7 +121,7 @@ $lista = $artigo_list_dono;
             <td>
             <?php
                         $url = htmlspecialchars($_SERVER['PHP_SELF']);
-                        ?>
+                ?>
                 <form method="post" action="<?php echo $url; ?>">
                     <input type="hidden" name="edit" value="<?php echo htmlspecialchars($Artigo['ID']); ?>">
                     <input type="submit" name="submit" value="Edit">
