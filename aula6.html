@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html>
-<title>Alinhamento ao centro - Block</title>
-<meta charset="utf-8" />
-<style>
-    @font-face {
-        font-family: "San Francisco";
-        font-weight: 400;
-        src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-    }
+    <title>Alinhamento ao centro - Block</title>
+    <meta charset="utf-8" />
+    <style>
+        @font-face {
+            font-family: 'San Francisco';
+            font-weight: 400;
+            src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
+        }
 
-    body {
-        background: #8b8bd3;
-        margin: 0;
-        padding: 0;
-        font-family: "San Francisco";
-    }
+        body {
+            background: #8b8bd3;
+            margin: 0;
+            padding: 0;
+            font-family: 'San Francisco';
+        }
 
-    img {
-        width: 50px;
-    }
+        img {
+            width: 50px;
+        }
 
-    .inline-block-centrar {
-        background: white;
-        margin: 20px 0;
-        padding: 10px;
-    }
+        .inline-block-centrar {
+            background: white;
+            margin: 20px 0;
+            padding: 10px;
+        }
 
-    .inline-block-centrar div {
-        background: black;
-        color: white;
-        margin: 5px;
-        padding: 15px;
-    }
+        .inline-block-centrar div {
+            background: black;
+            color: white;
+            margin: 5px;
+            padding: 15px;
+        }
 
-    .inline-block-centrar {
-        text-align: center;
-    }
+        .inline-block-centrar {
+            text-align: center;
+        }
 
-    .inline-block-centrar div {
-        display: inline-block;
-    }
-    .flex-centrar {
-        display: flex;
-        justify-content: center;
-    }
-</style>
+        .inline-block-centrar div {
+            display: inline-block;
+        }
+        .flex-centrar {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 
-<body>
-    <div class="inline-block-centrar">
-        <div>
-            <article>
-                <img src="arquivos/cat.jpg" alt="" />
-                <h2>Suite com wc</h2>
-            </article>
+    <body>
+        <div class="inline-block-centrar">
+            <div>
+                <article>
+                    <img src="arquivos/cat.jpg" alt="" />
+                    <h2>Suite com wc</h2>
+                </article>
+            </div>
+            <div>
+                <article>
+                    <img src="arquivos/cat.jpg" alt="" />
+                    <h2>Apart.T3</h2>
+                </article>
+            </div>
+            <div>
+                <article>
+                    <img src="arquivos/cat.jpg" alt="" />
+                    <h2>Casa de campo</h2>
+                </article>
+            </div>
         </div>
-        <div>
-            <article>
-                <img src="arquivos/cat.jpg" alt="" />
-                <h2>Apart.T3</h2>
-            </article>
-        </div>
-        <div>
-            <article>
-                <img src="arquivos/cat.jpg" alt="" />
-                <h2>Casa de campo</h2>
-            </article>
-        </div>
-    </div>
-    <main class="flex-centrar">
-        <div>Elemento block centrado</div>
-        <div>Elemento block centrado Elemento block centrado</div>
-        <div>Elemento block centrado</div>
-    </main>
-</body>
-
+        <main class="flex-centrar">
+            <div>Elemento block centrado</div>
+            <div>Elemento block centrado Elemento block centrado</div>
+            <div>Elemento block centrado</div>
+        </main>
+    </body>
 </html>

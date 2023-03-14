@@ -1,12 +1,12 @@
 <?php
+
 namespace Phppot;
 
 class FuncDestaque
 {
-    
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
@@ -31,7 +31,6 @@ class FuncDestaque
         $this->ds->execute($query, $paramType, $paramValue);
 
         header("Location: " . $_SERVER['PHP_SELF']);
-
     }
 
     // check user
@@ -49,7 +48,7 @@ class FuncDestaque
         }
         return $user;
     }
-    
+
     public function saveDestaque($Destaque)
     {
         $fetch_dest = $this->checkDestaque($Destaque);
@@ -83,5 +82,4 @@ class FuncDestaque
         echo '<p>Destaque successfully added.</p>';
         header("Location: " . $_SERVER['PHP_SELF']);
     }
-
 }

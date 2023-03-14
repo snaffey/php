@@ -1,12 +1,12 @@
 <?php
+
 namespace Phppot;
 
 class FuncImg
 {
-    
     private $ds;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '/DataSource.php';
         $this->ds = new DataSource();
@@ -29,7 +29,7 @@ class FuncImg
         $paramType = 'i';
         $paramValue = array($del);
         $this->ds->execute($query, $paramType, $paramValue);
-        header("Location: " . $_SERVER['PHP_SELF'] );
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 
     // Check if any images exist for the `IdArtigo`
@@ -46,7 +46,7 @@ class FuncImg
         }
         return $imgs;
     }
-    
+
     // Upload multiple images to the `img/` folder with a unique ID and the `IdArtigo` based on the ID in the link
    public function insertGaleria()
    {
@@ -54,25 +54,25 @@ class FuncImg
            echo "No image selected for upload";
            return;
        }
-     
+
        $upOne = dirname(__DIR__, 1);
        $uploadDir = $upOne . '/img/';
        $allowedTypes = ['image/jpeg', 'image/png'];
        $maxSize = 1024 * 1024; // 1 MB
        $IdArtigo = $_POST['idArtigo']; // initialize ID value
-   
+
        foreach ($_FILES['form_user_imgs']['name'] as $key => $fileName) {
            $imgType = $_FILES['form_user_imgs']['type'][$key];
            $imgSize = $_FILES['form_user_imgs']['size'][$key];
            $imgName = basename($fileName);
            $imgPath = $uploadDir . uniqid() . '-' . $imgName;
-   
+
            // Validate file type and size
            if (!in_array($imgType, $allowedTypes) || $imgSize > $maxSize) {
                echo "Error: invalid file type or size for " . $imgName . "<br>";
                continue;
            }
-   
+
            // Move uploaded file to safe location
            if (move_uploaded_file($_FILES['form_user_imgs']['tmp_name'][$key], $imgPath)) {
                $query = "INSERT INTO Galeria (IdArtigo, Img) VALUES (?, ?)";
@@ -86,17 +86,16 @@ class FuncImg
                echo "Error uploading file " . $imgName . "<br>";
            }
        }
-   
+
        echo "All files uploaded successfully";
        header("Location: galeria.php?ID=" . $IdArtigo); // use correct header redirect URL with ID value
        exit;
    }
-   
-   }
-   
-   
-    
-    
+}
+
+
+
+
 
 ?>
 
