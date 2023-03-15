@@ -1,5 +1,6 @@
 <?php include_once './lib/calls.php'; ?>
 <?php include_once './lib/Iterator/List.php'; ?>
+<?php include_once './lib/Iterator/Loop.php'; ?>
 <section class="section-banner">
       <h1>Fast cars only for you</h1>
     </section>
@@ -15,16 +16,11 @@
     <?php endforeach ?>
     </div>
     </section>
-    <?php $iterator = new ArticleIterator($artigo_list); ?>
     <main class="Artigos">
-      <?php foreach ($iterator as $data): ?>
-      <article>
-        <img src="<?=$data['Img']?>" alt="<?=$data['AltImg']?>"> <!-- show image from database -->
-        <h2><?=$data['Nome']?></h2>
-        <h2 class="desc" ><?=$data['Descrição']?></h2> <!-- show description from database -->
-        <a href="ver.php?id=<?=$data['ID']?>" class="btn">More Info</a> <!-- show more info from database -->
-      </article>
-      <?php endforeach; ?>
+      <!-- Usar iterator loop e looplist para mostrar artigos -->
+      <?php $iterator = new ArticleIterator($artigo_list); ?>
+      <?php $loop = new Loop(); ?>
+      <?php $loop->loopList($iterator); ?>
     </main>
     <script type="text/javascript">
       $('#carousel1').slick({
