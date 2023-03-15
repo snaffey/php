@@ -1,12 +1,14 @@
 <?php
 
-interface IteratorInterface
+interface MyIterator
 {
-    public function first();
+    public function rewind();
+
+    public function current();
+
+    public function key();
 
     public function next();
 
-    public function isDone();
-
-    public function currentItem();
+    public function valid();
 }

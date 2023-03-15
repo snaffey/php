@@ -2,25 +2,24 @@
 
 include_once './lib/Iterator/MyInterface.php';
 
-class ArticleIterator implements IteratorInterface
+class ArticleIterator implements MyIterator
 {
     private $position = 0;
     private $articles;
+    private $count;
 
     public function __construct(array $articles)
     {
         $this->articles = $articles;
+        $this->count = count($articles);
     }
 
-    public function first()
+    public function rewind()
     {
-        if (!is_array($this->articles)) {
-            throw new \InvalidArgumentException('Articles should be an array');
-        }
         $this->position = 0;
     }
 
-    public function currentItem()
+    public function current()
     {
         if (!isset($this->articles[$this->position])) {
             throw new \OutOfBoundsException('Articles out of bounds');
@@ -38,8 +37,8 @@ class ArticleIterator implements IteratorInterface
         ++$this->position;
     }
 
-    public function isDone()
+    public function valid()
     {
-        return isset($this->articles[$this->position]) === false;
+        return $this->position < $this->count;
     }
 }
