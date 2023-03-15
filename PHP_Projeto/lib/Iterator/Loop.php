@@ -23,7 +23,7 @@ class Loop
     {
         $this->it = new ArticleIterator($destaque);
         $this->it->rewind();
-        
+
         while ($this->it->valid()) {
             try {
                 $this->operationDestaque($this->it->current());
@@ -31,11 +31,11 @@ class Loop
                 error_log('Error in loopDestaque: ' . $e->getMessage());
                 throw $e;
             }
-            
+
             $this->it->next();
         }
     }
-    
+
 
     protected function operation($article)
     {
@@ -55,5 +55,4 @@ class Loop
         echo '</a>';
         echo '</div>';
     }
-
 }
