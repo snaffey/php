@@ -2,7 +2,7 @@
 
 include_once './lib/Iterator/List.php';
 
-class Loop 
+class Loop
 {
     protected $it;
     public function loopList()

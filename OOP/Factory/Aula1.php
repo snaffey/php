@@ -8,13 +8,15 @@ class ProductFactory
     protected $product;
     public function make($model = null)
     {
-        if (strtolower($model) == 'r')
+        if (strtolower($model) == 'r') {
             return $this->product = new ProductModelR();
-        return $this->product = new ProductModelS('s','pc desktop');
+        }
+        return $this->product = new ProductModelS('s', 'pc desktop');
     }
 }
 
-class ProductOrder {
+class ProductOrder
+{
     protected $productOrders = array();
     protected $product;
     public function __construct()
@@ -33,12 +35,14 @@ class ProductOrder {
     }
 }
 
-interface Product{
-    function getModel();
-    function getType();
+interface Product
+{
+    public function getModel();
+    public function getType();
 }
 
-class ProductModelR implements Product{
+class ProductModelR implements Product
+{
     protected $model = 'r';
     protected $type = 'pc portatil';
     public function getModel()
@@ -51,10 +55,12 @@ class ProductModelR implements Product{
     }
 }
 
-class ProductModelS implements Product{
+class ProductModelS implements Product
+{
     protected $model;
     protected $type;
-    public function __construct($m,$t){
+    public function __construct($m, $t)
+    {
         $this->model = $m;
         $this->type = $t;
     }
@@ -68,43 +74,52 @@ class ProductModelS implements Product{
     }
 }
 
-class ProductOrder1 implements Iterator {
+class ProductOrder1 implements Iterator
+{
     protected $productOrders = array();
     protected $product;
     private $position = 0;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->product = new ProductFactory();
         $this->position = 0;
     }
 
-    public function order($model = null) {
+    public function order($model = null)
+    {
         $product = $this->product->make($model);
         $this->productOrders[] = $product->getModel();
         $this->productOrders[] = $product->getType();
     }
 
-    public function getProductOrders() {
+    public function getProductOrders()
+    {
         return $this->productOrders;
     }
 
-    public function rewind() {
+    public function rewind()
+    {
         $this->position = 0;
     }
 
-    public function current() {
+    public function current()
+    {
         return $this->productOrders[$this->position];
     }
 
-    public function key() {
+    public function key()
+    {
         return $this->position;
     }
 
-    public function next() {
+    public function next()
+    {
         ++$this->position;
     }
 
-    public function valid() {
+    public function valid()
+    {
         return isset($this->productOrders[$this->position]);
     }
 }
