@@ -1,4 +1,5 @@
 <?php
+
 //caminho raiz
 define('ABSPATH', dirname(__FILE__));
 
@@ -25,5 +26,3 @@ define('DEBUG', true);
 
 //caminho raiz e chamar o loader
 require_once ABSPATH . '/loader.php';
-
-?>
