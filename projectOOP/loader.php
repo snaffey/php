@@ -1,11 +1,12 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 session_start();
 
-if ( !defined('DEBUG') || DEBUG == false ) {
+if (!defined('DEBUG') || DEBUG == false) {
     error_reporting(0);
     ini_set("display_errors", 0);
 } else {
@@ -14,5 +15,3 @@ if ( !defined('DEBUG') || DEBUG == false ) {
 }
 
 require_once ABSPATH . '/functions/global-functions.php';
-
-?>

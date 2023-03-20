@@ -9,6 +9,3 @@ class HomeController extends MainController{
         require_once ABSPATH . '/views/_includes/footer.php';
     }
 }
-
-
-?>
