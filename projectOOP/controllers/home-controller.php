@@ -1,9 +1,8 @@
 <?php
-class HomeController extends MainController{
-    public function index() {
-        
+
+class HomeController extends MainController
+{
+    public function index()
+    {
     }
 }
-
-
-?>
