@@ -1,5 +1,7 @@
 <?php
-class MainController extends UserLogin {
+
+class MainController extends UserLogin
+{
     public $db;
     public $phppass;
     public $title;
@@ -7,14 +9,16 @@ class MainController extends UserLogin {
     public $permission_required = 'any';
     public $parametros = array();
 
-    public function __construct($parametros = array()) {
+    public function __construct($parametros = array())
+    {
         $this->db = new SystemDB();
-        $this->phppass = new PasswordHash(8, FALSE);
+        $this->phppass = new PasswordHash(8, false);
         $this->parametros = $parametros;
         $this->check_userlogin();
     }
 
-    public function load_model($model_name = false) {
+    public function load_model($model_name = false)
+    {
         if (!$model_name) {
             return;
         }
@@ -31,6 +35,3 @@ class MainController extends UserLogin {
         }
     }
 }
-
-
-?>
