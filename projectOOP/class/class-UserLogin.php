@@ -2,12 +2,14 @@
 /*
 Manipula os dados de user registado, faz login e logout, verifica permissões e redireciona pagina para user ativo.
 */
-class UserLogin {
+class UserLogin
+{
     public $logged_in;
     public $userdata;
     public $login_error;
     public $user_name;
-    public function check_userlogin() {
+    public function check_userlogin()
+    {
         if (isset($_SESSION['userdata']) && !empty($_SESSION['userdata']) && is_array($_SESSION['userdata']) && !isset($_POST['userdata'])) {
             $userdata = $_SESSION['userdata'];
             $userdata['post'] = false;
@@ -20,10 +22,11 @@ class UserLogin {
             $this->logout();
             return;
         }
-        if ($userdata['post'] == true) 
+        if ($userdata['post'] == true) {
             $post = true;
-        else
+        } else {
             $post = false;
+        }
 
         unset($userdata['post']);
         if (empty($userdata)) {
@@ -32,7 +35,6 @@ class UserLogin {
             $this->logout();
             return;
         }
-    $query = $this->db->query('SELECT * FROM users WHERE user = ? LIMIT 1', array($user));
-            
+        $query = $this->db->query('SELECT * FROM users WHERE user = ? LIMIT 1', array($user));
     }
 }
