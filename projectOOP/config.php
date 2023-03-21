@@ -7,7 +7,7 @@ define('ABSPATH', dirname(__FILE__));
 define('UP_ABSPATH', ABSPATH . '/views/_uploads');
 
 //URL da home
-define('HOME_URI', 'http://localhost:41062/www/projectOOP/');
+define('HOME_URI', 'http://localhost:41062/www/projectOOP');
 
 //Nome do host do BD
 define('DB_HOST', 'epcc_prog21');

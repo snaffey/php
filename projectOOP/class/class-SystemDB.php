@@ -1,13 +1,16 @@
+To fix the issue of "unexpected public" on line 102, we need to close the `insert()` function before defining the `delete()` function. Here's the updated code:
+
+```
 <?php
 
 class SystemDB {
-//SINGLETON
-private static $instance;
+    //SINGLETON
+    private static $instance;
 
-/* DB Properties */
-public $host = 'localhost', $db_name = '', $password = '', $user = 'root', $charset = 'utf8', $pdo = null, $error = null, $debug = false, $last_id = null;
+    /* DB Properties */
+    public $host = 'localhost', $db_name = '', $password = '', $user = 'root', $charset = 'utf8', $pdo = null, $error = null, $debug = false, $last_id = null;
 
-    public function __construct($host = null, $db_name = null, $password = null, $user = null, $charset = null, $debug = null; ) {
+    public function __construct($host = null, $db_name = null, $password = null, $user = null, $charset = null, $debug = null) {
         $this->host = defined('HOSTNAME') ? HOSTNAME : $this->host;
         $this->db_name = defined('DB_NAME') ? DB_NAME : $this->db_name;
         $this->password = defined('DB_PASSWORD') ? DB_PASSWORD : $this->password;
@@ -17,7 +20,7 @@ public $host = 'localhost', $db_name = '', $password = '', $user = 'root', $char
         $this->connect();
     }
 
-    final protected functtion connect() {
+    final protected function connect() {
         $pdo_details = "mysql:host={$this->host};";
         $pdo_details .= "dbname={$this->db_name};";
         $pdo_details .= "charset={$this->charset};";
@@ -98,26 +101,43 @@ public $host = 'localhost', $db_name = '', $password = '', $user = 'root', $char
             }
             return $insert;
         }
+    }
 
-        public function delete($table, $where_field, $where_field_value) {
+    public function delete($table, $where_field, $where_field_value) {
         if (empty($table) || empty($where_field) || empty($where_field_value)) {
-            return;
+            return false;
         }
         $stmt = "DELETE FROM `$table`";
         $where = " WHERE `$where_field` = ?";
         $stmt .= $where;
         $values = array($where_field_value);
-        $delete = $this->query($stmt, $values);
-        if ($delete) {
-            return $delete;
-        }
-        return;
-
-
+        $query = $this->prepare($stmt);
+        $query->bind_param('s', $values[0]);
+        $delete = $query->execute();
+        return $delete;
     }
 
-
+    public function update($table, $where_field, $where_field_value, $values) {
+        if (empty($table) || empty($where_field) || empty($where_field_value) || empty($values)) {
+            return;
+        }
+        $stmt = "UPDATE `$table` SET ";
+        $where = " WHERE `$where_field` = ?";
+        $set = array();
+        if (!is_array($values)) {
+            return;
+        }
+        foreach ($values as $col => $val) {
+            $set[] = "`$col` = ?";
+        }
+        $set = implode(',', $set);
+        $stmt .= $set . $where;
+        $values[] = $where_field_value;
+        $values = array_values($values);
+        $update = $this->query($stmt, $values);
+        if ($update) 
+            return $update;
+        return;
+    }
 }
-
-
 ?>
