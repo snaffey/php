@@ -33,6 +33,23 @@ class UserLogin {
             return;
         }
     $query = $this->db->query('SELECT * FROM users WHERE user = ? LIMIT 1', array($user));
+
+    if (!$query) {
+        $this->logged_in = false;
+        $this->login_error = 'User not found';
+        $this->logout();
+        return;
+    }
+    $fetch = $query->fetch(PDO::FETCH_ASSOC);
+    $user_id = (int) $fetch['user_id'];
+    $user_name = $fetch['user'];
+
+    if (empty($user_id)) {
+        $this->logged_in = false;
+        $this->login_error = 'User not found';
+        $this->logout();
+        return;
+    }
             
     }
 }
