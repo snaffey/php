@@ -1,4 +1,6 @@
-<?php if (!defined('ABSPATH')) exit; ?>
+<?php if (!defined('ABSPATH')) {
+    exit;
+} ?>
 <!DOCTYPE html>
 <html lang="pt-PT">
     <head>
