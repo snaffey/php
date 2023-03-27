@@ -1,28 +1,30 @@
-<?php
-
-//caminho raiz
+<?
+// Caminho raiz
 define('ABSPATH', dirname(__FILE__));
 
-//caminho para uploads
+// Caminho para uploads
 define('UP_ABSPATH', ABSPATH . '/views/_uploads');
 
-//URL da home
+//URL home
 define('HOME_URI', 'http://localhost:41062/www/projectOOP');
 
-//Nome do host do BD
-define('DB_HOST', 'epcc_prog21');
+// Nome do host da base de dados
+define('HOSTNAME', '127.0.0.1');
 
-//user do bd
+// Nome do DB
+define('DB_NAME', 'proj_21');
+
+// User do DB
 define('DB_USER', 'Tiago');
 
-//senha do bd
+// Palavra-passe do DB
 define('DB_PASSWORD', '123');
 
-//charset
+// Charset da conexão PDO
 define('DB_CHARSET', 'utf8');
 
-//modo de debug
+// Modo programador(false- sem erros, true com erros)
 define('DEBUG', true);
 
-//caminho raiz e chamar o loader
 require_once ABSPATH . '/loader.php';
+?>

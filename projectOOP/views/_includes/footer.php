@@ -1,9 +1,6 @@
-<?php if (!defined('ABSPATH')) {
-    exit;
-} ?>
-    <div>
-        FOOTER
-    </div>
-</div>
+<?php if ( ! defined('ABSPATH')) exit; ?>
+
+</div> <!-- .main-page (header.php) -->
+footer
 </body>
 </html>
