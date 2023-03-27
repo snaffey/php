@@ -1,29 +1,33 @@
 <?php
 
-class SystemDB {
+class SystemDB
+{
+    // SINGLETON ***********
+    private static $instance;
+    // SINGLETON ***********
 
-	// SINGLETON ***********
-	private static $instance;
-	// SINGLETON ***********
-	
     /** DB properties */
-    public $host = 'localhost',
-            $db_name = '',
-            $password = '',
-            $user = 'root',
-            $charset = 'utf8',
-            $pdo = null,
-            $error = null,
-            $debug = false,
-            $last_id = null;
+    public $host = 'localhost';
+    public $db_name = '';
+    public $password = '';
+    public $user = 'root';
+    public $charset = 'utf8';
+    public $pdo = null;
+    public $error = null;
+    public $debug = false;
+    public $last_id = null;
 
     public function __construct(
-    $host = null, $db_name = null, $password = null, $user = null, $charset = null, $debug = null
+        $host = null,
+        $db_name = null,
+        $password = null,
+        $user = null,
+        $charset = null,
+        $debug = null
     ) {
-
         // Configura as propriedades novamente.
         // Feito isso no início dessa classe, as constantes não serão
-        // necessárias. 
+        // necessárias.
         $this->host = defined('HOSTNAME') ? HOSTNAME : $this->host;
         $this->db_name = defined('DB_NAME') ? DB_NAME : $this->db_name;
         $this->password = defined('DB_PASSWORD') ? DB_PASSWORD : $this->password;
@@ -32,19 +36,21 @@ class SystemDB {
         $this->debug = defined('DEBUG') ? DEBUG : $this->debug;
 
         // Conecta
-       $this->connect();
+        $this->connect();
     }// __construct
-	
-	public static function getInstance($d,$u,$p) {
-                if (!isset(self::$instance)) {
-                    self::$instance = new PDO($d, $u, $p);
-                }
-                echo 'Ligação estabelecida<br />';
-                return self::$instance;
-            }
-	
-	// SINGLETON
-    final protected function connect() {
+
+    public static function getInstance($d, $u, $p)
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new PDO($d, $u, $p);
+        }
+        echo 'Ligação estabelecida<br />';
+        return self::$instance;
+    }
+
+    // SINGLETON
+    final protected function connect()
+    {
         /* Os detalhes da conexão PDO */
         $pdo_details = "mysql:host={$this->host};";
         $pdo_details .= "dbname={$this->db_name};";
@@ -52,8 +58,8 @@ class SystemDB {
 
         // Tenta conexão
         try {
-			$this->pdo=self::getInstance($pdo_details, $this->user, $this->password);
-			
+            $this->pdo=self::getInstance($pdo_details, $this->user, $this->password);
+
             // Libertar as propriedades
             unset($this->host);
             unset($this->db_name);
@@ -71,19 +77,17 @@ class SystemDB {
 
 // SINGLETON ***********
 
-    public function query($stmt, $data_array = null) {
-
+    public function query($stmt, $data_array = null)
+    {
         // Prepara e executa
         $query = $this->pdo->prepare($stmt);
         $check_exec = $query->execute($data_array);
 
         // Verifica se a consulta foi processada
         if ($check_exec) {
-
             // Retorna a consulta
             return $query;
         } else {
-
             // Configura o erro
             $error = $query->errorInfo();
             $this->error = $error[2];
@@ -93,7 +97,8 @@ class SystemDB {
         }
     }
 
-    public function insert($table) {
+    public function insert($table)
+    {
         // Configura o array de colunas
         $cols = array();
         // Configura o valor inicial do modelo
@@ -112,7 +117,9 @@ class SystemDB {
             // Obtém as chaves como colunas e valores como valores
             foreach ($data[$i] as $col => $val) {
                 // A primeira volta do laço configura as colunas
-                if ($i === 1) { $cols[] = "`$col`";  }
+                if ($i === 1) {
+                    $cols[] = "`$col`";
+                }
                 if ($j <> $i) {
                     // Configura os divisores
                     $place_holders .= '), (';
@@ -146,7 +153,8 @@ class SystemDB {
         return;
     }
 // insert
-    public function update($table, $where_field, $where_field_value, $values) {
+    public function update($table, $where_field, $where_field_value, $values)
+    {
         // Tem que enviar todos os parâmetros
         if (empty($table) || empty($where_field) || empty($where_field_value)) {
             return;
@@ -183,7 +191,8 @@ class SystemDB {
         return;
     }
 // update
-    public function delete($table, $where_field, $where_field_value) {
+    public function delete($table, $where_field, $where_field_value)
+    {
         // Precisa enviar todos os parâmetros
         if (empty($table) || empty($where_field) || empty($where_field_value)) {
             return;
