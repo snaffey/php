@@ -1,10 +1,11 @@
 <?php
 // Evita acesso direto a este ficheiro
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     exit;
+}
 $modelo->validate_register_form();
-$modelo->get_register_form( chk_array( $parametros, 1 ) );
-$modelo->del_user( $parametros );
+$modelo->get_register_form(chk_array($parametros, 1));
+$modelo->del_user($parametros);
 ?>
 <div class="wrap">
     <form method="post" action="" enctype="multipart/form-data">
@@ -12,24 +13,24 @@ $modelo->del_user( $parametros );
             <tr><td>
 	Nome: <br>
 	<input type="text" name="user_name" value="<?php
-	echo htmlentities(chk_array($modelo->form_data, 'user_name')?? '');
-                    ?>" />
+    echo htmlentities(chk_array($modelo->form_data, 'user_name')?? '');
+?>" />
                 </td>
             </tr>
           <tr>
 			<td>
 	User: <br>
 	<input type="text" name="user" value="<?php
-	echo htmlentities(chk_array($modelo->form_data, 'user')?? '');
-                    ?>" />
+    echo htmlentities(chk_array($modelo->form_data, 'user')?? '');
+?>" />
             </td>
           </tr>
             <tr>
                 <td>
 	Password: <br>
 	<input type="password" name="user_password" value="<?php
-	echo htmlentities(chk_array($modelo->form_data, 'user_password')?? '');
-                    ?>" />
+    echo htmlentities(chk_array($modelo->form_data, 'user_password')?? '');
+?>" />
                 </td>
             </tr>
             <tr>
@@ -37,8 +38,8 @@ $modelo->del_user( $parametros );
 	Permissions<small>(Separate permissions using commas)</small>
                 </td>
 				<td>
-<input type="text" name="user_permissions" value="<?php echo htmlentities( chk_array( $modelo->form_data, 'user_permissions')?? '');
-			?>" />				
+<input type="text" name="user_permissions" value="<?php echo htmlentities(chk_array($modelo->form_data, 'user_permissions')?? '');
+?>" />				
 				</td>
             </tr>
 <tr>
@@ -51,8 +52,8 @@ $modelo->del_user( $parametros );
         </table>
     </form>
     <!-- LISTA os user -->
-    <?php 
-	$lista = $modelo->get_user_list(); ?>
+    <?php
+    $lista = $modelo->get_user_list(); ?>
     <h2>Lista de Users</h2>
     <table class="list-table">
         <thead>
@@ -71,10 +72,12 @@ $modelo->del_user( $parametros );
 	<td><?php echo $user['user'] ?></td>
 	<td><?php echo $user['user_name'] ?></td>
 	<td>
-	<?php 
-	echo implode(',', 
-	unserialize($user['user_permissions']))
-	?>
+	<?php
+    echo implode(
+    ',',
+    unserialize($user['user_permissions'])
+)
+    ?>
 	</td>
 <td>
 	<a href="<?php echo HOME_URI?>/user-register/index/edit/<?=$user['user_id'] ?>">	Editar
@@ -87,5 +90,5 @@ $modelo->del_user( $parametros );
         </tbody>
     </table>
 
-    <?php //$modelo->paginacao(); ?>
+    <?php //$modelo->paginacao();?>
 </div> <!-- .wrap -->
