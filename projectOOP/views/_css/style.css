@@ -1,7 +1,9 @@
+/* Reset box-sizing for all elements */
 *, *:after, *:before {
 	box-sizing: border-box;
 }
 
+/* Body styles */
 body { 
 	font-family: sans-serif;
 	font-size: 14px;
@@ -11,12 +13,14 @@ body {
 	background: #333333;
 }
 
+/* Main page container */
 .main-page {
 	max-width: 960px;
 	margin: 0 auto;
 	background: #fff;
 }
 
+/* Menu styles */
 .menu {
 	width: 100%;
 	background: #3facd6;
@@ -28,11 +32,11 @@ body {
 	padding: 0;
 }
 
-.menu ul  li {
+.menu ul li {
 	float: left;
 }
 
-.menu ul  li a {
+.menu ul li a {
 	color: #fff;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -41,24 +45,13 @@ body {
 	display: block;
 }
 
+/* Form table styles */
 .wrap {
 	padding: 30px;
 }
 
 .form-table {
 	margin: 0 0 1.3em 0;
-}
-.list-table{
-    width: 100%;
-    
-}
-.list-table th{
-    border: 1px solid #3facd6;
-   
-}
-
-#tbl-projeto{
- text-align: center;
 }
 
 .form-table th, 
@@ -68,6 +61,20 @@ body {
 	padding: 5px;
 }
 
+/* List table styles */
+.list-table {
+	width: 100%;
+}
+
+.list-table th {
+	border: 1px solid #3facd6;
+}
+
+#tbl-projeto {
+	text-align: center;
+}
+
+/* Error and success messages styles */
 .error, .form_error {
 	font-size: 12px !important;
 	color: red !important;
@@ -84,6 +91,7 @@ body {
 	color: green !important;
 }
 
+/* Clearfix for floats */
 .clearfix:after {
 	content: '.';
 	width: 100%;
@@ -95,6 +103,7 @@ body {
 	visibility: hidden;
 }
 
+/* Responsive image styles */
 img {
 	max-width: 100%;
 	height: auto;

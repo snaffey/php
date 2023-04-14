@@ -7,10 +7,10 @@ class SystemDB {
 	// SINGLETON ***********
 	
     /** DB properties */
-    public $host = 'localhost',
-            $db_name = '',
-            $password = '',
-            $user = 'root',
+    public $host = '127.0.0.1',
+            $db_name = 'desafio_al2021023',
+            $password = '123',
+            $user = 'Tiago',
             $charset = 'utf8',
             $pdo = null,
             $error = null,

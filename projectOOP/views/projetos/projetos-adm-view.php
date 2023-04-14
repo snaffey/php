@@ -23,46 +23,44 @@ $modelo->sem_limite = false;
     echo $modelo->form_confirma;
     ?>
     <!-- Formulário de edição das projetos -->
+    <!-- Formulário de edição das projetos -->
     <form method="post" action="" enctype="multipart/form-data">
         <table class="form-table">
-            <tr><td>
-	Descricao: <br>
-	<input type="text" name="descricao" value="<?php
-	echo htmlentities(chk_array($modelo->form_data, 'descricao'));
+            <tr>
+                <td>
+                    Descrição: <br>
+                    <input type="text" name="descricao" value="<?php echo isset($modelo->form_data['descricao']) ? htmlentities(chk_array($modelo->form_data, 'descricao')) : ''; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Imagem: <br>
+                    <input type="file" name="imagem" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Data: <br>
+                    <input type="text" name="dataExec" value="<?php
+                    $data = chk_array($modelo->form_data, 'dataExec');
+                    if ($data && $data != '0000-00-00 00:00:00')
+                        echo date('d-m-Y H:i:s', strtotime($data));
                     ?>" />
                 </td>
             </tr>
-          <tr>
-			<td>
-	Imagem: <br>
-	<input type="file" name="imagem" value="" />
-            </td>
-          </tr>
             <tr>
                 <td>
-	Data: <br>
-	<input type="text" name="dataExec" value="<?php
-	$data = chk_array($modelo->form_data, 'dataExec');
-	if ($data && $data != '0000-00-00 00:00:00')
-	echo date('d-m-Y H:i:s', strtotime($data));
-		?>" />
+                    Link: <br>
+                    <input type="text" name="link" value="<?php echo isset($modelo->form_data['link']) ? htmlentities(chk_array($modelo->form_data, 'link')) : ''; ?>" />
                 </td>
             </tr>
             <tr>
-                <td>
-	Link: <br>
-	<input type="text" name="link" value="<?php
-	echo htmlentities(chk_array($modelo->form_data, 'link'));
-	?>" />
+                <td colspan="2">
+                    <?php echo $modelo->form_msg; ?>
+                    <input type="submit" value="Save" />
+                    <a href="<?php echo HOME_URI . '/projetos/adm'; ?>">New projet</a>
                 </td>
             </tr>
-<tr>
-	<td colspan="2">
-		<?php echo $modelo->form_msg; ?>
-		<input type="submit" value="Save" />
-		<a href="<?php echo HOME_URI . '/projetos/adm'; ?>">New projet</a>
-   </td>
- </tr>
         </table>
         <input type="hidden" name="insere_projeto" value="1" />
     </form>
