@@ -79,7 +79,7 @@ class System
             $this->controlador->index($this->parametros);
 
             return;
-        } // ! $this->acao 
+        } // ! $this->acao
         // Página não encontrada
         require_once ABSPATH . $this->not_found;
         return;
