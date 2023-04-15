@@ -1,7 +1,8 @@
 <?php
 // Evita acesso direto a este ficheiro
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     exit;
+}
 // Configura as URLs
 $adm_uri = HOME_URI . '/projetos/adm/';
 $edit_uri = $adm_uri . 'edit/';
@@ -23,13 +24,13 @@ $modelo->sem_limite = false;
     echo $modelo->form_confirma;
     ?>
     <!-- Formulário de edição das projetos -->
-    <!-- Formulário de edição das projetos -->
     <form method="post" action="" enctype="multipart/form-data">
         <table class="form-table">
-            <tr>
-                <td>
-                    Descrição: <br>
-                    <input type="text" name="descricao" value="<?php echo isset($modelo->form_data['descricao']) ? htmlentities(chk_array($modelo->form_data, 'descricao')) : ''; ?>" />
+            <tr><td>
+	Descricao: <br>
+	<input type="text" name="descricao" value="<?php
+	echo htmlentities(chk_array($modelo->form_data, 'descricao'));
+                    ?>" />
                 </td>
             </tr>
             <tr>
@@ -40,18 +41,20 @@ $modelo->sem_limite = false;
             </tr>
             <tr>
                 <td>
-                    Data: <br>
-                    <input type="text" name="dataExec" value="<?php
-                    $data = chk_array($modelo->form_data, 'dataExec');
-                    if ($data && $data != '0000-00-00 00:00:00')
-                        echo date('d-m-Y H:i:s', strtotime($data));
-                    ?>" />
+	Data: <br>
+	<input type="text" name="dataExec" value="<?php
+	$data = chk_array($modelo->form_data, 'dataExec');
+	if ($data && $data != '0000-00-00 00:00:00')
+	echo date('d-m-Y H:i:s', strtotime($data));
+		?>" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    Link: <br>
-                    <input type="text" name="link" value="<?php echo isset($modelo->form_data['link']) ? htmlentities(chk_array($modelo->form_data, 'link')) : ''; ?>" />
+	Link: <br>
+	<input type="text" name="link" value="<?php
+	echo htmlentities(chk_array($modelo->form_data, 'link'));
+	?>" />
                 </td>
             </tr>
             <tr>
@@ -65,8 +68,8 @@ $modelo->sem_limite = false;
         <input type="hidden" name="insere_projeto" value="1" />
     </form>
     <!-- LISTA os projetos -->
-    <?php 
-	$lista = $modelo->listar_projetos(); ?>
+    <?php
+$lista = $modelo->listar_projetos(); ?>
     <h1>Lista de Projetos</h1>
     <table id="tbl-projeto" class="list-table">
         <thead>
@@ -104,5 +107,5 @@ $modelo->sem_limite = false;
         </tbody>
     </table>
 
-    <?php //$modelo->paginacao(); ?>
+    <?php //$modelo->paginacao();?>
 </div> <!-- .wrap -->

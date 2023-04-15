@@ -1,7 +1,8 @@
 <?php
 // Evita acesso direto a este ficheiro
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     exit;
+}
 ?>
 
 <div class="wrap">
@@ -10,7 +11,7 @@ if (!defined('ABSPATH'))
 //$modelo->posts_por_pagina = 10;
 // Lista projetos
     $lista = $modelo->listar_projetos();
-    ?>
+?>
     <h1>Lista de Projetos</h1>
     <?php foreach ($lista as $projeto): ?>
 
@@ -23,11 +24,11 @@ if (!defined('ABSPATH'))
         <?php
 // Verifica se estamos a visualizar uma única projeto
 if (is_numeric(chk_array($modelo->parametros, 0))): // single
-            ?>
+    ?>
 <?php
-   $this->prev_page = true;
-	if ($this->prev_page) {
-		?>
+    $this->prev_page = true;
+    if ($this->prev_page) {
+        ?>
 		<a href="<?php echo HOME_URI ?>/projetos/index/">Voltar</a>
     <?php } ?>
         <p>
@@ -41,7 +42,7 @@ if (is_numeric(chk_array($modelo->parametros, 0))): // single
 
             <?php echo $projeto['link']; ?>
 
-        <?php endif;  // single  ?>
+        <?php endif;  // single?>
 
     <?php endforeach; ?>
 
