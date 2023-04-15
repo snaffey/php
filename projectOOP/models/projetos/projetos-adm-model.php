@@ -1,10 +1,11 @@
 <?php
 
-class ProjetosAdmModel extends MainModel {
-
+class ProjetosAdmModel extends MainModel
+{
     public $posts_por_pagina = 5;
 
-    public function __construct($controller = null) {
+    public function __construct($controller = null)
+    {
         // Configura o DB (PDO)
         $this->db = $controller->db;
 
@@ -18,14 +19,13 @@ class ProjetosAdmModel extends MainModel {
         $this->userdata = $this->controller->userdata;
     }
 
-    public function listar_projetos() {
-
+    public function listar_projetos()
+    {
         // Configura as variáveis que vamos utilizar
         $id = $where = $query_limit = null;
 
         // Verifica se um parâmetro foi enviado para carregar uma notícia
         if (is_numeric(chk_array($this->parametros, 0))) {
-
             // Configura o ID para enviar para a consulta
             $id = array(chk_array($this->parametros, 0));
 
@@ -50,21 +50,22 @@ class ProjetosAdmModel extends MainModel {
           prevenir limite ou paginação na administração.
          */
         if (empty($this->sem_limite)) {
-
-		// Configura o limite da consulta
-		 $query_limit = " LIMIT $offset,$posts_por_pagina ";
+            // Configura o limite da consulta
+            $query_limit = " LIMIT $offset,$posts_por_pagina ";
         }
 
         // Faz a consulta
         $query = $this->db->query(
-                'SELECT * FROM projecto ' . $where . ' ORDER BY idProjecto DESC' . $query_limit, $id
+            'SELECT * FROM projecto ' . $where . ' ORDER BY idProjecto DESC' . $query_limit,
+            $id
         );
 
         // Retorna
         return $query->fetchAll();
     }// listar_projetos
 
-    public function obtem_projetos() {
+    public function obtem_projetos()
+    {
         // Verifica se o primeiro parâmetro é "edit"
         if (chk_array($this->parametros, 0) != 'edit') {
             return;
@@ -84,9 +85,8 @@ class ProjetosAdmModel extends MainModel {
 
           Se verdadeiro, atualiza os dados conforme a requisição.
          */
-		 // if 1
+        // if 1
         if ('POST' == $_SERVER['REQUEST_METHOD'] && !empty($_POST['insere_projeto'])) {
-
             // Remove o campo insere_projeto para não gerar problemas com o PDO
             unset($_POST['insere_projeto']);
 
@@ -99,7 +99,7 @@ class ProjetosAdmModel extends MainModel {
              */
             $nova_data = $this->inverte_data($data);
 
-            // Adiciona a data no $_POST		
+            // Adiciona a data no $_POST
             $_POST['dataExec'] = $nova_data;
 
             // Tenta enviar a imagem
@@ -114,15 +114,16 @@ class ProjetosAdmModel extends MainModel {
             // Atualiza os dados
             $query = $this->db->update('projecto', 'idProjecto', $projeto_id, $_POST);
 
-	// Verifica a consulta
-	if ($query) {
-		// Retorna uma mensagem
-		$this->form_msg = '<p class="success">projeto atualizado com sucesso!</p>';
-	}
+            // Verifica a consulta
+            if ($query) {
+                // Retorna uma mensagem
+                $this->form_msg = '<p class="success">projeto atualizado com sucesso!</p>';
+            }
         }// // end if 1
         // Faz a consulta para obter o valor
         $query = $this->db->query(
-                'SELECT * FROM projecto WHERE idProjecto = ? LIMIT 1', array($projeto_id)
+            'SELECT * FROM projecto WHERE idProjecto = ? LIMIT 1',
+            array($projeto_id)
         );
         // Obtém os dados
         $fetch_data = $query->fetch();
@@ -134,7 +135,8 @@ class ProjetosAdmModel extends MainModel {
         $this->form_data = $fetch_data;
     }// obtem_projeto
 
-    public function insere_projeto() {
+    public function insere_projeto()
+    {
         /*
           Verifica se algo foi passado e se vem do form que tem o campo
           insere_projeto.
@@ -177,7 +179,6 @@ class ProjetosAdmModel extends MainModel {
 
         // Verifica a consulta
         if ($query) {
-
             // Retorna uma mensagem
             $this->form_msg = '<p class="success">Projeto atualizada com sucesso!</p>';
             return;
@@ -187,8 +188,8 @@ class ProjetosAdmModel extends MainModel {
 
 // insere_noticia
 
-    public function apaga_projeto() {
-
+    public function apaga_projeto()
+    {
         // O parâmetro del deverá ser enviado
         if (chk_array($this->parametros, 0) != 'del') {
             return;
@@ -201,7 +202,6 @@ class ProjetosAdmModel extends MainModel {
 
         // Para excluir, o terceiro parâmetro deverá ser "confirma"
         if (chk_array($this->parametros, 2) != 'confirma') {
-
             // Configura uma mensagem de confirmação para o user
             $mensagem = '<p class="alert">Tem certeza que deseja apagar o projeto?</p>';
             $mensagem .= '<p><a href="' . $_SERVER['REQUEST_URI'] . '/confirma/">Sim</a> | ';
@@ -224,10 +224,11 @@ class ProjetosAdmModel extends MainModel {
 
 // apaga_noticia
 
-    public function upload_imagem() {
+    public function upload_imagem()
+    {
         // Verifica se o ficheiro da imagem existe
         if (empty($_FILES['projeto_imagem'])
-			&& empty($_FILES['imagem'])) {
+            && empty($_FILES['imagem'])) {
             return;
         }
 
@@ -237,9 +238,9 @@ class ProjetosAdmModel extends MainModel {
         $nome_imagem = strtolower($imagem['name']);
         $ext_imagem = explode('.', $nome_imagem);
         $ext_imagem = end($ext_imagem);
-        $nome_imagem = preg_replace('/[^a-zA-Z0-9]/' , '', $nome_imagem);
+        $nome_imagem = preg_replace('/[^a-zA-Z0-9]/', '', $nome_imagem);
         $nome_imagem .=  '_' . mt_rand() .
-						 '.' . $ext_imagem;
+                         '.' . $ext_imagem;
 
         // Tipo, nome temporário, erro e tamanho
         $tipo_imagem = $imagem['type'];
@@ -272,7 +273,6 @@ class ProjetosAdmModel extends MainModel {
         // Retorna o nome da imagem
         return $nome_imagem;
     }// upload_imagem
-
 }
 
 // NoticiasAdmModel
