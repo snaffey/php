@@ -5,15 +5,15 @@
   redireciona página para user ativo.
  */
 
-class UserLogin {
-
+class UserLogin
+{
     public $logged_in;
     public $userdata;
     public $login_error;
     public $user_name;
 
-    public function check_userlogin() {
-
+    public function check_userlogin()
+    {
         // Verifica se existe uma sessão com a chave userdata
         // Tem que ser um array e não pode ser HTTP POST
         if (isset($_SESSION['userdata']) && !empty($_SESSION['userdata']) && is_array($_SESSION['userdata']) && !isset($_POST['userdata'])
@@ -27,8 +27,8 @@ class UserLogin {
 
         // Verifica se existe um $_POST com a chave userdata
         // Tem que ser um array
-        if (isset($_POST['userdata']) && !empty($_POST['userdata']) 
-		&& is_array($_POST['userdata'])
+        if (isset($_POST['userdata']) && !empty($_POST['userdata'])
+        && is_array($_POST['userdata'])
         ) {
             // Configura os dados do user
             $userdata = $_POST['userdata'];
@@ -39,7 +39,6 @@ class UserLogin {
 
         // Verifica se existe algum dado de user a verificar
         if (!isset($userdata) || !is_array($userdata)) {
-
             // liberta qualquer sessão que possa existir sobre o user
             $this->logout();
 
@@ -82,9 +81,10 @@ class UserLogin {
         }
 
         // Verifica se o user existe na base de dados
-		//$user vem do formulário login-view.php
+        //$user vem do formulário login-view.php
         $query = $this->db->query(
-                'SELECT * FROM users WHERE user = ? LIMIT 1', array($user)
+            'SELECT * FROM users WHERE user = ? LIMIT 1',
+            array($user)
         );
 
         // Verifica a consulta
@@ -117,9 +117,8 @@ class UserLogin {
         }
 
         // Verifica se a pass enviada pelo user coincide com o hash do BD
-		// Autoload carregou o classes/class-PasswordHash
+        // Autoload carregou o classes/class-PasswordHash
         if ($this->phpass->CheckPassword($user_password, $fetch['user_password'])) {
-
             // Se for uma sessão, verifica se a sessão coincide com a sessão do BD
             if (session_id() != $fetch['user_session_id'] && !$post) {
                 $this->logged_in = false;
@@ -148,7 +147,8 @@ class UserLogin {
 
                 // Atualiza o ID da sessão na base de dados
                 $query = $this->db->query(
-                        'UPDATE users SET user_session_id = ? WHERE user_id = ?', array($session_id, $user_id)
+                    'UPDATE users SET user_session_id = ? WHERE user_id = ?',
+                    array($session_id, $user_id)
                 );
             }
 
@@ -191,7 +191,8 @@ class UserLogin {
         }
     }
 
-    protected function logout($redirect = false) {
+    protected function logout($redirect = false)
+    {
         // Remove todas as entradas do array  $_SESSION['userdata']
         $_SESSION['userdata'] = array();
         // Liberta a variavel de sessã
@@ -205,7 +206,8 @@ class UserLogin {
     }
 
     /**     * Vai para a página de login     */
-    protected function goto_login() {
+    protected function goto_login()
+    {
         // Verifica se a URL da HOME está configurada
         if (defined('HOME_URI')) {
             // Configura a URL de login
@@ -213,23 +215,25 @@ class UserLogin {
             // A página em que o user estava
             $_SESSION['goto_url'] = urlencode($_SERVER['REQUEST_URI']);
             // Redireciona
-           /* echo '<meta http-equiv="Refresh" content="0; url=' . $login_uri . '">';
-            echo '<script type="text/javascript">window.location.href = "' . $login_uri . '";</script>';
-            // header('location: ' . $login_uri);*/
-			 $this->refresh($login_uri);
+            /* echo '<meta http-equiv="Refresh" content="0; url=' . $login_uri . '">';
+             echo '<script type="text/javascript">window.location.href = "' . $login_uri . '";</script>';
+             // header('location: ' . $login_uri);*/
+            $this->refresh($login_uri);
         }
         return;
     }
-	
-	private function refresh($page = null){
-		echo "-----------><br>------>";
-		// Redireciona
-            echo '<meta http-equiv="Refresh" content="0; url=' . $page . '">';
-            echo '<script type="text/javascript">window.location.href = "' . $page . '";</script>';
-            //header('location: ' . $page_uri);
-	}
 
-    final protected function goto_page($page_uri = null) {
+    private function refresh($page = null)
+    {
+        echo "-----------><br>------>";
+        // Redireciona
+        echo '<meta http-equiv="Refresh" content="0; url=' . $page . '">';
+        echo '<script type="text/javascript">window.location.href = "' . $page . '";</script>';
+        //header('location: ' . $page_uri);
+    }
+
+    final protected function goto_page($page_uri = null)
+    {
         if (isset($_GET['url']) && !empty($_GET['url']) && !$page_uri) {
             // Configura a URL
             $page_uri = urldecode($_GET['url']);
@@ -237,11 +241,12 @@ class UserLogin {
 
         if ($page_uri) {
             $this->refresh($page_uri);
-			return;
+            return;
         }
     }
 
-    final protected function check_permissions($required = 'any', $user_permissions = array('any')) {
+    final protected function check_permissions($required = 'any', $user_permissions = array('any'))
+    {
         if (!is_array($user_permissions)) {
             return;
         }
@@ -254,5 +259,4 @@ class UserLogin {
             return true;
         }
     }
-
 }

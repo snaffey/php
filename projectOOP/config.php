@@ -1,4 +1,5 @@
-<?
+<?php
+
 // Caminho raiz
 define('ABSPATH', dirname(__FILE__));
 
@@ -27,4 +28,3 @@ define('DB_CHARSET', 'utf8');
 define('DEBUG', true);
 
 require_once ABSPATH . '/loader.php';
-?>

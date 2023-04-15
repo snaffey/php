@@ -1,8 +1,10 @@
-<?php if (!defined('ABSPATH')) exit; ?>
+<?php if (!defined('ABSPATH')) {
+    exit;
+} ?>
 <div class="wrap">
 <?php
-if ( $this->logged_in ) {
-	echo '<p class="alert">Sessão ativa.</p>';
+if ($this->logged_in) {
+    echo '<p class="alert">Sessão ativa.</p>';
 }
 ?>
 <form method="post">
@@ -15,8 +17,8 @@ if ( $this->logged_in ) {
 			<td>Password </td>
 			<td><input type="password" name="userdata[user_password]"></td>
 		</tr>
-		<? if ( $this->login_error ) {
-			echo '<tr><td colspan="2" class="error">' . $this->login_error . '</td></tr>';
+		<?php if ($this->login_error) {
+		    echo '<tr><td colspan="2" class="error">' . $this->login_error . '</td></tr>';
 		} ?>
 		<tr>
 			<td colspan="2">

@@ -1,16 +1,17 @@
 <?php
 
-class LoginController extends MainController {
-
+class LoginController extends MainController
+{
     /**
      * Carrega a página "/views/login/index.php"
      */
-    public function index() {
+    public function index()
+    {
         // Título da página
         $this->title = 'Login';
         // Parametros da função
-        $parametros = ( func_num_args() >= 1 ) ? func_get_arg(0) : array();
-		
+        $parametros = (func_num_args() >= 1) ? func_get_arg(0) : array();
+
 
         // Login não tem Model
         /** Carrega os arquivos do view * */
@@ -24,7 +25,8 @@ class LoginController extends MainController {
         require ABSPATH . '/views/_includes/footer.php';
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->logout();
         // Redireciona para a página de login
         $this->goto_login();
