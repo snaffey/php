@@ -1,15 +1,14 @@
 <?php
 
-class ProjetosController extends MainController
-{
+class ProjetosController extends MainController {
+
     public $login_required = false;
     public $permission_required;
     public $prev_page = false;
     /**
      * Carrega a página "/views/projetos/index.php"
      */
-    public function index()
-    {
+    public function index() {
         // Título da página
         $this->title = 'Projetos';
         // Carrega o modelo para este view
@@ -34,8 +33,7 @@ class ProjetosController extends MainController
     /**
      * Carrega a página "/views/projetos/projetos-adm-view.php"
      */
-    public function adm()
-    {
+    public function adm() {
         // Page title
         $this->title = 'Gerenciar projetos';
         $this->permission_required = 'gerir-projetos';

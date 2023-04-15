@@ -1,7 +1,7 @@
 <?php
 
-class MainModel
-{
+class MainModel {
+
     public $form_data;
     public $form_msg;
     public $form_confirma;
@@ -10,13 +10,14 @@ class MainModel
     public $parametros;
     public $userdata;
 
-    public function inverte_data($data = null)
-    {
+    public function inverte_data($data = null) {
+
         // Configura uma variável para receber a nova data
         $nova_data = null;
 
         // Se a data for enviada
         if ($data) {
+
             // Explode a data por -, /, : ou espaço
             $data = preg_split('/\-|\/|\s|:/', $data);
 

@@ -1,17 +1,16 @@
 <?php
 
-class HomeController extends MainController
-{
+class HomeController extends MainController {
+
     /**
      * Carrega a página "/views/home/index.php"
      */
-    public function index()
-    {
+    public function index() {
         // Título da página
         $this->title = 'Home';
         // Parametros da função
-        //func_num_args - captura os argumentos passados para a função
-        $parametros = (func_num_args() >= 1) ? func_get_arg(0) : array();
+		//func_num_args - captura os argumentos passados para a função
+        $parametros = ( func_num_args() >= 1 ) ? func_get_arg(0) : array();
         // Essa página não precisa de modelo (model)
         /** Carrega os arquivos do view * */
         // /views/_includes/header.php

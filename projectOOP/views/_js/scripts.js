@@ -1,5 +1,5 @@
-$(function () {
-  $('input[type=submit]').click(function () {
-    alert('Form irá ser submetido.')
-  })
-})
+$(function(){
+    $('input[type=submit]').click(function(){
+        alert("Form irá ser submetido.");
+        });
+    });

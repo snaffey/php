@@ -1,7 +1,7 @@
 <?php
 
-class MainController extends UserLogin
-{
+class MainController extends UserLogin {
+
     public $db;
     public $phpass;
     public $title;
@@ -9,8 +9,7 @@ class MainController extends UserLogin
     public $permission_required = 'any';
     public $parametros = array();
 
-    public function __construct($parametros = array())
-    {
+    public function __construct($parametros = array()) {
         // Instancia do DB
         $this->db = new SystemDB();
         // Phpass
@@ -21,12 +20,10 @@ class MainController extends UserLogin
         $this->check_userlogin();
     }
 // __construct
-    public function load_model($model_name = false)
-    {
+    public function load_model($model_name = false) {
         // Um ficheiro deverá ser enviado
-        if (!$model_name) {
+        if (!$model_name)
             return;
-        }
         // Garante que o nome do modelo tenha letras minúsculas
         $model_name = strtolower($model_name);
         // Inclui o ficheiro
@@ -44,7 +41,7 @@ class MainController extends UserLogin
             // Verifica se a classe existe
             if (class_exists($model_name)) {
                 // Retorna um objeto da classe
-                return new $model_name($this);
+                return new $model_name( $this);
             }
             return;
         } // load_model

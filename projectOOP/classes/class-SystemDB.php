@@ -7,7 +7,7 @@ class SystemDB {
 	// SINGLETON ***********
 	
     /** DB properties */
-    public $host = '127.0.0.1',
+    public  $host = '127.0.0.1',
             $db_name = 'desafio_al2021023',
             $password = '123',
             $user = 'Tiago',
