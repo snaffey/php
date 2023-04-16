@@ -1,3 +1,4 @@
+<<<<<<< HEAD:projectOOP/views/eventos/eventos-adm-view.php
 <?php
 date_default_timezone_set('WET');
 // Evita acesso direto a este ficheiro
@@ -24,14 +25,42 @@ $modelo->sem_limite = false;
     echo $modelo->form_confirma;
     ?>
     <!-- Formulário de edição das eventos -->
+=======
+<?php
+// Evita acesso direto a este ficheiro
+if (!defined('ABSPATH')) {
+    exit;
+}
+// Configura as URLs
+$adm_uri = HOME_URI . '/projetos/adm/';
+$edit_uri = $adm_uri . 'edit/';
+$delete_uri = $adm_uri . 'del/';
+// Carrega o método para obter uma projetos
+$modelo->obtem_projetos();
+// Carrega o método para inserir uma projetos
+$modelo->insere_projeto();
+// Carrega o método para apagar a projetos
+$modelo->form_confirma = $modelo->apaga_projeto();
+
+// Remove o limite de valores da lista de projetos
+$modelo->sem_limite = false;
+// Número de posts por página
+?>
+<div class="wrap">
+    <?php
+    // Mensagem de configuração caso o user tente apagar algo
+    echo $modelo->form_confirma;
+?>
+    <!-- Formulário de edição das projetos -->
+>>>>>>> 0b8ee74e0988d774852e8612b0a76bfb016f58b4:projectOOP/views/projetos/projetos-adm-view.php
     <form method="post" action="" enctype="multipart/form-data">
         <table class="form-table">
             <tr>
                 <td>
                     Descricao: <br>
                     <input type="text" name="descricao" value="<?php
-                    echo htmlentities(chk_array($modelo->form_data, 'descricao') ?? '');
-                    ?>" />
+                echo htmlentities(chk_array($modelo->form_data, 'descricao') ?? '');
+?>" />
                 </td>
             </tr>
             <tr>
@@ -43,6 +72,7 @@ $modelo->sem_limite = false;
             <tr>
                 <td>
                     Data: <br>
+<<<<<<< HEAD:projectOOP/views/eventos/eventos-adm-view.php
                     <input type="text" name="dataExec" id="dataExec" value="<?php
                     $data = chk_array($modelo->form_data, 'dataExec');
                     if ($data && $data != '0000-00-00 00:00:00')
@@ -50,14 +80,22 @@ $modelo->sem_limite = false;
                     else
                         echo date('d-m-Y H:i:s');
                     ?>" />
+=======
+                    <input type="text" name="dataExec" value="<?php
+$data = chk_array($modelo->form_data, 'dataExec');
+if ($data && $data != '0000-00-00 00:00:00') {
+    echo date('d-m-Y H:i:s', strtotime($data));
+}
+?>" />
+>>>>>>> 0b8ee74e0988d774852e8612b0a76bfb016f58b4:projectOOP/views/projetos/projetos-adm-view.php
                 </td>
             </tr>
             <tr>
                 <td>
                     Link: <br>
                     <input type="text" name="link" value="<?php
-                    echo htmlentities(chk_array($modelo->form_data, 'link') ?? '');
-                    ?>" />
+echo htmlentities(chk_array($modelo->form_data, 'link') ?? '');
+?>" />
                 </td>
             </tr>
             <tr>
@@ -82,6 +120,7 @@ $modelo->sem_limite = false;
             var seconds = ('0' + now.getSeconds()).slice(-2);
             var currentTime = day + '-' + month + '-' + year + ' ' + hours + ':' + minutes + ':' + seconds;
 
+<<<<<<< HEAD:projectOOP/views/eventos/eventos-adm-view.php
             // Set the updated time to the "Data" field
             document.getElementById('dataExec').value = currentTime;
         });
@@ -91,6 +130,13 @@ $modelo->sem_limite = false;
 	$lista = $modelo->listar_eventos(); ?>
     <h1>Lista de eventos</h1>
     <table id="tbl-evento" class="list-table">
+=======
+    <!-- LISTA os projetos -->
+    <?php
+    $lista = $modelo->listar_projetos(); ?>
+    <h1>Lista de Projetos</h1>
+    <table id="tbl-projeto" class="list-table">
+>>>>>>> 0b8ee74e0988d774852e8612b0a76bfb016f58b4:projectOOP/views/projetos/projetos-adm-view.php
         <thead>
             <tr>
                 <th>ID</th>
@@ -102,7 +148,11 @@ $modelo->sem_limite = false;
             </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD:projectOOP/views/eventos/eventos-adm-view.php
 <?php foreach ($lista as $evento): ?>
+=======
+<?php foreach ($lista as $projeto): ?>
+>>>>>>> 0b8ee74e0988d774852e8612b0a76bfb016f58b4:projectOOP/views/projetos/projetos-adm-view.php
 <tr>
 	<td><a href="<?php echo HOME_URI ?>/eventos/index/<?php echo $evento['idEvento'] ?>"><?php echo $evento['idEvento'] ?></a></td>
 	<td><?php echo $evento['descricao'] ?></td>
@@ -126,5 +176,5 @@ $modelo->sem_limite = false;
         </tbody>
     </table>
 
-    <?php //$modelo->paginacao(); ?>
+    <?php //$modelo->paginacao();?>
 </div> <!-- .wrap -->

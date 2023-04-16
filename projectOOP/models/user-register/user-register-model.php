@@ -1,39 +1,36 @@
 <?php
 
-class UserRegisterModel {
-
+class UserRegisterModel
+{
     public $form_data;
     public $form_msg;
     public $db;
 
-    public function __construct($controller = false) {
+    public function __construct($controller = false)
+    {
         $this->db = $controller->db;
     }
 
-    public function validate_register_form() {
-
+    public function validate_register_form()
+    {
         // Configura os dados do formulário
         $this->form_data = array();
 
         // Verifica se algo foi passado
         if ('POST' == $_SERVER['REQUEST_METHOD'] && !empty($_POST)) {
-
             // Faz o loop dos dados do post
             foreach ($_POST as $key => $value) {
-
                 // Configura os dados do post para a propriedade $form_data
                 $this->form_data[$key] = $value;
 
                 // Sem campos em branco
                 if (empty($value)) {
-
                     // Configura a mensagem
                     $this->form_msg = '<p class="form_error">There are empty fields. Data has not been sent.</p>';
                     return;
                 }
             }
         } else {
-
             // Termina se nada foi enviado
             return;
         }
@@ -45,9 +42,10 @@ class UserRegisterModel {
 
         // Verifica se o user existe
         $db_check_user = $this->db->query(
-                'SELECT * FROM `users` WHERE `user` = ?', array(
+            'SELECT * FROM `users` WHERE `user` = ?',
+            array(
             chk_array($this->form_data, 'user')
-                )
+            )
         );
 
         // Verifica se a consulta foi realizada com sucesso
@@ -64,12 +62,12 @@ class UserRegisterModel {
 
         // Precisaremos de uma instância da classe Phpass
         // veja http://www.openwall.com/phpass/
-        $password_hash = new PasswordHash(8, FALSE);
+        $password_hash = new PasswordHash(8, false);
 
         // Cria o hash da senha
         $password = $password_hash->HashPassword($this->form_data['user_password']);
 
-        // Verifica se as permissões tem algum valor inválido: 
+        // Verifica se as permissões tem algum valor inválido:
         // 0 a 9, A a Z e , . - _
         if (preg_match('/[^0-9A-Za-z\,\.\-\_\s ]/is', $this->form_data['user_permissions'])) {
             $this->form_msg = '<p class="form_error">Use just letters, numbers and a comma for permissions.</p>';
@@ -91,7 +89,6 @@ class UserRegisterModel {
 
         // Se o ID do user não estiver vazio, atualiza os dados
         if (!empty($user_id)) {
-
             $query = $this->db->update('users', 'user_id', $user_id, array(
                 'user_password' => $password,
                 'user_name' => chk_array($this->form_data, 'user_name'),
@@ -107,10 +104,9 @@ class UserRegisterModel {
                 $this->form_msg = '<p class="form_success">User successfully updated.</p>';
                 return;
             }
-            // Se o ID do user estiver vazio, insere os dados
+        // Se o ID do user estiver vazio, insere os dados
         } else {
-
-            // Executa a consulta 
+            // Executa a consulta
             $query = $this->db->insert('users', array(
                 'user' => chk_array($this->form_data, 'user'),
                 'user_password' => $password,
@@ -137,8 +133,8 @@ class UserRegisterModel {
 // validate_register_form
 
 
-    public function get_register_form($user_id = false) {
-
+    public function get_register_form($user_id = false)
+    {
         // O ID de user que vamos pesquisar
         $s_user_id = false;
 
@@ -188,14 +184,13 @@ class UserRegisterModel {
 // get_register_form
 
 
-    public function del_user($parametros = array()) {
-
+    public function del_user($parametros = array())
+    {
         // O ID do user
         $user_id = null;
 
         // Verifica se existe o parâmetro "del" na URL
         if (chk_array($parametros, 0) == 'del') {
-
             // Mostra uma mensagem de confirmação
             echo '<p class="alert">Tem certeza que deseja apagar este registo?</p>';
             echo '<p><a href="' . $_SERVER['REQUEST_URI'] . '/confirma">Sim</a> | 
@@ -203,7 +198,7 @@ class UserRegisterModel {
 
             // Verifica se o valor do parâmetro é um número
             if (
-                    is_numeric(chk_array($parametros, 1)) && chk_array($parametros, 2) == 'confirma'
+                is_numeric(chk_array($parametros, 1)) && chk_array($parametros, 2) == 'confirma'
             ) {
                 // Configura o ID do user a ser apagado
                 $user_id = chk_array($parametros, 1);
@@ -212,7 +207,6 @@ class UserRegisterModel {
 
         // Verifica se o ID não está vazio
         if (!empty($user_id)) {
-
             // O ID precisa ser inteiro
             $user_id = (int) $user_id;
 
@@ -229,9 +223,9 @@ class UserRegisterModel {
 // del_user
 
 
-    public function get_user_list() {
-
-        // Seleciona os dados da base de dados 
+    public function get_user_list()
+    {
+        // Seleciona os dados da base de dados
         $query = $this->db->query('SELECT * FROM `users` ORDER BY user_id DESC');
 
         // Verifica se a consulta está OK
