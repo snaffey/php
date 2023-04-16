@@ -1,0 +1,238 @@
+.main .grid{
+    display: flex;
+    flex-direction: row;
+}
+
+.main .grid .line{
+    background-color: #1cc8a0;
+    border: solid 1px #1cc8a0;
+    border-radius: 50%;
+    width: 4px;
+    height: available;
+}
+
+.main .grid .col{
+    background-color: #102b3e;
+    margin: 30px;
+}
+
+.main .grid .col:first-child{
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 60px;
+    margin-right: 90px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+    height: fit-content;
+}
+
+.main .grid .col ul{
+    padding: 20px 0;
+    text-align: center;
+    height: available;
+}
+
+.main .grid .col ul li{
+    color: #1cc8a0;
+    list-style: none;
+    border-bottom: solid 2px #1cc8a0;
+    padding: 30px 10px;
+    height: available;
+    font-size: 18px;
+}
+
+.main .grid .col ul li:last-child{
+    border-bottom: none;
+}
+
+.main .grid .col ul li:hover{
+    color: #102b3e;
+    background-color: #1cc8a0;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 #102b3e, 0 6px 20px 0 #102b3e;
+}
+
+.col-btn{
+    display: flex;
+    align-items: center;
+}
+
+.col-btn input{
+    height: 100%;
+}
+
+.main .grid .col:last-child{
+    padding: 20px;
+    border-radius: 22px;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .grid .col:last-child p:not(.quota-card .info p){
+    color: #1cc8a0;
+    font-size: 35px;
+    margin-left: -40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.main .grid .col label{
+    color: #1cc8a0;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+}
+
+.main .grid .col input{
+    margin-top: 10px;
+    border: solid 2px #1cc8a0;
+    border-radius: 6px;
+    color: #1cc8a0;
+    font-size: 15px;
+    background-color: #102b3e;
+    padding: 2px 8px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.main .grid .col form{
+    margin: 20px 0;
+}
+
+#quotas .quota-card{
+    border: solid 2px #1cc8a0;
+    padding: 10px;
+}
+
+#quotas .quota-card:first-child{
+    margin-top: 15px;
+}
+#socios .quota-card{
+    border: solid 2px #102b3e;
+    padding: 10px;
+}
+#socios .quota-card:first-child{
+    margin-top: 15px;
+}
+.controls{
+    color: #1cc8a0;
+    font-size: 30px;
+}
+.controls div{
+    margin-top: 15px;
+}
+.controls div:last-child{
+    margin-left: 290px;
+}
+.quota-card .info p{
+    color: #1cc8a0;
+    font-size: 18px;
+}
+.quota-card .action{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-left: 20px;
+}
+#conta, #quotas, #eventos, #noticias, #socios{
+    display: none;
+}
+#eventos .evento-card{
+    border: solid 2px #1cc8a0;
+    padding: 10px;
+}
+#eventos p{
+    margin-left: 8px;
+}
+#eventos .evento-card p:first-child{
+    font-size: 22px;
+}
+#eventos .evento-card p{
+    color: #1cc8a0;
+    font-size: 18px;
+    margin-left: 10px;
+}
+#eventos .evento-card:first-child{
+    margin-top: 15px;
+}
+
+.eventos-controls div:last-child{
+    margin-left: 560px;
+}
+
+#associacoes .quota-card{
+    border: solid 2px #1cc8a0;
+    padding: 10px;
+}
+
+#associacoes .quota-card:first-child{
+    margin-top: 15px;
+}
+
+#noticias .evento-card{
+    border: solid 2px #1cc8a0;
+    padding: 10px;
+}
+
+#noticias p{
+    margin-left: 8px;
+}
+
+#noticias .evento-card p:first-child{
+    font-size: 22px;
+}
+
+#noticias .evento-card p{
+    color: #1cc8a0;
+    font-size: 18px;
+    margin-left: 10px;
+}
+#noticias .evento-card:first-child{
+    margin-top: 15px;
+}
+
+.ui-accordion-content{
+    height: 200px;
+}
+
+.ui-widget-content{
+    background-color: #ced8e1;
+}
+
+#acordion-socios, #acordion-eventos{
+    width: 650px;
+}
+
+.perms-panel{
+    text-align: center;
+}
+
+.perms-panel label{
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+    color: #102b3e;
+}
+
+.perms-panel input[type="submit"]{
+    border: #102b3e 2px solid;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: #ced8e1;
+    color: #102b3e;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.perms-panel input[type="submit"]:hover{
+    border: #1cc8a0 2px solid;
+    background-color: #102b3e;
+    color: #1cc8a0;
+}
+
+.perms-panel input[type="checkbox"]{
+    cursor: pointer;
+}

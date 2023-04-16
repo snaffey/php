@@ -1,0 +1,134 @@
+p, h1, a:not(nav a){
+    color: #1cc8a0 !important;
+}
+
+.banner{
+    background-color: #102b3e;
+    text-align: center;
+    padding: 20px;
+}
+
+.banner h1{
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.banner p{
+    margin-bottom: 40px;
+}
+
+.banner input{
+    border: solid 1px #1cc8a0;
+    color: #1cc8a0;
+    padding: 5px 10px;
+    border-radius: 9px;
+    background-color: #102b3e;
+}
+
+.banner .grid{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    width: fit-content;
+}
+
+.banner .grid div:last-child{
+    margin-left: 30px;
+}
+
+.banner .grid .line{
+    background-color: #1cc8a0;
+    border: solid 1px #1cc8a0;
+    border-radius: 50%;
+    width: 3px;
+    margin-left: 40px;
+    height: 350px;
+}
+
+.banner .grid div p{
+    font-size: 50px;
+    color:#1cc8a0;
+    font-family: 'Ubuntu Mono', monospace;
+    padding-top: 50px;
+}
+.banner .grid div form{
+    margin-top: 25px;
+}
+
+.banner .grid div form input:not([type="submit"]){
+    margin-top: 15px;
+    padding: 5px 10px;
+    width: 180px;
+    background-color: #102b3e;
+    border: #1cc8a0 solid 2px;
+    border-radius: 6px;
+    color: #1cc8a0;
+}
+
+.banner .grid div form input[type="submit"], .sbmt-btn {
+    text-decoration: none;
+    margin-top: 15px;
+    margin-bottom: 60px;
+    padding: 5px 10px;
+    border: solid 1px #1cc8a0;
+    color: #1cc8a0;
+    letter-spacing: 1px;
+    font-size: 16px;
+    background-color: #102b3e;
+    border-radius: 9px;
+}
+
+.banner .grid div form input[type="file"]{
+    height: 125px;
+    width: 300px;
+}
+
+.banner .grid div form textarea{
+    margin-top: 15px;
+    padding: 5px 10px;
+    width: 180px;
+    background-color: #102b3e;
+    border: #1cc8a0 solid 2px;
+    border-radius: 6px;
+    color: #1cc8a0;
+    height: 80px;
+    resize: none;
+}
+
+.banner .grid div form .msgs p{
+    font-size: 15px;
+    padding-top: 5px;
+    margin-left: 0;
+}
+
+.edt-btn{
+    border: #1cc8a0 solid 1px;
+    border-radius: 9px;
+    padding: 5px 10px;
+    margin-right: 15px;
+}
+
+.edt-cntrls{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ntc-card{
+    width: 100%;
+    border-bottom: solid 2px #1cc8a0;
+}
+
+.ntc-card:first-child{
+    border-top: solid 2px #1cc8a0;
+}
+
+.ntc-card img {
+    height: 350px;
+    width: auto;
+}
+
+.none-msg{
+    color: #1cc8a0;
+    font-size: 25px;
+}

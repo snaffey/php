@@ -1,26 +1,22 @@
-/* Reset CSS */
 *, *:after, *:before {
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
 }
 
-/* Body styles */
 body { 
 	font-family: sans-serif;
 	font-size: 14px;
 	line-height: 1.5;
+	margin: 0;
+	padding: 0;
 	background: #333333;
 }
 
-/* Main container styles */
 .main-page {
 	max-width: 960px;
 	margin: 0 auto;
 	background: #fff;
 }
 
-/* Menu styles */
 .menu {
 	width: 100%;
 	background: #3facd6;
@@ -32,11 +28,11 @@ body {
 	padding: 0;
 }
 
-.menu ul li {
+.menu ul  li {
 	float: left;
 }
 
-.menu ul li a {
+.menu ul  li a {
 	color: #fff;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -45,36 +41,58 @@ body {
 	display: block;
 }
 
-/* Form table styles */
+.footer{
+	width: 100%;
+	background: #3facd6;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 10px 30px;
+	display: block;
+}
+
+.wrap {
+	padding: 30px;
+}
+
 .form-table {
 	margin: 0 0 1.3em 0;
 }
+.list-table{
+    width: 100%;
+    
+}
+.list-table th{
+    border: 1px solid #3facd6;
+   
+}
+
+#tbl-table{
+ text-align: center;
+}
 
 .form-table th, 
-.form-table td {
-	padding: 5px;
-}
-
-/* List table styles */
-.list-table {
-	width: 100%;
-}
-
+.form-table td,
 .list-table th,
 .list-table td {
-	border: 1px solid #3facd6;
 	padding: 5px;
 }
 
-#tbl-evento {
-	text-align: center;
-}
-
-/* Error and alert styles */
-.error,
-.form_error {
+.error, .form_error {
 	font-size: 12px !important;
 	color: red !important;
+}
+
+.subscribe{
+	background: #c3eeff;
+	padding: 5px;
+}
+
+.unsubscribe{
+	background: #d0d0d0;
+	padding: 5px;
 }
 
 .alert {
@@ -88,7 +106,6 @@ body {
 	color: green !important;
 }
 
-/* Clearfix styles */
 .clearfix:after {
 	content: '.';
 	width: 100%;
@@ -98,10 +115,9 @@ body {
 	display: block;
 	clear: both;
 	visibility: hidden;
-	}
+}
 
-/* Image styles */
 img {
 	max-width: 100%;
 	height: auto;
-	}
+}

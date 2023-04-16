@@ -9,7 +9,7 @@ if ($this->logged_in) {
     <a href="<?php echo HOME_URI; ?>/login/delete/">Logout</a>
     <?php } else {
     ?>
-    <a href="<?php echo HOME_URI; ?>login/">Login</a>
+    <a href="<?php echo HOME_URI; ?>/login/">Login</a>
     <?php
 }
 ?>
@@ -19,8 +19,8 @@ if ($this->logged_in) {
         <li><a href="<?php echo HOME_URI; ?>">Home</a></li>
 
         <li><a href="<?php echo HOME_URI; ?>/user-register/">User Register</a></li>
-		<li><a href="<?php echo HOME_URI; ?>/projetos/">Projetos</a></li>
-        <li><a href="<?php echo HOME_URI; ?>/projetos/adm/">Projetos Adm</a></li>
+		<li><a href="<?php echo HOME_URI; ?>/eventos/">eventos</a></li>
+        <li><a href="<?php echo HOME_URI; ?>/eventos/adm/">eventos Adm</a></li>
 		
     </ul>
 </nav>

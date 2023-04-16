@@ -1,0 +1,78 @@
+.banner{
+    background-color: #102b3e;
+    text-align: center;
+}
+
+.banner .grid{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    width: fit-content;
+}
+
+.banner .grid div:last-child{
+    margin-left: 30px;
+}
+
+.banner .grid .login{
+    height: 250px;
+}
+.banner .grid .register{
+    height: 300px;
+}
+.banner .grid .line{
+    background-color: #1cc8a0;
+    border: solid 1px #1cc8a0;
+    border-radius: 50%;
+    width: 3px;
+    margin-left: 40px;
+
+}
+
+.banner .grid div p{
+    font-size: 50px;
+    color:#1cc8a0;
+    font-family: 'Ubuntu Mono', monospace;
+    padding-top: 50px;
+}
+
+.banner .grid div form{
+    margin-top: 25px;
+}
+
+.banner .grid div form input{
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: #102b3e;
+    border: #1cc8a0 solid 2px;
+    border-radius: 6px;
+    color: #1cc8a0;
+}
+
+.banner .grid div form input:last-child{
+    margin-bottom: 60px;
+    padding: 5px 10px;
+    border: solid 1px #1cc8a0;
+    color: #1cc8a0;
+    letter-spacing: 1px;
+    font-size: 16px;
+    background-color: #102b3e;
+    border-radius: 9px;
+}
+
+.banner .grid div form .msgs p{
+    font-size: 15px;
+    padding-top: 5px;
+    margin-left: 0;
+}
+
+.perms{
+    color: #1cc8a0;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 10px;
+}
+
+.perms-title{
+    font-size: 28px !important;
+}

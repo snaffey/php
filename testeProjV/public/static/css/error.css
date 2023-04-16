@@ -1,0 +1,13 @@
+.banner{
+    background-color: #102b3e;
+    text-align: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.banner h1{
+    color: #1cc8a0;
+    font-size: 55px;
+    margin: auto;
+}
