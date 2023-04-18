@@ -4,7 +4,7 @@
 if ($this->login_required && !$this->logged_in)
     return;
 if ($this->logged_in) {
-    echo "BemVindo: " . $this->user_name;
+    echo "Bem-Vindo: " . $this->user_name;
     ?>
     <a href="<?= HOME_URI; ?>/login/delete">Logout</a>
     <? } else {

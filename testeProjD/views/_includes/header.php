@@ -20,4 +20,5 @@
         <script src="<?php echo HOME_URI; ?>/views/_js/scripts.js"></script>
     </head>
     <body>
+        <div class="animated-background">
         <div class="main-page">

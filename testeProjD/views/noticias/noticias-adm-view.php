@@ -50,8 +50,8 @@ $modelo->sem_limite = false;
         <input type="hidden" name="insere_table" value="1" />
     </form>
     <?
-    //$lista = $modelo->list_my_table();
-    $iteratorNoticias = new _Iterator($this->noticias);
+    $lista = $modelo->list_my_table();
+    $iteratorNoticias = new _Iterator($lista);
     ?>
     <h1>Lista de noticias</h1>
     <table id="tbl-table" class="list-table">
@@ -65,11 +65,8 @@ $modelo->sem_limite = false;
             </tr>
         </thead>
         <tbody>
-            <? print_r($iteratorNoticias); ?>
             <? while($iteratorNoticias->hasNext()): ?>
-            <? print_r($iteratorNoticias ); ?>
             <? $listaIt = $iteratorNoticias->currentPos();  ?>
-            <? print_r($listaIt); ?>
             <tr>
                 <td>
                     <a href="<?= HOME_URI ?>/noticias/index/<?=$listaIt['assoc_id'].'/'.$listaIt['noticia_id'] ?>"><?= $listaIt['noticia_titulo'] ?></a>

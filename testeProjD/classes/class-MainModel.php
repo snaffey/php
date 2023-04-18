@@ -27,7 +27,7 @@ abstract class MainModel extends Pager{
         $erro_imagem = $imagem['error'];
         $tamanho_imagem = $imagem['size'];
 
-        // Os mime types permitidos
+        // Os img types permitidos
         $permitir_tipos = array(
             'image/bmp',
             'image/x-windows-bmp',
