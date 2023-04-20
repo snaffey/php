@@ -34,7 +34,8 @@ class SystemDB extends Singleton{
         if (!isset($data[1]) || !is_array($data[1])) {
             return;
         }
-        for ($i = 1; $i < count($data); $i++) {
+        $dataCount = count($data);
+        for ($i = 1; $i < $dataCount; $i++) {
             // Obtém as chaves como colunas e valores como valores
             foreach ($data[$i] as $col => $val) {
                 // A primeira volta do laço configura as colunas
