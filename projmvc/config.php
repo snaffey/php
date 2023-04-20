@@ -10,7 +10,7 @@ define('ABSPATH', dirname(__FILE__));
 define('UP_ABSPATH', ABSPATH . '/views/_uploads');
 
 // URL da home
-define('HOME_URI', 'http://localhost:41062/www/testeProjD');
+define('HOME_URI', 'http://localhost:41062/www/projmvc');
 
 // Nome do host da base de dados
 define('HOSTNAME', '127.0.0.1');

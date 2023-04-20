@@ -38,9 +38,7 @@
             </tr>
             <tr>
                 <td>
-	                Permissions<small>(Separate permissions using commas)</small>
-                </td>
-				<td>
+	                Permissions<small>(Separate permissions using commas)</small>: <br>
                     <input type="text" name="user_permissions" value="<?php echo htmlentities( chk_array( $modelo->form_data, 'user_permissions')  ?? ''); ?>" />				
 				</td>
             </tr>

@@ -34,7 +34,9 @@ class UserRegisterModel extends Pager{
             return;
         }
         // Verifica se o user existe
-        $db_check_user = $this->db->query('SELECT * FROM `socios` WHERE `user` = ?', array(chk_array($this->form_data, 'user')));
+        if (!empty($this->form_data)) {
+            $db_check_user = $this->db->query('SELECT * FROM `socios` WHERE `user` = ?', array(chk_array($this->form_data, 'user')));
+        }        
         // Verifica se a consulta foi realizada com sucesso
         if (!$db_check_user) {
             $this->form_msg = '<p class="form_error">Internal error. User</p>';
@@ -99,6 +101,7 @@ class UserRegisterModel extends Pager{
                 return;
             } else {
                 $this->form_msg = '<p class="form_success">User successfully registered.</p>';
+                header('Location: ' . HOME_URI . '/user-register');
                 // Termina
                 return;
             }
@@ -162,7 +165,7 @@ class UserRegisterModel extends Pager{
             // Elimina o user
             $query = $this->db->delete('socios', 'user_id', $user_id);
             // Redireciona para a página de listagem
-            $this->goto_page(HOME_URI);
+            header('Location: ' . HOME_URI . '/user-register');
             return;
         }
     }// del_user
