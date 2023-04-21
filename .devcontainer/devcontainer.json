@@ -1,8 +1,4 @@
 {
-    "build": {
-        "dockerfile": "./Dockerfile",
-        "context": "."
-    },
     "postCreateCommand": "git submodule update --init",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
