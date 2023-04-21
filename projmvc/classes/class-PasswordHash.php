@@ -27,8 +27,8 @@
 class PasswordHash {
 	public $itoa64;
 	public $iteration_count_log2;
-	var $portable_hashes;
-	var $random_state;
+	public $portable_hashes;
+	public $random_state;
 
 	public function __construct($iteration_count_log2, $portable_hashes = 8)
 	{
