@@ -7,5 +7,5 @@
 			"build-tools": "33.0.2"
 		}
 	},
-    "postCreateCommand": "git submodule update --init"
+    "postCreateCommand": "git submodule update --init",
 }
