@@ -1,8 +1,8 @@
 <?php
     interface IIterator{
-        function hasNext();
-        function next();
-        function currentPos();
+        public function hasNext();
+        public function next();
+        public function currentPos();
     }
 
     class _Iterator implements IIterator{
