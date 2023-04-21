@@ -1,10 +1,4 @@
 {
 	"image": "mcr.microsoft.com/devcontainers/universal:2",
-	"features": {
-		"ghcr.io/jarrodcolburn/features/android-sdk:0": {
-			"emulator": true,
-			"platforms": "30",
-			"build-tools": "33.0.2"
-		}
-	}
+    "postCreateCommand": "git submodule update --init"
 }
