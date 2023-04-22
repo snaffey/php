@@ -34,7 +34,6 @@ class Singleton{
                 if (!isset(self::$instance)) {
                     self::$instance = new PDO($d, $u, $p);
                 }
-                echo 'Ligação estabelecida<br />';
                 return self::$instance;
             }
 	

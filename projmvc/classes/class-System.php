@@ -95,21 +95,16 @@ class System {
 
             // Captura o valor de $_GET['path']
             $path = $_GET['path'];
-			echo '->'.$path;
 
             // Limpa os dados
             $path = rtrim($path, '/'); //remove a '/' caso exista
-			echo '->'.$path;
             $path = filter_var($path, FILTER_SANITIZE_URL);
-			echo '->'.$path;
 
             // Cria um array de parâmetros
             $path = explode('/', $path);
-			print_r($path);
 
             // Configura as propriedades
             $this->controlador = chk_array($path, 0);// indice 0 do array, represetenta o controlador, por exemplo: projetos
-			echo "<br />".$this->controlador;
             $this->controlador .= '-controller';
             $this->acao = chk_array($path, 1);// indice 1 do array, representa a acção sobre o controlador, exemplo: add, rem
 
