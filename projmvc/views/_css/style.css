@@ -1,196 +1,198 @@
-*, *:after, *:before {
-	box-sizing: border-box;
-  }
-  
-  body {
-	font-family: sans-serif;
-	font-size: 16px;
-	line-height: 1.6;
-	margin: 0;
-	margin-bottom: 0;
-	padding: 0;
-	background-color: #fff;
-	color: #333333;
-	height: 100%;
-  }
-  
-  .main-page {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	max-width: 960px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	min-height: 100vh;
-  }
-  
-  .menu {
-	width: 100%;
-	background-color: #f2711c;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-  }
-  
-  .menu ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  .menu ul li {
-	margin-right: 20px;
-  }
-  
-  .menu ul li:last-child {
-	margin-right: 0;
-  }
-  
-  .menu ul li a {
-	color: #fff;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-weight: 700;
-	padding: 10px 20px;
-	display: block;
-  }
-  
-  .footer {
-	width: 100%;
-	background-color: #f2711c;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-weight: 700;
-	padding: 10px 20px;
-	display: block;
-	margin-top: 40px;
-	margin-bottom: 0;
-  }
-  
-  .wrap {
-	padding: 20px;
-  }
-  
-  .form-table {
-	margin: 0 0 1.3em 0;
-	width: 100%;
-	border-collapse: collapse;
-  }
-  
-  .form-table th,
-  .form-table td,
-  .list-table th,
-  .list-table td {
-	padding: 10px;
-	text-align: center;
-  }
-  
-  .form-table th {
-	background-color: #f2711c;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: 700;
-	border: 1px solid #f2711c;
-  }
-  
-  .form-table td {
-	border: 1px solid #ccc;
-  }
-  
-  .list-table {
-	width: 100%;
-	border-collapse: collapse;
-  }
-  
-  .list-table th {
-	background-color: #f2711c;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: 700;
-	border: 1px solid #f2711c;
-  }
-  
-  .list-table td {
-	border: 1px solid #ccc;
-	padding: 10px;
-  }
-  
-  .error,
-  .form_error {
-	font-size: 12px !important;
-	color: red !important;
-  }
-  
-  .subscribe {
-	background-color: #f9d9b9;
-	padding: 10px;
-	margin-top: 20px;
-  }
-  
-  .unsubscribe {
-	background-color: #f2f2f2;
-	padding: 10px;
-	margin-top: 20px;
-  }
-  
-  .alert {
-	background-color: #fff3cd;
-	color: #856404;
-	padding: 10px;
-	margin-top: 20px;
-  }
-  
-  .success {
-	font-size: 12px !important;
-	color: green !important;
-  }
-  
-  .clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	line-height: 0;
-	overflow: hidden;
-	display: block;
-	clear: both;
-	visibility: hidden;
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333333;
+    height: 100%;
+}
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.menu {
+    width: 100%;
+    background-color: #f2711c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu ul li {
+    margin-right: 20px;
+}
+
+.menu ul li:last-child {
+    margin-right: 0;
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px 20px;
+    display: block;
+}
+
+.footer {
+    width: 100%;
+    background-color: #f2711c;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px 20px;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.wrap {
+    padding: 20px;
+}
+
+.form-table {
+    margin: 0 0 1.3em 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table th,
+.form-table td,
+.list-table th,
+.list-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.form-table th {
+    background-color: #f2711c;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid #f2711c;
+}
+
+.form-table td {
+    border: 1px solid #ccc;
+}
+
+.list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.list-table th {
+    background-color: #f2711c;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid #f2711c;
+}
+
+.list-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.error,
+.form_error {
+    font-size: 12px !important;
+    color: red !important;
+}
+
+.subscribe {
+    background-color: #f9d9b9;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.unsubscribe {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.alert {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.success {
+    font-size: 12px !important;
+    color: green !important;
+}
+
+.clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+    clear: both;
+    visibility: hidden;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* Animated background */
 
 .animated-background {
-	position: absolute; 
-	/*top: 0;*/
-	left: 0;
-	width: 100%;
-	background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
-	background-size: 400% 400%;
-	animation: animate-background 10s infinite ease-in-out;
+    position: absolute;
+    /*top: 0;*/
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    background-size: 400% 400%;
+    animation: animate-background 10s infinite ease-in-out;
 }
 
 @keyframes animate-background {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
